@@ -1,0 +1,3 @@
+teaches(lecturer,course) AND
+attends(student,course) AND
+likes(student,lecturer)

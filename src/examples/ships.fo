@@ -1,0 +1,4 @@
+EXISTS cl, l, t, co, b, r. 
+Ships(n,cl,l) AND
+Classes(cl,t,co,ng,b,d) AND
+Outcomes(n,"Guadalcanal",r)

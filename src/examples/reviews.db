@@ -1,0 +1,14 @@
+Brands (Apple) (Microsoft)
+
+Products
+(Apple, iPad)
+(Apple, MacBook)
+(Microsoft, "Windows 10")
+(Microsoft, Office365)
+
+Reviews
+(iPad, "Apple Fanboy", 5)
+(MacBook, "Apple Fanboy", 5)
+("Windows 10", "Apple Fanboy", 0)
+(Office365, "Apple Fanboy", 1)
+(Office365, "Bill Gates", 0)

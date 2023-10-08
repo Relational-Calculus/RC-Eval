@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Box from '@mui/material/Box';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import RcEval from './RcEval';
+
+const theme = createTheme({
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#222222',
+    },
+    secondary: {
+      main: '#fdd835',
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <RcEval />
+    // <ThemeProvider theme={theme}>
+    //   <Box>
+    //     {/*<BrowserRouter> basename="/explanator2" */}
+    //     <BrowserRouter basename="/vis"> 
+    //       <Routes>
+    //         <Route path="/" element={<RcEval />} />
+    //       </Routes>
+    //     </BrowserRouter>
+    //   </Box>
+    // </ThemeProvider>
   );
 }
 
