@@ -1,13 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import Box from '@mui/material/Box';
+import React, { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
-import AccessibleForwardIcon from '@mui/icons-material/AccessibleForward';
-import { createTheme } from '@mui/material/styles';
-import { purple, red } from '@mui/material/colors';
-// import { Button as MuiButton } from "@mui/material";
-import { styled } from "@mui/system";
-
-
 
 export default function OpperatorButton ({query, setFormState, icon, cursorPosition}) {
 
