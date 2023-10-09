@@ -72,6 +72,9 @@ function formStateReducer(formState, action) {
   case 'setSchema':
     return { ...formState,
              schema: action.schema };
+  case 'setCursor':
+    return {...formState,
+              cursor: action.cursor}
   case 'setFormulaAndTraceAndSig':
     return { query: action.query,
              db: action.db,
@@ -100,7 +103,7 @@ function evalStateReducer(evalState, action) {
 
 export default function RcEval() {
 
-  const [formState, setFormState] = useReducer(formStateReducer, { query: "", db: "", schema: "", result: "" });
+  const [formState, setFormState] = useReducer(formStateReducer, { query: "", db: "", schema: "", result: "", cursor: "" });
   const [evalState, setEvalState] = useReducer(evalStateReducer, 
                                                                 {
                                                                   schema: {result: "", err_msg: "", correct: false},
@@ -129,6 +132,11 @@ export default function RcEval() {
             <SchemaTextField schema={formState.schema} setFormState={setFormState} />
           </Grid>
           <Grid item xs={12} md={12}>
+            <ButtonGroup variant="outlined" size="small" spacing={2}>
+              <OpperatorButton query={formState.query} setFormState={setFormState} icon={"∧"} cursorPosition={formState.cursor}/>
+              <OpperatorButton query={formState.query} setFormState={setFormState} icon={"∨"} cursorPosition={formState.cursor}/>
+              <OpperatorButton query={formState.query} setFormState={setFormState} icon={"∃"} cursorPosition={formState.cursor}/>
+            </ButtonGroup>
             <QueryTextField query={formState.query} setFormState={setFormState} />
           </Grid>
           <Grid item xs={12} md={12}>
