@@ -7,6 +7,8 @@ import DbTextField from './components/DbTextField';
 import ExampleSelectButton from './components/ExampleSelectButton';
 import EvalButton from './components/EvalButton';
 import ReactVirtualizedTable from './components/DatabaseTable'
+import OpperatorButton from "./components/QueryButtons";
+import { ButtonGroup } from "@mui/material";
 
 function evalSchema(evalState, action) {
   try {
