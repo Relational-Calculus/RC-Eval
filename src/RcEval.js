@@ -37,6 +37,7 @@ function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
     const regEx = /\w+/g
+    console.log(dbResult, dbResult.match(regEx))
     return { ...evalState,
             db: {result: dbResult.match(regEx), correct: true}};
   } catch (error) {
@@ -149,7 +150,7 @@ export default function RcEval() {
           <Grid item xs={12}>
             <DbTextField db={formState.db} setFormState={setFormState} />
           </Grid>
-          { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
+          { evalState.schema.correct && evalState.query.correct && evalState.db.correct && evalState.db.result.indexOf('INF') === -1 &&
           <Grid item xs={12}>
             <ReactVirtualizedTable fv={evalState.query.fv} results={evalState.db.result} />
           </Grid>

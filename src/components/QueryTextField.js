@@ -29,7 +29,6 @@ export default function QueryTextFields({ query, setFormState }) {
         >
           <div>
             <TextField
-              required
               multiline
               id="outlined-required"
               label="Query"
