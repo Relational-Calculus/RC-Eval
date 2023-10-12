@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
 
-export default function OpperatorButton ({query, setFormState, icon, cursorPosition}) {
+export default function OperatorButton ({query, setFormState, icon, cursorPosition}) {
 
     const [localQuery, setLocalQuery] = useState("");
 
@@ -11,8 +11,7 @@ export default function OpperatorButton ({query, setFormState, icon, cursorPosit
     const onClick= (event) => {
         setLocalQuery(localQuery.slice(0, cursorPosition) + icon + localQuery.slice(cursorPosition));
         setLocalCursor(cursorPosition+icon.length)
-        setFormState({type: "setQuery", query: localQuery})
-        setFormState({type: "setCursor", cursor: localCursor})
+        setFormState({type: "setQuery", query: localQuery, cursor: localCursor})
       }
 
       useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import SchemaTextField from './components/SchemaTextField';
@@ -7,7 +7,7 @@ import DbTextField from './components/DbTextField';
 import ExampleSelectButton from './components/ExampleSelectButton';
 import EvalButton from './components/EvalButton';
 import ReactVirtualizedTable from './components/DatabaseTable';
-import OpperatorButton from './components/QueryButtons';
+import OperatorButton from './components/QueryButtons';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
 function evalSchema(evalState, action) {
@@ -68,7 +68,8 @@ function formStateReducer(formState, action) {
   switch (action.type) {
   case 'setQuery':
     return { ...formState,
-             query: action.query };
+             query: action.query,
+             cursor: action.cursor };
   case 'setDb':
     return { ...formState,
              db: action.db };
@@ -114,14 +115,24 @@ export default function RcEval() {
                                                                   db: {result: "", err_msg: "", correct: false}
                                                                 })
 
-  const handleEval = (event) => {
+  // const handleEval = (event) => {
+  //   let action = { type: "queryEval", 
+  //                  query: formState.query, 
+  //                  db: formState.db, 
+  //                  schema: formState.schema };
+
+  //   setEvalState(action);
+  // }
+
+  useEffect(() => {
     let action = { type: "queryEval", 
                    query: formState.query, 
                    db: formState.db, 
                    schema: formState.schema };
 
     setEvalState(action);
-  }
+
+  }, [formState.schema, formState.query, formState.result])
 
   return (
     <Container>
@@ -136,19 +147,19 @@ export default function RcEval() {
           </Grid>
           <Grid item xs={12} md={12}>
             <ButtonGroup variant="outlined" size="small" spacing={2}>
-              <OpperatorButton query={formState.query} setFormState={setFormState} icon={"∧"} cursorPosition={formState.cursor}/>
-              <OpperatorButton query={formState.query} setFormState={setFormState} icon={"∨"} cursorPosition={formState.cursor}/>
-              <OpperatorButton query={formState.query} setFormState={setFormState} icon={"∃"} cursorPosition={formState.cursor}/>
-              <OpperatorButton query={formState.query} setFormState={setFormState} icon={"¬"} cursorPosition={formState.cursor}/>
-              <OpperatorButton query={formState.query} setFormState={setFormState} icon={"⇒"} cursorPosition={formState.cursor}/> 
-              <OpperatorButton query={formState.query} setFormState={setFormState} icon={"∀"} cursorPosition={formState.cursor}/>
-              <OpperatorButton query={formState.query} setFormState={setFormState} icon={"="} cursorPosition={formState.cursor}/>
+              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∧"} cursorPosition={formState.cursor}/>
+              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∨"} cursorPosition={formState.cursor}/>
+              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∃"} cursorPosition={formState.cursor}/>
+              <OperatorButton query={formState.query} setFormState={setFormState} icon={"¬"} cursorPosition={formState.cursor}/>
+              <OperatorButton query={formState.query} setFormState={setFormState} icon={"⇒"} cursorPosition={formState.cursor}/> 
+              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∀"} cursorPosition={formState.cursor}/>
+              <OperatorButton query={formState.query} setFormState={setFormState} icon={"="} cursorPosition={formState.cursor}/>
             </ButtonGroup>
             <QueryTextField query={formState.query} setFormState={setFormState} />
           </Grid>
-          <Grid item xs={12} md={12}>
+          {/* <Grid item xs={12} md={12}>
             <EvalButton handleEval={handleEval}/>
-          </Grid>
+          </Grid> */}
         </Grid>
         <Grid container item xs={12} md={6} spacing={2}>
           <Grid item xs={12}>

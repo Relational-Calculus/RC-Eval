@@ -10,8 +10,7 @@ export default function QueryTextFields({ query, setFormState }) {
     };
 
     const handleBlur = (event) => {
-      setFormState({ type: 'setQuery', query: localQuery});
-      setFormState({type: 'setCursor', cursor: event.target.selectionStart});
+      setFormState({ type: 'setQuery', query: localQuery, cursor: event.target.selectionStart});
     };
 
     useEffect(() => {
