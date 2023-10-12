@@ -1,11 +1,10 @@
 import React, { useEffect, useReducer } from "react";
 import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 import SchemaTextField from './components/SchemaTextField';
 import QueryTextField from './components/QueryTextField';
 import DbTextField from './components/DbTextField';
 import ExampleSelectButton from './components/ExampleSelectButton';
-import EvalButton from './components/EvalButton';
 import ReactVirtualizedTable from './components/DatabaseTable';
 import OperatorButton from './components/QueryButtons';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -115,15 +114,6 @@ export default function RcEval() {
                                                                   db: {result: "", err_msg: "", correct: false}
                                                                 })
 
-  // const handleEval = (event) => {
-  //   let action = { type: "queryEval", 
-  //                  query: formState.query, 
-  //                  db: formState.db, 
-  //                  schema: formState.schema };
-
-  //   setEvalState(action);
-  // }
-
   useEffect(() => {
     let action = { type: "queryEval", 
                    query: formState.query, 
@@ -135,43 +125,33 @@ export default function RcEval() {
   }, [formState.schema, formState.query, formState.result])
 
   return (
-    <Container>
+    <Box style={{ height: '100vh', margin: 10, padding: 10 }}>
       <h1>RC-eval <font size={3}> Evaluating Relational Calculus Queries</font></h1>
       <Grid container spacing={2}>
-        <Grid container item xs={12} md={6} spacing={2}>
-          <Grid item xs={12} md={12}>
-            <ExampleSelectButton setFormState={setFormState} />
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <SchemaTextField schema={formState.schema} setFormState={setFormState} />
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <ButtonGroup variant="outlined" size="small" spacing={2}>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∧"} cursorPosition={formState.cursor}/>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∨"} cursorPosition={formState.cursor}/>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∃"} cursorPosition={formState.cursor}/>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"¬"} cursorPosition={formState.cursor}/>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"⇒"} cursorPosition={formState.cursor}/> 
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∀"} cursorPosition={formState.cursor}/>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"="} cursorPosition={formState.cursor}/>
-            </ButtonGroup>
-            <QueryTextField query={formState.query} setFormState={setFormState} />
-          </Grid>
-          {/* <Grid item xs={12} md={12}>
-            <EvalButton handleEval={handleEval}/>
-          </Grid> */}
+        <Grid item xs={3}>
+          <ExampleSelectButton setFormState={setFormState} />
         </Grid>
-        <Grid container item xs={12} md={6} spacing={2}>
-          <Grid item xs={12}>
-            <DbTextField db={formState.db} setFormState={setFormState} />
-          </Grid>
-          { evalState.schema.correct && evalState.query.correct && evalState.db.correct && evalState.db.result.indexOf('INF') === -1 &&
-          <Grid item xs={12}>
-            <ReactVirtualizedTable fv={evalState.query.fv} results={evalState.db.result} />
-          </Grid>
+        <Grid item xs={9}>
+          <ButtonGroup variant="outlined" size="large" spacing={2}>
+            <OperatorButton query={formState.query} setFormState={setFormState} icon={"∧"} cursorPosition={formState.cursor}/>
+            <OperatorButton query={formState.query} setFormState={setFormState} icon={"∨"} cursorPosition={formState.cursor}/>
+            <OperatorButton query={formState.query} setFormState={setFormState} icon={"∃"} cursorPosition={formState.cursor}/>
+            <OperatorButton query={formState.query} setFormState={setFormState} icon={"¬"} cursorPosition={formState.cursor}/>
+            <OperatorButton query={formState.query} setFormState={setFormState} icon={"⇒"} cursorPosition={formState.cursor}/> 
+            <OperatorButton query={formState.query} setFormState={setFormState} icon={"∀"} cursorPosition={formState.cursor}/>
+            <OperatorButton query={formState.query} setFormState={setFormState} icon={"="} cursorPosition={formState.cursor}/>
+          </ButtonGroup>
+          <QueryTextField query={formState.query} setFormState={setFormState} />
+        </Grid>
+        <Grid item xs={3}>
+          <SchemaTextField schema={formState.schema} setFormState={setFormState} />
+        </Grid>
+        <Grid item xs={9}>
+          { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
+          <ReactVirtualizedTable fv={evalState.query.fv} results={evalState.db.result} />
           }
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 }
