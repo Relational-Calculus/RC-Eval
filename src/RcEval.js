@@ -122,7 +122,7 @@ export default function RcEval() {
 
     setEvalState(action);
 
-  }, [formState.schema, formState.query, formState.result])
+  }, [formState.schema, formState.query, formState.result, formState.db])
 
   return (
     <Box style={{ height: '100vh', margin: 10, padding: 10 }}>
