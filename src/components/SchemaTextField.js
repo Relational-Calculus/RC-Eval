@@ -36,7 +36,6 @@ export default function SchemaTextFields({ schema, setFormState }) {
             <TextField
               multiline
               required
-              multiline
               id="outlined-multiline-required"
               label="Schema"
               value={localSchema}
