@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef } from "react";
+import React, { useEffect, useReducer } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import SchemaTextField from './components/SchemaTextField';
