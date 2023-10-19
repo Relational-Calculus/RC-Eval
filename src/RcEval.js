@@ -9,6 +9,7 @@ import EvalButton from './components/EvalButton';
 import ReactVirtualizedTable from './components/DatabaseTable';
 import OperatorButton from './components/QueryButtons';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Result from "./components/DisplayResults";
 
 function evalSchema(evalState, action) {
   try {
@@ -36,10 +37,10 @@ function evalQuery(evalState, action) {
 function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
-    const regEx = /\w+/g
+    const regEx = /[\w. ]+/g
     console.log(dbResult, dbResult.match(regEx))
     return { ...evalState,
-            db: {result: dbResult.match(regEx), correct: true}};
+            db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
     return { ...evalState,
             db: {err_msg: error[1][1]}, correct: false};
@@ -112,7 +113,7 @@ export default function RcEval() {
                                                                 {
                                                                   schema: {result: "", err_msg: "", correct: false},
                                                                   query: {fv: [], err_msg: "", correct: false},
-                                                                  db: {result: "", err_msg: "", correct: false}
+                                                                  db: {quickresult: "", result: "", err_msg: "", correct: false}
                                                                 })
 
   // const handleEval = (event) => {
@@ -165,9 +166,9 @@ export default function RcEval() {
           <Grid item xs={12}>
             <DbTextField db={formState.db} setFormState={setFormState} />
           </Grid>
-          { evalState.schema.correct && evalState.query.correct && evalState.db.correct && evalState.db.result.indexOf('INF') === -1 &&
+          { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
           <Grid item xs={12}>
-            <ReactVirtualizedTable fv={evalState.query.fv} results={evalState.db.result} />
+            <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
           </Grid>
           }
         </Grid>

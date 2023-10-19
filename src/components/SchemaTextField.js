@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
+
+
 export default function SchemaTextFields({ schema, setFormState }) {
     const [localSchema, setLocalSchema] = useState("");
 
@@ -17,6 +19,10 @@ export default function SchemaTextFields({ schema, setFormState }) {
       setLocalSchema(schema);
     }, [schema, setLocalSchema]);
 
+
+    let display = localSchema.replace(")", ")\n")
+
+
     return (
         <Box
           component="form"
@@ -29,7 +35,8 @@ export default function SchemaTextFields({ schema, setFormState }) {
           <div>
             <TextField
               required
-              id="outlined-required"
+              multiline
+              id="outlined-multiline-required"
               label="Schema"
               value={localSchema}
               onChange={handleChange}
