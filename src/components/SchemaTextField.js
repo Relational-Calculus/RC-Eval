@@ -34,6 +34,7 @@ export default function SchemaTextFields({ schema, setFormState }) {
         >
           <div>
             <TextField
+              multiline
               required
               multiline
               id="outlined-multiline-required"
@@ -41,6 +42,8 @@ export default function SchemaTextFields({ schema, setFormState }) {
               value={localSchema}
               onChange={handleChange}
               onBlur={handleBlur}
+              InputProps={{ style: { minHeight: '20vh',
+                               fontSize: 14 } }}
             />
           </div>
         </Box>

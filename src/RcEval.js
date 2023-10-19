@@ -1,11 +1,10 @@
 import React, { useEffect, useReducer } from "react";
 import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 import SchemaTextField from './components/SchemaTextField';
 import QueryTextField from './components/QueryTextField';
 import DbTextField from './components/DbTextField';
 import ExampleSelectButton from './components/ExampleSelectButton';
-import EvalButton from './components/EvalButton';
 import ReactVirtualizedTable from './components/DatabaseTable';
 import OperatorButton from './components/QueryButtons';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -116,15 +115,6 @@ export default function RcEval() {
                                                                   db: {quickresult: "", result: "", err_msg: "", correct: false}
                                                                 })
 
-  // const handleEval = (event) => {
-  //   let action = { type: "queryEval", 
-  //                  query: formState.query, 
-  //                  db: formState.db, 
-  //                  schema: formState.schema };
-
-  //   setEvalState(action);
-  // }
-
   useEffect(() => {
     let action = { type: "queryEval", 
                    query: formState.query, 
@@ -133,7 +123,7 @@ export default function RcEval() {
 
     setEvalState(action);
 
-  }, [formState.schema, formState.query, formState.result])
+  }, [formState.schema, formState.query, formState.result, formState.db])
 
   return (
     <Container>
