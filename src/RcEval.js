@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import SchemaTextField from './components/SchemaTextField';
@@ -107,15 +107,23 @@ export default function RcEval() {
                                                                   db: {result: "", err_msg: "", correct: false}
                                                                 })
 
+  // SEEMS LIKE THE useEffect hook runs multiple times
+  const evaluatorRanRef = useRef(false);
+
   useEffect(() => {
-    let action = { type: "queryEval", 
+    // if (!evaluatorRanRef.current) {
+    //   evaluatorRanRef.current = !evaluatorRanRef.current; 
+    // }
+    
+    const action = { type: "queryEval", 
                    query: formState.query, 
                    db: formState.db, 
                    schema: formState.schema };
-
+                   
     setEvalState(action);
 
   }, [formState.schema, formState.query, formState.db])
+  console.log([formState.schema, formState.query, formState.db])
 
   return (
     <Box style={{ height: '100vh', margin: 10, padding: 10 }}>

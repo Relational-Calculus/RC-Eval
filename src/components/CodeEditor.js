@@ -60,8 +60,6 @@ export default function CodeEditor({ query, setFormState }) {
     }, 50);
   }
 
-  console.log(query)
-
   const frameStyle = {
     borderStyle: "solid",
     borderColor: "black",
