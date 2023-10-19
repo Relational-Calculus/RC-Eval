@@ -57,7 +57,7 @@ export default function CodeEditor({ query, setFormState }) {
         selection: {anchor: cursorPosFrom+1}
       })
       if(view.hasFocus) clearInterval(timer);
-    }, 50);
+    }, 100);
   }
 
   const frameStyle = {
@@ -78,7 +78,7 @@ export default function CodeEditor({ query, setFormState }) {
   return(
           <div className="editor-frame" style={frameStyle}>
             <div className="button-frame" style={ButtonframeStyle}>
-              {operators.map(op => <button type="button" onClick={() => setIcon(op)}>{op}</button>)}
+              {operators.map(op => <button type="button" key={op} onClick={() => setIcon(op)}>{op}</button>)}
             </div>
             <div ref={editor} />
           </div>

@@ -33,7 +33,7 @@ function evalQuery(evalState, action) {
 function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
-    const regEx = /\w+/g
+    const regEx = /[\w. ]+/g
     return { ...evalState,
             db: {result: dbResult.match(regEx), correct: true}};
   } catch (error) {
@@ -96,7 +96,6 @@ function evalStateReducer(evalState, action) {
   }
 }
 
-
 export default function RcEval() {
 
   const [formState, setFormState] = useReducer(formStateReducer, { query: "", db: "", schema: "", result: ""});
@@ -107,14 +106,7 @@ export default function RcEval() {
                                                                   db: {result: "", err_msg: "", correct: false}
                                                                 })
 
-  // SEEMS LIKE THE useEffect hook runs multiple times
-  const evaluatorRanRef = useRef(false);
-
   useEffect(() => {
-    // if (!evaluatorRanRef.current) {
-    //   evaluatorRanRef.current = !evaluatorRanRef.current; 
-    // }
-    
     const action = { type: "queryEval", 
                    query: formState.query, 
                    db: formState.db, 
@@ -123,7 +115,6 @@ export default function RcEval() {
     setEvalState(action);
 
   }, [formState.schema, formState.query, formState.db])
-  console.log([formState.schema, formState.query, formState.db])
 
   return (
     <Box style={{ height: '100vh', margin: 10, padding: 10 }}>
