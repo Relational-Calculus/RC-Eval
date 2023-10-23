@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import SchemaTextField from './components/SchemaTextField';
 import ExampleSelectButton from './components/ExampleSelectButton';
-import EvalButton from './components/EvalButton';
 import ReactVirtualizedTable from './components/DatabaseTable';
 import CodeEditor from './components/CodeEditor';
 
@@ -106,15 +105,6 @@ export default function RcEval() {
                                                                   query: {fv: [], err_msg: "", correct: false},
                                                                   db: {quickresult: "", result: "", err_msg: "", correct: false}
                                                                 })
-
-  // const handleEval = (event) => {
-  //   let action = { type: "queryEval", 
-  //                  query: formState.query, 
-  //                  db: formState.db, 
-  //                  schema: formState.schema };
-
-  //   setEvalState(action);
-  // }
 
   useEffect(() => {
     const action = { type: "queryEval", 
