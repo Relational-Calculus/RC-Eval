@@ -24,7 +24,8 @@ export default function CodeEditor({ query, setFormState }) {
 
   useEffect(() => {
     setFormState({ type: 'setQuery', query: localQuery });
-  }, [localQuery]);
+  }, [localQuery, setFormState]);
+
 
 
   const editor = useRef();
@@ -33,17 +34,17 @@ export default function CodeEditor({ query, setFormState }) {
     placeholder: placeholderStr,
     onChange: onChange,
     minHeight: "200px",
-    theme: 'light', 
+    theme: "light",
     autoFocus: true,
     basicSetup: true,
     value: localQuery
   });
 
-  useEffect(() => {
-    if (editor.current) {
-      setContainer(editor.current);
-    }
-  }, [editor.current]);
+  // useEffect(() => {
+  //   if (editor.current) {
+  //     setContainer(editor.current);
+  //   }
+  // }, [editor.current]);
 
   const setIcon = (icon) => {
     const cursorPosFrom = view.state.selection.main.from;
@@ -78,7 +79,7 @@ export default function CodeEditor({ query, setFormState }) {
   return(
           <div className="editor-frame" style={frameStyle}>
             <div className="button-frame" style={ButtonframeStyle}>
-              {operators.map(op => <button type="button" key={op} onClick={() => setIcon(op)}>{op}</button>)}
+              {operators.map(op => <button type="button" key={op} title={op} onClick={() => setIcon(op)}>{op}</button>)}
             </div>
             <div ref={editor} />
           </div>
