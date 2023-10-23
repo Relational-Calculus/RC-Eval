@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 import SchemaTextField from './components/SchemaTextField';
 import ExampleSelectButton from './components/ExampleSelectButton';
 import CodeEditor from './components/CodeEditor';
@@ -117,13 +117,11 @@ export default function RcEval() {
   }, [formState.schema, formState.query, formState.db])
 
   return (
-    <Container>
+    <Box style={{ height: '100vh', margin: 10, padding: 10 }}>
       <h1>RC-eval <font size={3}> Evaluating Relational Calculus Queries</font></h1>
       <Grid container spacing={2}>
-        <Grid container item xs={12} md={6} spacing={2}>
-          <Grid item xs={12} md={12}>
-            <ExampleSelectButton setFormState={setFormState} />
-          </Grid>
+        <Grid item xs={3}>
+          <ExampleSelectButton setFormState={setFormState} />
         </Grid>
         <Grid item xs={9}>
           <CodeEditor query={formState.query} setFormState={setFormState} />
@@ -133,12 +131,10 @@ export default function RcEval() {
         </Grid>
         <Grid item xs={9}>
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
-          <Grid item xs={12}>
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
-          </Grid>
           }
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 }
