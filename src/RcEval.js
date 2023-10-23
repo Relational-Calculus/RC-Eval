@@ -3,8 +3,8 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import SchemaTextField from './components/SchemaTextField';
 import ExampleSelectButton from './components/ExampleSelectButton';
-import ReactVirtualizedTable from './components/DatabaseTable';
 import CodeEditor from './components/CodeEditor';
+import Result from "./components/DisplayResults";
 
 
 function evalSchema(evalState, action) {
