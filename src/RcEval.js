@@ -2,14 +2,11 @@ import React, { useEffect, useReducer } from "react";
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import SchemaTextField from './components/SchemaTextField';
-import QueryTextField from './components/QueryTextField';
-import DbTextField from './components/DbTextField';
 import ExampleSelectButton from './components/ExampleSelectButton';
 import EvalButton from './components/EvalButton';
 import ReactVirtualizedTable from './components/DatabaseTable';
-import OperatorButton from './components/QueryButtons';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Result from "./components/DisplayResults";
+import CodeEditor from './components/CodeEditor';
+
 
 function evalSchema(evalState, action) {
   try {
@@ -38,7 +35,6 @@ function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
     const regEx = /[\w. ]+/g
-    console.log(dbResult, dbResult.match(regEx))
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
@@ -69,17 +65,13 @@ function formStateReducer(formState, action) {
   switch (action.type) {
   case 'setQuery':
     return { ...formState,
-             query: action.query,
-             cursor: action.cursor };
+             query: action.query };
   case 'setDb':
     return { ...formState,
              db: action.db };
   case 'setSchema':
     return { ...formState,
              schema: action.schema };
-  case 'setCursor':
-    return {...formState,
-              cursor: action.cursor}
   case 'setFormulaAndTraceAndSig':
     return { query: action.query,
              db: action.db,
@@ -105,10 +97,9 @@ function evalStateReducer(evalState, action) {
   }
 }
 
-
 export default function RcEval() {
 
-  const [formState, setFormState] = useReducer(formStateReducer, { query: "", db: "", schema: "", result: "", cursor: "" });
+  const [formState, setFormState] = useReducer(formStateReducer, { query: "", db: "", schema: "", result: ""});
   const [evalState, setEvalState] = useReducer(evalStateReducer, 
                                                                 {
                                                                   schema: {result: "", err_msg: "", correct: false},
@@ -126,14 +117,14 @@ export default function RcEval() {
   // }
 
   useEffect(() => {
-    let action = { type: "queryEval", 
+    const action = { type: "queryEval", 
                    query: formState.query, 
                    db: formState.db, 
                    schema: formState.schema };
-
+                   
     setEvalState(action);
 
-  }, [formState.schema, formState.query, formState.result])
+  }, [formState.schema, formState.query, formState.db])
 
   return (
     <Container>
@@ -143,29 +134,14 @@ export default function RcEval() {
           <Grid item xs={12} md={12}>
             <ExampleSelectButton setFormState={setFormState} />
           </Grid>
-          <Grid item xs={12} md={12}>
-            <SchemaTextField schema={formState.schema} setFormState={setFormState} />
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <ButtonGroup variant="outlined" size="small" spacing={2}>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∧"} cursorPosition={formState.cursor}/>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∨"} cursorPosition={formState.cursor}/>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∃"} cursorPosition={formState.cursor}/>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"¬"} cursorPosition={formState.cursor}/>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"⇒"} cursorPosition={formState.cursor}/> 
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"∀"} cursorPosition={formState.cursor}/>
-              <OperatorButton query={formState.query} setFormState={setFormState} icon={"="} cursorPosition={formState.cursor}/>
-            </ButtonGroup>
-            <QueryTextField query={formState.query} setFormState={setFormState} />
-          </Grid>
-          {/* <Grid item xs={12} md={12}>
-            <EvalButton handleEval={handleEval}/>
-          </Grid> */}
         </Grid>
-        <Grid container item xs={12} md={6} spacing={2}>
-          <Grid item xs={12}>
-            <DbTextField db={formState.db} setFormState={setFormState} />
-          </Grid>
+        <Grid item xs={9}>
+          <CodeEditor query={formState.query} setFormState={setFormState} />
+        </Grid>
+        <Grid item xs={3}>
+          <SchemaTextField schema={formState.schema} setFormState={setFormState} />
+        </Grid>
+        <Grid item xs={9}>
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
           <Grid item xs={12}>
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
