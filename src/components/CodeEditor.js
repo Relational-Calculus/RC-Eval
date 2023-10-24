@@ -4,8 +4,7 @@ import { RC } from '../lang-rc/dist/index.js';
 import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
 import {syntaxTree} from "@codemirror/language"
-import {linter, Diagnostic} from "@codemirror/lint"
-// import { javascript } from "@codemirror/lang-javascript";
+import {linter, lintGutter} from "@codemirror/lint"
 
 
 const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
@@ -49,7 +48,7 @@ const operatorLinter = linter(view => {
   return diagnostics
 })
 
-const extensions = [RC(), operatorLinter];
+const extensions = [RC(), lintGutter(), operatorLinter];
 
 export default function CodeEditor({ query, setFormState }) {
 
