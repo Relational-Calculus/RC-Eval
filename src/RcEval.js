@@ -25,6 +25,7 @@ function evalQuery(evalState, action) {
     return { ...evalState,
             query: {fv: freeVariables.match(regEx), correct: true}};
   } catch (error) {
+      console.log(error)
     return { ...evalState, 
             query: {fv: [], err_msg: error[1], correct: false}};
   }
@@ -37,6 +38,7 @@ function evalDb(evalState, action) {
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
+    console.log(error)
     return { ...evalState,
             db: {err_msg: error[1][1]}, correct: false};
   }
@@ -115,6 +117,7 @@ export default function RcEval() {
     setEvalState(action);
 
   }, [formState.schema, formState.query, formState.db])
+  // console.log(evalState.query.err_msg)
 
   return (
     <Box style={{ height: '100vh', margin: 10, padding: 10 }}>

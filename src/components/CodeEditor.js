@@ -37,7 +37,7 @@ export default function CodeEditor({ query, setFormState }) {
     theme: "light",
     autoFocus: true,
     basicSetup: true,
-    value: localQuery
+    value: localQuery,
   });
 
   // useEffect(() => {
