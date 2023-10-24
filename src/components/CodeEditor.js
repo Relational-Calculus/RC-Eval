@@ -1,12 +1,39 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useCodeMirror } from '@uiw/react-codemirror';
+import { RC } from '../lang-rc/dist/index.js';
+import { createTheme } from '@uiw/codemirror-themes';
+import { tags as t } from '@lezer/highlight';
 
 
 const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
 // which cause costly re-renders.
-// const extensions = [javascript()];
+
+const myTheme = createTheme({
+  theme: 'light',
+  settings: {
+    background: '#ffffff',
+    backgroundImage: '',
+    foreground: '#292a2b',
+    caret: '#5d00ff',
+    selection: '#036dd626',
+    selectionMatch: '#036dd626',
+    lineHighlight: '#8a91991a',
+    gutterBackground: '#fff',
+    gutterForeground: '#8a919966',
+    fontFamily: 'OCR A Std, monospace'
+  },
+  styles: [
+    { tag: t.comment, color: '#787b8099', fontStyle: "italic" },
+    { tag: t.variableName, color: '#42f56c' },
+    { tag: t.string, color: '#0971d9' },
+    { tag: t.operator, color: '#f54248' },
+    { tag: t.paren, color: '#292a2b' },
+  ],
+});
+
+const extensions = [RC()];
 
 export default function CodeEditor({ query, setFormState }) {
 
@@ -29,22 +56,22 @@ export default function CodeEditor({ query, setFormState }) {
 
 
   const editor = useRef();
-  const { view, setContainer } = useCodeMirror({
+  const { state, view, setContainer } = useCodeMirror({
     container: editor.current,
     placeholder: placeholderStr,
     onChange: onChange,
     minHeight: "200px",
-    theme: "light",
+    theme: myTheme,
     autoFocus: true,
-    basicSetup: true,
+    extensions: extensions,
     value: localQuery,
   });
 
-  // useEffect(() => {
-  //   if (editor.current) {
-  //     setContainer(editor.current);
-  //   }
-  // }, [editor.current]);
+  useEffect(() => {
+    if (editor.current) {
+      setContainer(editor.current);
+    }
+  }, [editor.current, setContainer]);
 
   const setIcon = (icon) => {
     const cursorPosFrom = view.state.selection.main.from;

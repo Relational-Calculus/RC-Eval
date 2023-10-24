@@ -1,21 +1,17 @@
 {
-  "name": "codemirror-lang-rc",
+  "name": "rc-eval",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.1",
-    "@codemirror/language": "^6.9.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@lezer/highlight": "^1.0.0",
-    "@lezer/lr": "^1.0.0",
     "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.14.10",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@uiw/codemirror-theme-white": "^4.21.20",
-    "@uiw/codemirror-themes": "^4.21.20",
     "@uiw/react-codemirror": "^4.21.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -27,9 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "mocha src/lang-rc/test/test.js",
-    "eject": "react-scripts eject",
-    "prepare": "rollup -c"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -48,23 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "description": "RC language support for CodeMirror",
-  "main": "src/lang-rc/dist/index.cjs",
-  "module": "src/lang-rc/dist/index.js",
-  "exports": {
-    "import": "./src/lang-rc/dist/index.js",
-    "require": "./src/lang-rc/dist/index.cjs"
-  },
-  "types": "src/lang-rc/dist/index.d.ts",
-  "sideEffects": false,
-  "devDependencies": {
-    "@lezer/generator": "^1.0.0",
-    "mocha": "^9.2.2",
-    "rollup": "^2.79.1",
-    "rollup-plugin-dts": "^4.2.3",
-    "rollup-plugin-ts": "^3.4.5",
-    "typescript": "^4.3.4"
-  },
-  "license": "MIT"
+  }
 }

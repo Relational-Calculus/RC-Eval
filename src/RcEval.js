@@ -25,7 +25,7 @@ function evalQuery(evalState, action) {
     return { ...evalState,
             query: {fv: freeVariables.match(regEx), correct: true}};
   } catch (error) {
-      console.log(error)
+      console.log(error[1])
     return { ...evalState, 
             query: {fv: [], err_msg: error[1], correct: false}};
   }
@@ -38,7 +38,7 @@ function evalDb(evalState, action) {
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
-    console.log(error)
+    console.log(error[1][1])
     return { ...evalState,
             db: {err_msg: error[1][1]}, correct: false};
   }
