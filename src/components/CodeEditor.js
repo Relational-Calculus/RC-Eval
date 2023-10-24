@@ -3,6 +3,9 @@ import { useCodeMirror } from '@uiw/react-codemirror';
 import { RC } from '../lang-rc/dist/index.js';
 import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
+import {syntaxTree} from "@codemirror/language"
+import {linter, Diagnostic} from "@codemirror/lint"
+// import { javascript } from "@codemirror/lang-javascript";
 
 
 const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
@@ -10,11 +13,11 @@ const placeholderStr = "Write Your Query Here\n\nTry using one of the examples t
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
 // which cause costly re-renders.
 
+
 const myTheme = createTheme({
   theme: 'light',
   settings: {
     background: '#ffffff',
-    backgroundImage: '',
     foreground: '#292a2b',
     caret: '#5d00ff',
     selection: '#036dd626',
@@ -33,7 +36,20 @@ const myTheme = createTheme({
   ],
 });
 
-const extensions = [RC()];
+const operatorLinter = linter(view => {
+  let diagnostics = []
+  syntaxTree(view.state).cursor().iterate(node => {
+    if (node.name == "Operator") diagnostics.push({
+      from: node.from,
+      to: node.to,
+      severity: "warning",
+      message: "THIS IS AN OPERATOR"
+    })
+  })
+  return diagnostics
+})
+
+const extensions = [RC(), operatorLinter];
 
 export default function CodeEditor({ query, setFormState }) {
 
