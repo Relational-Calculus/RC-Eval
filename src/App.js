@@ -18,11 +18,10 @@ const theme = createTheme({
 
 function App() {
   return (
-      <RcEval />
+    <RcEval />
     // <ThemeProvider theme={theme}>
     //   <Box>
-    //     {/*<BrowserRouter> basename="/explanator2" */}
-    //     <BrowserRouter basename="/vis"> 
+    //     <BrowserRouter basename="/rc-eval">
     //       <Routes>
     //         <Route path="/" element={<RcEval />} />
     //       </Routes>

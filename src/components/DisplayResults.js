@@ -10,7 +10,7 @@ export default function Result({fv, results, quickresult}) {
     console.log(results)
     let matchedResults = results.match(regEx)
     console.log(matchedResults) */
-    if (quickresult == "INF") {
+    if (quickresult === "INF") {
    /*      return (
             <Box
                 component="form"
@@ -40,7 +40,7 @@ export default function Result({fv, results, quickresult}) {
             </div>
           );
           } 
-    else if (quickresult == "()") {
+    else if (quickresult === "()") {
             return (
                 <Box
                     component="form"
@@ -65,7 +65,7 @@ export default function Result({fv, results, quickresult}) {
                   </Box>
               );
               }
-    else if (quickresult == "") {
+    else if (quickresult === "") {
                 return (
                     <Box
                         component="form"
