@@ -10,6 +10,7 @@ import ReactVirtualizedTable from './components/DatabaseTable';
 import OperatorButton from './components/QueryButtons';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Result from "./components/DisplayResults";
+// import DbDialog from "./components/DbDialog";
 
 function evalSchema(evalState, action) {
   try {
@@ -140,9 +141,7 @@ export default function RcEval() {
       <h1>RC-eval <font size={3}> Evaluating Relational Calculus Queries</font></h1>
       <Grid container spacing={2}>
         <Grid container item xs={12} md={6} spacing={2}>
-          <Grid item xs={12} md={12}>
-            <ExampleSelectButton setFormState={setFormState} />
-          </Grid>
+            {/* <DbTextField db={formState.db} setFormState={setFormState}></>  */}
           <Grid item xs={12} md={12}>
             <SchemaTextField schema={formState.schema} setFormState={setFormState} />
           </Grid>
@@ -163,15 +162,18 @@ export default function RcEval() {
           </Grid> */}
         </Grid>
         <Grid container item xs={12} md={6} spacing={2}>
+        <Grid item xs={12} md={12}>
+            <ExampleSelectButton setFormState={setFormState} />
+          </Grid>
           <Grid item xs={12}>
             <DbTextField db={formState.db} setFormState={setFormState} />
+          </Grid>
           </Grid>
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
           <Grid item xs={12}>
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
           </Grid>
           }
-        </Grid>
       </Grid>
     </Container>
   );
