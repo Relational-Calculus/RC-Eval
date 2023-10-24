@@ -53,17 +53,18 @@ export default function DbTextFields({ db, setFormState }) {
             onClose={handleClose}
             scroll={'body'}
             aria-labelledby= "Loaded database"
+            fullWidth
             >
-            <DialogTitle id="scroll-dialod-title">Loaded Database</DialogTitle>
+            <DialogTitle id="scroll-dialod-title">Current Database</DialogTitle>
             <DialogContent>
                 <DialogContentText
                 id="scroll-dialog-description"
                 >
-                Current database
                 {/* {createDatabaseTable(db={db}, schema={schema})} */}
                 </DialogContentText>
             <TextField
             multiline
+            fullWidth
             id="outlined-required"
             label="Db"
             value={localDb}
