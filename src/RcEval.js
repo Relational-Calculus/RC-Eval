@@ -5,6 +5,8 @@ import SchemaTextField from './components/SchemaTextField';
 import ExampleSelectButton from './components/ExampleSelectButton';
 import CodeEditor from './components/CodeEditor';
 import Result from "./components/DisplayResults";
+import DbTextFields from "./components/DbTextField";
+// import DbDialog from "./components/DbDialog";
 
 
 function evalSchema(evalState, action) {
@@ -124,6 +126,7 @@ export default function RcEval() {
       <h1>RC-eval <font size={3}> Evaluating Relational Calculus Queries</font></h1>
       <Grid container spacing={2}>
         <Grid item xs={3}>
+          <DbTextFields db={formState.db} setFormState={setFormState}/> 
           <ExampleSelectButton setFormState={setFormState} />
         </Grid>
         <Grid item xs={9}>
@@ -136,7 +139,7 @@ export default function RcEval() {
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
           }
-        </Grid>
+      </Grid>
       </Grid>
     </Box>
   );
