@@ -11,6 +11,8 @@ import { table_to_array } from '../utils'
 export default function Schemabuttons({ schema }) {
     const [localSchema, setLocalSchema] = useState([['', [{colName: '', type: ''}]]]);
 
+    console.log(localSchema)
+
     useEffect(() => {
         setLocalSchema(table_to_array(schema));
       }, [schema, setLocalSchema]);

@@ -125,17 +125,21 @@ export default function RcEval() {
     <Box style={{ height: '100vh', margin: 10, padding: 10 }}>
       <h1>RC-eval <font size={3}> Evaluating Relational Calculus Queries</font></h1>
       <Grid container spacing={2}>
+        <Grid item xs={1}></Grid>
         <Grid item xs={3}>
           <DbTextFields db={formState.db} setFormState={setFormState}/> 
           <ExampleSelectButton setFormState={setFormState} />
           <Schemabuttons schema={formState.schema} />
         </Grid>
-        <Grid item xs={9}>
-          <CodeEditor query={formState.query} setFormState={setFormState} />
-          { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
-            <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
-          }
+        <Grid item xs={7}>
+          <Grid conatiner direction={'column'} spacing={4}>
+            <CodeEditor query={formState.query} setFormState={setFormState} />
+            { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
+              <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
+            }
+          </Grid>
         </Grid>
+        <Grid item xs={1}></Grid>
       </Grid>
     </Box>
   );
