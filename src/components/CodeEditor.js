@@ -30,7 +30,7 @@ const myTheme = createTheme({
     { tag: t.comment, color: '#787b8099', fontStyle: "italic" },
     { tag: t.variableName, color: '#42f56c' },
     { tag: t.string, color: '#0971d9' },
-    { tag: t.operator, color: '#f54248' },
+    { tag: t.operatorKeyword, color: '#f54248' },
     { tag: t.paren, color: '#292a2b' },
   ],
 });
@@ -38,11 +38,12 @@ const myTheme = createTheme({
 const operatorLinter = linter(view => {
   let diagnostics = []
   syntaxTree(view.state).cursor().iterate(node => {
-    if (node.name == "Operator") diagnostics.push({
+    console.log(`Node ${node.name} from ${node.from} to ${node.to} is Error ${node.type.isError}`)
+    if (node.type.isError) diagnostics.push({
       from: node.from,
-      to: node.to,
+      to: node.to+1,
       severity: "warning",
-      message: "THIS IS AN OPERATOR"
+      message: "Something Went Wrong"
     })
   })
   return diagnostics
@@ -71,7 +72,7 @@ export default function CodeEditor({ query, setFormState }) {
 
 
   const editor = useRef();
-  const { state, view, setContainer } = useCodeMirror({
+  const { view, setContainer } = useCodeMirror({
     container: editor.current,
     placeholder: placeholderStr,
     onChange: onChange,
@@ -117,6 +118,12 @@ export default function CodeEditor({ query, setFormState }) {
     borderTopLeftRadius: "20px",
     borderTopRightRadius: "20px",
   }
+
+  // let cursor = syntaxTree(view.state).cursor()
+
+  // do {
+  //   console.log(`Node ${cursor.name} from ${cursor.from} to ${cursor.to}`)
+  // } while (cursor.next())
 
   return(
           <div className="editor-frame" style={frameStyle}>
