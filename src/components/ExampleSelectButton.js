@@ -67,7 +67,7 @@ export default function ExampleSelectButton ({ setFormState }) {
     if (result !== undefined) {
       setFormState({ type: 'setFormulaAndTraceAndSig', query: result.query, db: result.db, schema: result.schema });
     }
-  }, [example, setFormState]);
+  }, [example, setExample, setFormState]);
 
 
   return (

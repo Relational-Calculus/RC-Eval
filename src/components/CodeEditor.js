@@ -1,12 +1,55 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useCodeMirror } from '@uiw/react-codemirror';
+import { RC } from './index.js';
+import { createTheme } from '@uiw/codemirror-themes';
+import { tags as t } from '@lezer/highlight';
+import {syntaxTree} from "@codemirror/language"
+import {linter, lintGutter} from "@codemirror/lint"
 
 
 const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
 // which cause costly re-renders.
-// const extensions = [javascript()];
+
+
+const myTheme = createTheme({
+  theme: 'light',
+  settings: {
+    background: '#ffffff',
+    foreground: '#292a2b',
+    caret: '#5d00ff',
+    selection: '#036dd626',
+    selectionMatch: '#036dd626',
+    lineHighlight: '#8a91991a',
+    gutterBackground: '#fff',
+    gutterForeground: '#8a919966',
+    fontFamily: 'OCR A Std, monospace'
+  },
+  styles: [
+    { tag: t.comment, color: '#787b8099', fontStyle: "italic" },
+    { tag: t.variableName, color: '#42f56c' },
+    { tag: t.string, color: '#0971d9' },
+    { tag: t.operatorKeyword, color: '#f54248' },
+    { tag: t.paren, color: '#292a2b' },
+  ],
+});
+
+const operatorLinter = linter(view => {
+  let diagnostics = []
+  syntaxTree(view.state).cursor().iterate(node => {
+    console.log(`Node ${node.name} from ${node.from} to ${node.to} is Error ${node.type.isError}`)
+    if (node.type.isError) diagnostics.push({
+      from: node.from,
+      to: node.to+1,
+      severity: "warning",
+      message: "Something Went Wrong"
+    })
+  })
+  return diagnostics
+})
+
+const extensions = [RC(), lintGutter(), operatorLinter];
 
 export default function CodeEditor({ query, setFormState }) {
 
@@ -34,17 +77,17 @@ export default function CodeEditor({ query, setFormState }) {
     placeholder: placeholderStr,
     onChange: onChange,
     minHeight: "200px",
-    theme: "light",
+    theme: myTheme,
     autoFocus: true,
-    basicSetup: true,
+    extensions: extensions,
     value: localQuery,
   });
 
-  // useEffect(() => {
-  //   if (editor.current) {
-  //     setContainer(editor.current);
-  //   }
-  // }, [editor.current]);
+  useEffect(() => {
+    if (editor.current) {
+      setContainer(editor.current);
+    }
+  }, [editor.current, setContainer]);
 
   const setIcon = (icon) => {
     const cursorPosFrom = view.state.selection.main.from;
@@ -75,6 +118,12 @@ export default function CodeEditor({ query, setFormState }) {
     borderTopLeftRadius: "20px",
     borderTopRightRadius: "20px",
   }
+
+  // let cursor = syntaxTree(view.state).cursor()
+
+  // do {
+  //   console.log(`Node ${cursor.name} from ${cursor.from} to ${cursor.to}`)
+  // } while (cursor.next())
 
   return(
           <div className="editor-frame" style={frameStyle}>
