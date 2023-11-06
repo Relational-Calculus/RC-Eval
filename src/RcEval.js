@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import SchemaTextField from './components/SchemaTextField';
+// import SchemaTextField from './components/SchemaTextField';
+import Schemabuttons from "./components/SchemaButtons";
 import ExampleSelectButton from './components/ExampleSelectButton';
 import CodeEditor from './components/CodeEditor';
 import Result from "./components/DisplayResults";
@@ -119,7 +120,6 @@ export default function RcEval() {
     setEvalState(action);
 
   }, [formState.schema, formState.query, formState.db])
-  // console.log(evalState.query.err_msg)
 
   return (
     <Box style={{ height: '100vh', margin: 10, padding: 10 }}>
@@ -128,18 +128,14 @@ export default function RcEval() {
         <Grid item xs={3}>
           <DbTextFields db={formState.db} setFormState={setFormState}/> 
           <ExampleSelectButton setFormState={setFormState} />
+          <Schemabuttons schema={formState.schema} />
         </Grid>
         <Grid item xs={9}>
           <CodeEditor query={formState.query} setFormState={setFormState} />
-        </Grid>
-        <Grid item xs={3}>
-          <SchemaTextField schema={formState.schema} setFormState={setFormState} />
-        </Grid>
-        <Grid item xs={9}>
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
           }
-      </Grid>
+        </Grid>
       </Grid>
     </Box>
   );

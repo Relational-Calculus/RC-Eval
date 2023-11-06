@@ -1,0 +1,17 @@
+.outer {
+    width: 200px;
+    margin: 10px;
+}
+  
+.inner {
+    margin-left: 40px;
+}
+
+.button {
+    color: black;
+    font-size: 12px;
+}
+
+i {
+    color: gray;
+}
