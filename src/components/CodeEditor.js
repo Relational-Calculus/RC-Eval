@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useCodeMirror } from '@uiw/react-codemirror';
-import { RC } from '../lang-rc/index.js';
+import { RC } from './index.js';
 import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
 import {syntaxTree} from "@codemirror/language"
