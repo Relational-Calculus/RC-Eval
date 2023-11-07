@@ -11,10 +11,10 @@ const theme = createTheme({
   palette: {
     type: 'light',
     primary: {
-      main: '#222222',
+      main: '#d2e0f7',
     },
     secondary: {
-      main: '#fdd835',
+      main: '#222222',
     },
   },
 });
@@ -24,7 +24,7 @@ function App() {
     // <RcEval />
     <ThemeProvider theme={theme}>
       <Box>
-        <BrowserRouter basename="/rc-eval">
+        <BrowserRouter basename="/">
           <NavBar />
           <Routes>
             <Route path="/" element={<RcEval />} />

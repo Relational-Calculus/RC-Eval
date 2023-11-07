@@ -122,8 +122,8 @@ export default function RcEval() {
   }, [formState.schema, formState.query, formState.db])
 
   return (
-    <Box style={{ height: '100vh', margin: 10, padding: 10 }}>
-      <h1>RC-eval <font size={3}> Evaluating Relational Calculus Queries</font></h1>
+    <Box style={{ height: '100vh', margin: 100, padding: 10 }}>
+      {/* <h1>RC-eval <font size={3}> Evaluating Relational Calculus Queries</font></h1> */}
       <Grid container spacing={2}>
         <Grid item xs={1}></Grid>
         <Grid item xs={3}>

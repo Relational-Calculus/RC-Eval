@@ -47,7 +47,7 @@ export default function DbTextFields({ db, setFormState }) {
   
     return (
         <div>
-        <Button onClick={handleClickOpen} >Database </Button>
+        <Button color="secondary" onClick={handleClickOpen} >Database </Button>
         <Dialog 
             open={open}
             onClose={handleClose}

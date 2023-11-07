@@ -113,17 +113,12 @@ export default function CodeEditor({ query, setFormState }) {
   }
 
   const ButtonframeStyle = {
-    backgroundColor: "rgba(96, 86, 91, 0.4)",
+    backgroundColor: "rgb(210, 224, 247)",
     padding: "1em",
     borderTopLeftRadius: "20px",
     borderTopRightRadius: "20px",
   }
 
-  // let cursor = syntaxTree(view.state).cursor()
-
-  // do {
-  //   console.log(`Node ${cursor.name} from ${cursor.from} to ${cursor.to}`)
-  // } while (cursor.next())
 
   return(
           <div className="editor-frame" style={frameStyle}>
