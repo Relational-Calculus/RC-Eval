@@ -3,15 +3,19 @@ import { useCodeMirror } from '@uiw/react-codemirror';
 import { RC } from '../lang-rc/index.js';
 import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
-import {syntaxTree} from "@codemirror/language"
-import {linter, lintGutter} from "@codemirror/lint"
+import { lintGutter } from "@codemirror/lint"
+import { RCLinter } from "../error_handling.js";
+import "./CodeEditor.css";
 
-
-const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
 // which cause costly re-renders.
 
+// Constants
+const extensions = [RC(), lintGutter(), RCLinter];
+const operators = ['∃', '∀', '∧', '∨', '⇒', '¬'];
+const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '=', '<', '>'];
+const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
 
 const myTheme = createTheme({
   theme: 'light',
@@ -35,44 +39,14 @@ const myTheme = createTheme({
   ],
 });
 
-const operatorLinter = linter(view => {
-  let diagnostics = []
-  syntaxTree(view.state).cursor().iterate(node => {
-    console.log(`Node ${node.name} from ${node.from} to ${node.to} is Error ${node.type.isError}`)
-    if (node.type.isError) diagnostics.push({
-      from: node.from,
-      to: node.to+1,
-      severity: "warning",
-      message: "Something Went Wrong"
-    })
-  })
-  return diagnostics
-})
-
-const extensions = [RC(), lintGutter(), operatorLinter];
-
 export default function CodeEditor({ query, setFormState }) {
-
-  const operators = ['∃', '∀', '=', '∧', '∨', '⇒', '¬'];
-
   const [localQuery, setLocalQuery] = useState("");
+  const [expertMode, setExportMode] = useState(false);
   
-  const onChange = (value) => {
-    setLocalQuery(value);
-  };
-
-  useEffect(() => {
-    setLocalQuery(query);
-  }, [query, setLocalQuery]);
-
-  useEffect(() => {
-    setFormState({ type: 'setQuery', query: localQuery });
-  }, [localQuery, setFormState]);
-
-
+  const onChange = (value) => { setLocalQuery(value) };
 
   const editor = useRef();
-  const { view, setContainer } = useCodeMirror({
+  const { view } = useCodeMirror({
     container: editor.current,
     placeholder: placeholderStr,
     onChange: onChange,
@@ -84,46 +58,48 @@ export default function CodeEditor({ query, setFormState }) {
   });
 
   useEffect(() => {
-    if (editor.current) {
-      setContainer(editor.current);
-    }
-  }, [editor.current, setContainer]);
+    setLocalQuery(query);
+  }, [query]);
+
+  useEffect(() => {
+    setFormState({ type: 'setQuery', query: localQuery });
+  }, [localQuery]);
 
   const setIcon = (icon) => {
     const cursorPosFrom = view.state.selection.main.from;
     const cursorPosTo = view.state.selection.main.to;
-    setLocalQuery(localQuery.slice(0, cursorPosFrom) + icon + localQuery.slice(cursorPosTo));
-    setFormState({type: "setQuery", query: localQuery});
 
     const timer = setInterval(() => {
       view.focus();
       view.dispatch({
+        changes: {from: cursorPosFrom, to: cursorPosTo, insert: icon},
         selection: {anchor: cursorPosFrom+1}
       })
       if(view.hasFocus) clearInterval(timer);
-    }, 100);
+    }, 50);
   }
 
-  const frameStyle = {
-    borderStyle: "solid",
-    borderColor: "black",
-    borderWidth: "2px",
-    borderTopLeftRadius: "20px",
-    borderTopRightRadius: "20px",
-  }
-
-  const ButtonframeStyle = {
-    backgroundColor: "rgb(210, 224, 247)",
-    padding: "1em",
-    borderTopLeftRadius: "20px",
-    borderTopRightRadius: "20px",
+  const handleClick = (e) => {
+    if (e.target.checked) {
+      setExportMode(true)
+    } else {
+       setExportMode(false)
+    }
   }
 
 
   return(
-          <div className="editor-frame" style={frameStyle}>
-            <div className="button-frame" style={ButtonframeStyle}>
-              {operators.map(op => <button type="button" key={op} title={op} onClick={() => setIcon(op)}>{op}</button>)}
+          <div className="editorFrame" >
+            <div className="buttonFrame">
+              {!expertMode && operators.map(op => <button type="button" key={op} title={op} onClick={() => setIcon(op)}>{op}</button>)}
+              { expertMode && expertOperators.map(op =>
+                <div className="btnContainer">
+                  <button type="button" key={op} title={op} onClick={() => setIcon(op)}>{op}</button> 
+                  {/* <div className="overlay">
+                    <div className="text">HELLO</div>
+                  </div>  */}
+                </div>) }
+              <label className="mode" htmlFor="expertMode">Expert Mode<input type="checkbox" className="mode" id="expertMode" onClick={handleClick}></input></label>
             </div>
             <div ref={editor} />
           </div>

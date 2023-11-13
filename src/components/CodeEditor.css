@@ -1,14 +1,80 @@
 button {
+    float: left;
     border: 0px;
     --bgcolor: rgba(96, 86, 91, 0.0);
     background: var(--bgcolor);
     font-size: 20px;
+    display: block;
+    text-align: center;
+    padding: 5px 10px;
 }
 
 button:hover {
-    content: attr(title);
     cursor: pointer;
     --bgcolor: rgba(101, 98, 98, 0.4);
     background: var(--bgcolor);
-    background-clip:  padding-box;
-  }
+}
+
+.mode {
+    float: right;
+    --bgcolor: rgba(96, 86, 91, 0.0);
+    background: var(--bgcolor);
+    font-size: 14px;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    display: block;
+    text-align: center;
+    padding: 5px 10px;
+}
+
+/* .btnContainer {
+    position: relative;
+    width: 50%;
+}
+
+.overlay {
+    position: absolute;
+    top: 50px;
+    left: -150px;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #008CBA;
+}
+  
+.btnContainer:hover .overlay {
+    opacity: 1;
+}
+  
+.text {
+    color: white;
+    border: 1px solid black;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+} */
+
+
+.editorFrame {
+    border: 2px solid lightgrey;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.editorFrame:focus-within {
+    border: 2px solid black;
+}
+
+.buttonFrame {
+    background-color: #e89c46ef;
+    margin: 0;
+    padding: 16px;
+    overflow: hidden;
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
+}
