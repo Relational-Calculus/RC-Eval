@@ -122,8 +122,8 @@ export default function RcEval() {
   }, [formState.schema, formState.query, formState.db])
 
   return (
-    <Box style={{ height: '100vh', margin: 100, padding: 10 }}>
-      <Grid container spacing={3}>
+    <Box style={{ height: '100vh', margin: 100, padding: 15 }}>
+      <Grid container spacing={4}>
         <Grid item xs={0}></Grid>
         <Grid item xs={3}>
           <DbTextFields db={formState.db} setFormState={setFormState}/> 
