@@ -122,15 +122,15 @@ export default function RcEval() {
   }, [formState.schema, formState.query, formState.db])
 
   return (
-    <Box style={{ height: '100vh', margin: 100, padding: 10 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={1}></Grid>
+    <Box style={{ height: '100vh', margin: 100, padding: 15 }}>
+      <Grid container spacing={4}>
+        <Grid item xs={0}></Grid>
         <Grid item xs={3}>
           <DbTextFields db={formState.db} setFormState={setFormState}/> 
           <ExampleSelectButton setFormState={setFormState} />
           <Schemabuttons schema={formState.schema} />
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={8}>
           <CodeEditor query={formState.query} setFormState={setFormState} />
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />

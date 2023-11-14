@@ -13,8 +13,8 @@ import "./CodeEditor.css";
 
 // Constants
 const extensions = [RC(), lintGutter(), RCLinter];
-const operators = ['∃', '∀', '∧', '∨', '⇒', '¬'];
-const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '=', '<', '>'];
+const operators = ['∃', '∀', '∧', '∨', '⇒', '¬', '='];
+const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '=', '<', '>', 'AVG', 'MAX', 'MIN', 'CNT', 'LET', 'IN'];
 const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
 
 const myTheme = createTheme({
