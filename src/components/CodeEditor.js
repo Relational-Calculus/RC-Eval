@@ -41,7 +41,7 @@ const myTheme = createTheme({
 
 export default function CodeEditor({ query, setFormState }) {
   const [localQuery, setLocalQuery] = useState("");
-  const [expertMode, setExportMode] = useState(false);
+  const [expertMode, setExpertMode] = useState(false);
   
   const onChange = (value) => { setLocalQuery(value) };
 
@@ -81,9 +81,9 @@ export default function CodeEditor({ query, setFormState }) {
 
   const handleClick = (e) => {
     if (e.target.checked) {
-      setExportMode(true)
+      setExpertMode(true)
     } else {
-       setExportMode(false)
+       setExpertMode(false)
     }
   }
 
