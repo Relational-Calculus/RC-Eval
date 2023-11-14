@@ -45,9 +45,11 @@ export function table_to_array(table) {
     const result = []
     let tableResult = []
     let columnResult = []
+    
     const tables = table.split('\n');
     const regExTableNames = /^[\w+]+/
     const regExColName = /[\w+:]+/g;
+
     tables.forEach(str => {
         const tableName = str.match(regExTableNames);
         tableResult.push(tableName);

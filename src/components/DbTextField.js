@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Box from '@mui/material/Box';
+import { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -15,7 +14,7 @@ export default function DbTextFields({ db, setFormState }) {
       setLocalDb(event.target.value);
     };
 
-    const handleBlur = (event) => {
+    const handleBlur = () => {
       setFormState({ type: 'setDb', db: localDb });
     };
 
@@ -25,7 +24,7 @@ export default function DbTextFields({ db, setFormState }) {
 
 
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
   
     const handleClickOpen = () => {
         setOpen(true);
@@ -36,18 +35,9 @@ export default function DbTextFields({ db, setFormState }) {
       setOpen(false); 
     }; 
   
-    const descriptionElementRef = React.useRef(null);
-    React.useEffect(() => {
-    if (open) {
-      const { current: descriptionElement } = db;
-    }
-  }, [open]);
-  
-      // createDatabaseTable(schema={schema}, db={db})
-  
     return (
         <div>
-        <Button color="secondary" onClick={handleClickOpen} >Database </Button>
+        <Button color="secondary" onClick={handleClickOpen}>DATABASE</Button>
         <Dialog 
             open={open}
             onClose={handleClose}
@@ -60,7 +50,6 @@ export default function DbTextFields({ db, setFormState }) {
                 <DialogContentText
                 id="scroll-dialog-description"
                 >
-                {/* {createDatabaseTable(db={db}, schema={schema})} */}
                 </DialogContentText>
             <TextField
             multiline
@@ -77,35 +66,9 @@ export default function DbTextFields({ db, setFormState }) {
           />  
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}> Close </Button>
+                <Button color="secondary" onClick={handleClose}> Close </Button>
             </DialogActions>
          </Dialog>
     </div>
     );
   } 
-
-  /*   return (
-        <Box
-          component="form"
-          sx={{
-          '& .MuiTextField-root': { width: '100%' },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <div>
-            <TextField
-              multiline
-              id="outlined-required"
-              label="Db"
-              value={localDb}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              minRows={10}
-              maxRows={10}
-              InputProps={{ style: { minHeight: '40vh',
-                               fontSize: 14, align: 'top' } }}
-            />
-          </div>
-        </Box>
-    ); */
