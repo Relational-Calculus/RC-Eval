@@ -65,7 +65,8 @@ export default function Result({fv, results, quickresult}) {
                   </Box>
               );
               }
-    else if (quickresult === "") {
+    else if (quickresult === "" && fv == null) {
+      console.log(fv)
                 return (
                     <Box
                         component="form"
@@ -80,7 +81,7 @@ export default function Result({fv, results, quickresult}) {
                             multiline
                             id="outlined-read-only-input"
                             label="Result"
-                            value={"No results"}
+                            value={"False"}
                             minRows={10}
                             maxRows={10}
                             InputProps={{ style: { minHeight: '40vh',
