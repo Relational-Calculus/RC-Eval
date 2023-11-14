@@ -31,7 +31,7 @@ const myTheme = createTheme({
     fontFamily: 'OCR A Std, monospace'
   },
   styles: [
-    { tag: t.comment, color: '#787b8099', fontStyle: "italic" },
+    { tag: t.comment, color: '#ecfc08', fontStyle: "italic" },
     { tag: t.variableName, color: '#42f56c' },
     { tag: t.string, color: '#0971d9' },
     { tag: t.operatorKeyword, color: '#f54248' },
