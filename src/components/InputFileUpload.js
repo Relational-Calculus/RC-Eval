@@ -23,8 +23,8 @@ export default function InputFileUpload() {
     const file = event.target.files[0]
     let reader = new FileReader();
 
-    if(file.type.substring(0,5)) {
-        alert("You have uploaded a image");
+    if(file.type.substring(0,5) === "image") {
+        alert("You have uploaded an image");
         return;
     }
     console.log(file)

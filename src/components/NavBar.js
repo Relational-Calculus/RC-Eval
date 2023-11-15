@@ -6,16 +6,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import HelpIcon from '@mui/icons-material/Help';
 import InfoIcon from '@mui/icons-material/Info';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
-
-  function handleClick(event) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-  }
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">

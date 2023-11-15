@@ -6,12 +6,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import Grid from '@mui/material/Grid';
 import DialogTitle from '@mui/material/DialogTitle';
-import DbTextField from './DbTextField';
-import SchemaTextField from "./SchemaTextField";
 import InputFileUpload from './InputFileUpload';
 
 
-export default function DbDialog({schema, db, setFormState}) {
+export default function DialogBtn({textField, btnName}) {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -25,7 +23,7 @@ export default function DbDialog({schema, db, setFormState}) {
 
     return (
         <div>
-        <Button color="secondary" onClick={handleClickOpen}>DATABASE</Button>
+        <Button color="secondary" onClick={handleClickOpen}>{btnName}</Button>
         <Dialog 
             open={open}
             onClose={handleClose}
@@ -36,15 +34,13 @@ export default function DbDialog({schema, db, setFormState}) {
             <DialogTitle id="scroll-dialod-title">Current Database</DialogTitle>
             <DialogContent>
                 <DialogContentText id="scroll-dialog-description"></DialogContentText>
-                <Grid container direction={'column'} spacing={4}>
-                    <Grid item sm={8}>
-                        <DbTextField db={db} setFormState={setFormState} />
-                        <InputFileUpload /> 
+                <Grid container direction={'column'} spacing={2}>
+                    <Grid item sx={{margin: "5px"}}>
+                        {textField}
                     </Grid>
-                    <Grid item sm={4}>
-                        <SchemaTextField schema={schema} setFormState={setFormState} />
+                    <Grid item>
                         <InputFileUpload />
-                    </Grid> 
+                    </Grid>
                 </Grid>
             </DialogContent>
             <DialogActions>

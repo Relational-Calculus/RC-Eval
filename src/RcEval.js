@@ -6,8 +6,11 @@ import Schemabuttons from "./components/SchemaButtons";
 import ExampleSelectButton from './components/ExampleSelectButton';
 import CodeEditor from './components/CodeEditor';
 import Result from "./components/DisplayResults";
-import DbTextFields from "./components/DbTextField";
-// import DbDialog from "./components/DbDialog";
+// import DbTextFields from "./components/DbTextField";
+import DbDialog from "./components/DbDialog";
+import DialogBtn from "./components/DialogBtn";
+import SchemaTextField from "./components/SchemaTextField";
+import DbTextField from "./components/DbTextField";
 
 
 function evalSchema(evalState, action) {
@@ -126,7 +129,10 @@ export default function RcEval() {
       <Grid container spacing={4}>
         <Grid item xs={0}></Grid>
         <Grid item xs={3}>
-          <DbTextFields db={formState.db} setFormState={setFormState}/> 
+          <Grid container direction={'row'}>
+            <DialogBtn textField={<DbTextField db={formState.db} setFormState={setFormState}/>} btnName={"DATABASE"} />
+            <DialogBtn textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} btnName={"SCHEMA"} />
+          </Grid> 
           <ExampleSelectButton setFormState={setFormState} />
           <Schemabuttons schema={formState.schema} />
         </Grid>

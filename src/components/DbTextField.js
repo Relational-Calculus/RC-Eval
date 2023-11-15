@@ -1,14 +1,7 @@
 import { useState, useEffect } from "react";
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import InputFileUpload from './InputFileUpload';
 
-export default function DbTextFields({ db, setFormState }) {
+export default function DbTextField({ db, setFormState }) {
     const [localDb, setLocalDb] = useState("");
 
     const handleChange = (event) => {
@@ -22,37 +15,11 @@ export default function DbTextFields({ db, setFormState }) {
     useEffect(() => {
       setLocalDb(db);
     }, [db, setLocalDb]);
-
-
-
-    const [open, setOpen] = useState(false);
   
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setFormState({ type: 'setDb', db: localDb });
-      setOpen(false); 
-    }; 
   
     return (
         <div>
-        <Button color="secondary" onClick={handleClickOpen}>DATABASE</Button>
-        <Dialog 
-            open={open}
-            onClose={handleClose}
-            scroll={'body'}
-            aria-labelledby= "Loaded database"
-            fullWidth
-            >
-            <DialogTitle id="scroll-dialod-title">Current Database</DialogTitle>
-            <DialogContent>
-                <DialogContentText
-                id="scroll-dialog-description"
-                >
-                </DialogContentText>
-            <TextField
+          <TextField
             multiline
             fullWidth
             id="outlined-required"
@@ -65,12 +32,6 @@ export default function DbTextFields({ db, setFormState }) {
             InputProps={{ style: { minHeight: '40vh',
                              fontSize: 14, align: 'top' } }}
           />
-            <InputFileUpload />  
-            </DialogContent>
-            <DialogActions>
-                <Button color="secondary" onClick={handleClose}> Close </Button>
-            </DialogActions>
-         </Dialog>
     </div>
     );
   } 
