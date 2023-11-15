@@ -72,13 +72,13 @@ export default function CodeEditor({ query, setFormState }) {
     const cursorPosFrom = view.state.selection.main.from;
     const cursorPosTo = view.state.selection.main.to;
 
-    const timer = setInterval(() => {
+    const timer = setTimeout(() => {
       view.focus();
       view.dispatch({
         changes: {from: cursorPosFrom, to: cursorPosTo, insert: icon},
         selection: {anchor: cursorPosFrom+1}
       })
-      if(view.hasFocus) clearInterval(timer);
+      if (view.hasFocus) clearTimeout(timer);
     }, 50);
   }
 
@@ -103,11 +103,12 @@ export default function CodeEditor({ query, setFormState }) {
   return(
           <div className="editorFrame" >
             <div className="buttonFrame">
-              { !expertMode && operators.map(op => 
+              { !expertMode && operators.map((op, idx) => 
               <button
                 type="button" 
-                key={op} 
-                title={op} 
+                key={op}
+                className={`operatorBtnClass${idx}`}
+                id={`operatorBtnId${idx}`}
                 onClick={() => setIcon(op)}
                 onMouseEnter={handlePopoverOpen}
                 onMouseLeave={handlePopoverClose}
@@ -115,11 +116,12 @@ export default function CodeEditor({ query, setFormState }) {
                 {op}
               </button> 
               )}
-              { expertMode && expertOperators.map(op =>
+              { expertMode && expertOperators.map((op, idx) =>
               <button 
                 type="button" 
-                key={op} 
-                title={op} 
+                key={op}
+                className={`operatorBtnClass${idx}`}
+                id={`operatorBtnId${idx}`}
                 onClick={() => setIcon(op)}
                 onMouseEnter={handlePopoverOpen}
                 onMouseLeave={handlePopoverClose}
@@ -128,7 +130,9 @@ export default function CodeEditor({ query, setFormState }) {
               </button> 
               )}
               <label className="mode" htmlFor="expertMode">Expert Mode<input type="checkbox" className="mode" id="expertMode" onClick={handleClick}></input></label>
-              <Popover
+            </div>
+            <div ref={editor} />
+            <Popover
                 id="mouse-over-popover"
                 sx={{
                   pointerEvents: 'none',
@@ -144,12 +148,9 @@ export default function CodeEditor({ query, setFormState }) {
                   horizontal: 'center',
                 }}
                 onClose={handlePopoverClose}
-                disableRestoreFocus
-              >
+            >
                 <p>HELLO</p>
-              </Popover>
-            </div>
-            <div ref={editor} />
+            </Popover>
           </div>
     );
 }
