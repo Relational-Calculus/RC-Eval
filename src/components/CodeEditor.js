@@ -66,7 +66,7 @@ export default function CodeEditor({ query, setFormState }) {
 
   useEffect(() => {
     setFormState({ type: 'setQuery', query: localQuery });
-  }, [localQuery]);
+  }, [localQuery, setFormState]);
 
   const setIcon = (icon) => {
     const cursorPosFrom = view.state.selection.main.from;
@@ -121,6 +121,8 @@ export default function CodeEditor({ query, setFormState }) {
                 key={op} 
                 title={op} 
                 onClick={() => setIcon(op)}
+                onMouseEnter={handlePopoverOpen}
+                onMouseLeave={handlePopoverClose}
               >
                 {op}
               </button> 

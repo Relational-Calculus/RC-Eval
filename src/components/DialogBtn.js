@@ -26,7 +26,7 @@ export default function DialogBtn({textField, btnName}) {
         <Button color="secondary" onClick={handleClickOpen}>{btnName}</Button>
         <Dialog 
             open={open}
-            onClose={handleClose}
+            onClose={(handleClose)}
             scroll={'body'}
             aria-labelledby= "Loaded database"
             fullWidth
