@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import InputFileUpload from './InputFileUpload';
 
 export default function DbTextFields({ db, setFormState }) {
     const [localDb, setLocalDb] = useState("");
@@ -63,7 +64,8 @@ export default function DbTextFields({ db, setFormState }) {
             maxRows={10}
             InputProps={{ style: { minHeight: '40vh',
                              fontSize: 14, align: 'top' } }}
-          />  
+          />
+            <InputFileUpload />  
             </DialogContent>
             <DialogActions>
                 <Button color="secondary" onClick={handleClose}> Close </Button>

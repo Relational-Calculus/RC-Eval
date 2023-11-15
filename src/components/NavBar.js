@@ -6,9 +6,16 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import HelpIcon from '@mui/icons-material/Help';
 import InfoIcon from '@mui/icons-material/Info';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
+
+  function handleClick(event) {
+    event.preventDefault();
+    console.info('You clicked a breadcrumb.');
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -22,22 +29,22 @@ export default function NavBar() {
               </Button>
             </Link>
           </Typography>
-          <Link to="/help" style={{ textDecoration: 'none' }}>
-            <Button color="secondary" startIcon={<HelpIcon />}>
-              <Typography variant="button" component="div" >
-                help
-              </Typography>
-            </Button>
-          </Link>
-          <Link to="/about" style={{ textDecoration: 'none' }}>
-            <Button color="secondary" startIcon={<InfoIcon />}>
-              <Typography variant="button" component="div">
-              about
-              </Typography>
-            </Button>
-          </Link>
-    </Toolbar>
-    </AppBar>
+            <Link to="/help" style={{ textDecoration: 'none' }}>
+              <Button color="secondary" startIcon={<HelpIcon />}>
+                <Typography variant="button" component="div" >
+                  help
+                </Typography>
+              </Button>
+            </Link>
+            <Link to="/about" style={{ textDecoration: 'none' }}>
+              <Button color="secondary" startIcon={<InfoIcon />}>
+                <Typography variant="button" component="div">
+                about
+                </Typography>
+              </Button>
+            </Link>
+        </Toolbar>
+      </AppBar>
     </Box>
   );
 }

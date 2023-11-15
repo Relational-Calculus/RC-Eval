@@ -6,6 +6,7 @@ import { tags as t } from '@lezer/highlight';
 import { lintGutter } from "@codemirror/lint"
 import { RCLinter } from "../error_handling.js";
 import "./CodeEditor.css";
+import Popover from '@mui/material/Popover';
 
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
@@ -42,6 +43,8 @@ const myTheme = createTheme({
 export default function CodeEditor({ query, setFormState }) {
   const [localQuery, setLocalQuery] = useState("");
   const [expertMode, setExpertMode] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
   
   const onChange = (value) => { setLocalQuery(value) };
 
@@ -83,23 +86,66 @@ export default function CodeEditor({ query, setFormState }) {
     if (e.target.checked) {
       setExpertMode(true)
     } else {
-       setExpertMode(false)
+      setExpertMode(false)
     }
   }
+
+  const handlePopoverOpen = (e) => {
+    setAnchorEl(e.currentTarget);
+  }
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  }
+
 
 
   return(
           <div className="editorFrame" >
             <div className="buttonFrame">
-              {!expertMode && operators.map(op => <button type="button" key={op} title={op} onClick={() => setIcon(op)}>{op}</button>)}
+              { !expertMode && operators.map(op => 
+              <button
+                type="button" 
+                key={op} 
+                title={op} 
+                onClick={() => setIcon(op)}
+                onMouseEnter={handlePopoverOpen}
+                onMouseLeave={handlePopoverClose}
+              >
+                {op}
+              </button> 
+              )}
               { expertMode && expertOperators.map(op =>
-                <div className="btnContainer">
-                  <button type="button" key={op} title={op} onClick={() => setIcon(op)}>{op}</button> 
-                  {/* <div className="overlay">
-                    <div className="text">HELLO</div>
-                  </div>  */}
-                </div>) }
+              <button 
+                type="button" 
+                key={op} 
+                title={op} 
+                onClick={() => setIcon(op)}
+              >
+                {op}
+              </button> 
+              )}
               <label className="mode" htmlFor="expertMode">Expert Mode<input type="checkbox" className="mode" id="expertMode" onClick={handleClick}></input></label>
+              <Popover
+                id="mouse-over-popover"
+                sx={{
+                  pointerEvents: 'none',
+                }}
+                open={open}
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+                onClose={handlePopoverClose}
+                disableRestoreFocus
+              >
+                <p>HELLO</p>
+              </Popover>
             </div>
             <div ref={editor} />
           </div>
