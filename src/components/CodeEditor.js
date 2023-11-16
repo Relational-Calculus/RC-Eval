@@ -76,7 +76,7 @@ export default function CodeEditor({ query, setFormState }) {
       view.focus();
       view.dispatch({
         changes: {from: cursorPosFrom, to: cursorPosTo, insert: icon},
-        selection: {anchor: cursorPosFrom+1}
+        selection: {anchor: cursorPosFrom+icon.length}
       })
       if (view.hasFocus) clearTimeout(timer);
     }, 50);
