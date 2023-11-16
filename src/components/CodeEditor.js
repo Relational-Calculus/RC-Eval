@@ -148,6 +148,8 @@ export default function CodeEditor({ query, setFormState }) {
                   horizontal: 'center',
                 }}
                 onClose={handlePopoverClose}
+                disableAutoFocus={true}
+                disableEnforceFocus={true}
             >
                 <p>HELLO</p>
             </Popover>
