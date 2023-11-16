@@ -1,13 +1,5 @@
 import { useState, useEffect } from "react";
 import TextField from '@mui/material/TextField';
-import { styled } from '@mui/material/styles';
-
-
-// const StyledTextField = styled(TextField)`
-//     & .Mui-disabled .MuiOutlinedInput-notchedOutline {
-//       border-color: red;
-//     }
-// `;
 
 // dbLegit is evalState.db.correct : Boolean
 // if dbLegit = false then mark the textField
