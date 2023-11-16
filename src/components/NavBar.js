@@ -15,7 +15,7 @@ export default function NavBar() {
         <Toolbar>
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/" style={{ textDecoration: 'none' }}>
-              <Button color="secondary">
+              <Button sx={{ color: "text.primary" }}>
                 <Typography variant="h4" component="div">
                 RC-eval <font size={3}> Evaluating Relational Calculus Queries</font>
                 </Typography>
@@ -23,14 +23,14 @@ export default function NavBar() {
             </Link>
           </Typography>
             <Link to="/help" style={{ textDecoration: 'none' }}>
-              <Button color="secondary" startIcon={<HelpIcon />}>
+              <Button sx={{ color: "text.primary" }} startIcon={<HelpIcon />}>
                 <Typography variant="button" component="div" >
                   help
                 </Typography>
               </Button>
             </Link>
             <Link to="/about" style={{ textDecoration: 'none' }}>
-              <Button color="secondary" startIcon={<InfoIcon />}>
+              <Button sx={{ color: "text.primary" }} startIcon={<InfoIcon />}>
                 <Typography variant="button" component="div">
                 about
                 </Typography>

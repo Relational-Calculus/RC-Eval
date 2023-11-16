@@ -7,15 +7,10 @@ import Help from "./Help";
 import About from "./About";
 import NavBar from "./components/NavBar";
 
-const theme = createTheme({
+const lightTheme = createTheme({
   palette: {
-    type: 'light',
-    primary: {
-      main: '#e89c46ef', //'#2b4ac4ef'
-    },
-    secondary: {
-      main: '#222222',
-    },
+    contrastThreshold: 4.5,
+    mode: 'light',
   },
   typography: {
     button: {
@@ -27,7 +22,7 @@ const theme = createTheme({
 function App() {
   return (
     // <RcEval />
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={lightTheme}>
       <Box>
         <BrowserRouter basename="/">
           <NavBar />

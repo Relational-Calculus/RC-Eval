@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import InputFileUpload from './InputFileUpload';
 
 
-export default function DialogBtn({textField, btnName}) {
+export default function DialogBtn({textField, btnName, setFormState}) {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -23,7 +23,7 @@ export default function DialogBtn({textField, btnName}) {
 
     return (
         <div>
-        <Button color="secondary" onClick={handleClickOpen}>{btnName}</Button>
+        <Button sx={{ color: "info" }} onClick={handleClickOpen}>{btnName.toUpperCase()}</Button>
         <Dialog 
             open={open}
             onClose={(handleClose)}
@@ -31,20 +31,20 @@ export default function DialogBtn({textField, btnName}) {
             aria-labelledby= "Loaded database"
             fullWidth
             >
-            <DialogTitle id="scroll-dialod-title">Current Database</DialogTitle>
+            <DialogTitle id="scroll-dialod-title">Current {btnName}</DialogTitle>
             <DialogContent>
                 <DialogContentText id="scroll-dialog-description"></DialogContentText>
                 <Grid container direction={'column'} spacing={2}>
-                    <Grid item sx={{margin: "5px"}}>
+                    <Grid item sx={{margin: "5px", color: "text.primary"}}>
                         {textField}
                     </Grid>
                     <Grid item>
-                        <InputFileUpload />
+                        <InputFileUpload type={btnName.toLowerCase()} setFormState={setFormState} />
                     </Grid>
                 </Grid>
             </DialogContent>
             <DialogActions>
-                <Button color="secondary" onClick={handleClose}> Close </Button>
+                <Button sx={{ color: "error" }} onClick={handleClose}> Close </Button>
             </DialogActions>
          </Dialog>
     </div>

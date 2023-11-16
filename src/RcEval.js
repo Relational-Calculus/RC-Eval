@@ -125,13 +125,13 @@ export default function RcEval() {
   }, [formState.schema, formState.query, formState.db])
 
   return (
-    <Box style={{ height: '100vh', margin: 100, padding: 15 }}>
+    <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>
       <Grid container spacing={4}>
         <Grid item xs={0}></Grid>
         <Grid item xs={3}>
           <Grid container direction={'row'}>
-            <DialogBtn textField={<DbTextField db={formState.db} setFormState={setFormState}/>} btnName={"DATABASE"} />
-            <DialogBtn textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} btnName={"SCHEMA"} />
+            <DialogBtn textField={<DbTextField db={formState.db} dbLegit={evalState.db.correct} setFormState={setFormState}/>} btnName={"Database"} setFormState={setFormState} />
+            <DialogBtn textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} btnName={"Schema"} setFormState={setFormState} />
           </Grid> 
           <ExampleSelectButton setFormState={setFormState} />
           <Schemabuttons schema={formState.schema} />

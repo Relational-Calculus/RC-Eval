@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -15,44 +15,47 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-export default function InputFileUpload() {
-  const [selectedFile, setSelectedFile] = useState();
-  const [isFilePicked, setIsFilePicked] = useState(false); 
+export default function InputFileUpload({type, setFormState}) {
+  // const [selectedFile, setSelectedFile] = useState();
 
-  const changeHandler = (event) => {
+  const typeExt = type === 'schema' ? '.sig' : '.db';
+
+  const fileHandler = (event) => {
     const file = event.target.files[0]
     let reader = new FileReader();
 
-    if(file.type.substring(0,5) === "image") {
-        alert("You have uploaded an image");
+    const filenameLength = file.name.length;
+    const fileExt = (filenameLength < typeExt.length) ? '' : file.name.substring(file.name.length - typeExt.length);
+
+    console.log(fileExt, typeExt, (filenameLength < typeExt.length))
+
+    if(fileExt !== typeExt) {
+        alert("The uploaded file has to be a database file\n\nRequired extention: .db");
         return;
     }
-    console.log(file)
 
     reader.onload = (e) => {
         const file = e.target.result;
- 
-        // This is a regular expression to identify carriage 
-        // Returns and line breaks
-        const lines = file.split(/\r\n|\n/);
-        setSelectedFile(lines.join('\n'));
- 
+        if (type === 'database') {
+          setFormState({ type: 'setDb', db: file });
+        } else {
+          setFormState({ type: 'setSchema', schema: file });
+        }
     };
  
     reader.onerror = (e) => alert(e.target.error.name);
 
-    reader.readAsText(file); 
-    
+    reader.readAsText(file);
 
   };
 
-  console.log(selectedFile)
+
 
 
   return (
     <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
       Upload file
-      <VisuallyHiddenInput onChange={changeHandler} type="file" />
+      <VisuallyHiddenInput onChange={fileHandler} type='file' />
     </Button>
   );
 }

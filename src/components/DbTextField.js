@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
 import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
 
-export default function DbTextField({ db, setFormState }) {
+
+// const StyledTextField = styled(TextField)`
+//     & .Mui-disabled .MuiOutlinedInput-notchedOutline {
+//       border-color: red;
+//     }
+// `;
+
+// dbLegit is evalState.db.correct : Boolean
+// if dbLegit = false then mark the textField
+export default function DbTextField({ db, dbLegit, setFormState }) {
     const [localDb, setLocalDb] = useState("");
 
     const handleChange = (event) => {
@@ -22,6 +32,7 @@ export default function DbTextField({ db, setFormState }) {
           <TextField
             multiline
             fullWidth
+            variant="outlined"
             id="outlined-required"
             label="Db"
             value={localDb}
@@ -30,7 +41,7 @@ export default function DbTextField({ db, setFormState }) {
             minRows={10}
             maxRows={10}
             InputProps={{ style: { minHeight: '40vh',
-                             fontSize: 14, align: 'top' } }}
+                                   fontSize: 14, align: 'top' } }}
           />
     </div>
     );
