@@ -55,18 +55,19 @@ export default function ExampleSelectButton ({ setFormState }) {
     setExample(event.target.value);
   };
 
-  // const handleClose = () => {
-  //   const result = examples.find( ({ name }) => name === example );
-  //   if (result !== undefined) {
-  //     setFormState({ type: 'setFormulaAndTraceAndSig', query: result.query, db: result.db, schema: result.schema });
-  //   }
-  // };
-
-  useEffect(() => {
+  const findAndSetExample = () => {
     const result = examples.find( ({ name }) => name === example );
     if (result !== undefined) {
       setFormState({ type: 'setFormulaAndTraceAndSig', query: result.query, db: result.db, schema: result.schema });
     }
+  }
+
+  const handleClose = () => {
+    findAndSetExample();
+  };
+
+  useEffect(() => {
+    findAndSetExample();
   }, [example, setExample, setFormState]);
 
 
@@ -87,7 +88,7 @@ export default function ExampleSelectButton ({ setFormState }) {
             label="Example"
             value={example}
             onChange={handleChange}
-            // onClose={handleClose}
+            onClose={handleClose}
           >
             <MenuItem value={""}>None</MenuItem>
             <MenuItem value={"Employees"}>Employees</MenuItem>
