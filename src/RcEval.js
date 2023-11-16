@@ -37,6 +37,8 @@ function evalQuery(evalState, action) {
 }
 
 function evalDb(evalState, action) {
+  console.log(window.checkQueryRewriteFin(action.query))
+  console.log(window.checkQueryRewriteInf(action.query))
   try {
     const dbResult = window.checkDb(action.db);
     const regEx = /[\w. ]+/g
@@ -51,7 +53,6 @@ function evalDb(evalState, action) {
 
 
 function evaluateQuery(evalState, action) {
-
   const stateAfterSchemaEval = evalSchema(evalState, action);
   if (!stateAfterSchemaEval.schema.correct) {
     return { ...stateAfterSchemaEval };
