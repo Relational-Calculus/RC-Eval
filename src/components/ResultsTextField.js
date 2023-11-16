@@ -3,15 +3,15 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function ResultsTextField({ result }) {
-    const [localResult, setLocalResult] = useState("");
+    // const [localResult, setLocalResult] = useState("");
 
-    const handleChange = (event) => {
-      setLocalResult(event.target.value);
-    };
+    // const handleChange = (event) => {
+    //   setLocalResult(event.target.value);
+    // };
 
-    useEffect(() => {
-      setLocalResult(result);
-    }, [result, setLocalResult]);
+    // useEffect(() => {
+    //   setLocalResult(result);
+    // }, [result, setLocalResult]);
 
     return (
         <Box
@@ -25,10 +25,9 @@ export default function ResultsTextField({ result }) {
           <div>
             <TextField
               multiline
-              id="outlined-required"
-              label="Result"
-              value={localResult}
-              onChange={handleChange}
+              id="outlined-read-only-input"
+              value={result}
+              // onChange={handleChange}
               minRows={10}
               maxRows={10}
               InputProps={{ style: { minHeight: '40vh',

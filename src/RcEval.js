@@ -7,7 +7,6 @@ import ExampleSelectButton from './components/ExampleSelectButton';
 import CodeEditor from './components/CodeEditor';
 import Result from "./components/DisplayResults";
 // import DbTextFields from "./components/DbTextField";
-import DbDialog from "./components/DbDialog";
 import DialogBtn from "./components/DialogBtn";
 import SchemaTextField from "./components/SchemaTextField";
 import DbTextField from "./components/DbTextField";

@@ -1,99 +1,38 @@
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import ReactVirtualizedTable from './DatabaseTable'
-import infinity from './inf.svg'
+import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+
+const childDivStyle = {
+  height: '250px', 
+  fontSize: '200px', 
+  position: 'relative',
+  m: '0',
+  mt: 2,
+  p: '0'
+}
+
+const iconStyle = {
+  position: 'absolute', 
+  top: '50%', 
+  left: '50%', 
+  m: '-125px 0 0 -125px'
+}
 
 
 export default function Result({fv, results, quickresult}) {
+  const isInf = quickresult === "INF";
+  const isTrue = quickresult === "()";
+  const isFalse = quickresult === "" && fv == null;
 
-    /* const regEx = /\w+/g
-    console.log(results)
-    let matchedResults = results.match(regEx)
-    console.log(matchedResults) */
-    if (quickresult === "INF") {
-   /*      return (
-            <Box
-                component="form"
-                sx={{
-                '& .MuiTextField-root': { width: '100%' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <div>
-                  <TextField
-                    multiline
-                    id="outlined-read-only-input"
-                    label="Result"
-                    value={"∞"}
-                    minRows={10}
-                    maxRows={10}
-                    InputProps={{ style: { minHeight: '40vh',
-                                     fontSize: 14 } }}
-                  />
-                </div>
-              </Box>
-          ); */
-          return (
-          <div>
-            <img style={{ width: 500, height: 600 }} src={infinity} alt="inf" />;
-            </div>
-          );
-          } 
-    else if (quickresult === "()") {
-            return (
-                <Box
-                    component="form"
-                    sx={{
-                    '& .MuiTextField-root': { width: '100%' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                  >
-                    <div>
-                      <TextField
-                        multiline
-                        id="outlined-read-only-input"
-                        label="Result"
-                        value={"True"}
-                        minRows={10}
-                        maxRows={10}
-                        InputProps={{ style: { minHeight: '40vh',
-                                         fontSize: 14 } }}
-                      />
-                    </div>
-                  </Box>
-              );
-              }
-    else if (quickresult === "" && fv == null) {
-      console.log(fv)
-                return (
-                    <Box
-                        component="form"
-                        sx={{
-                        '& .MuiTextField-root': { width: '100%' },
-                        }}
-                        noValidate
-                        autoComplete="off"
-                      >
-                        <div>
-                          <TextField
-                            multiline
-                            id="outlined-read-only-input"
-                            label="Result"
-                            value={"False"}
-                            minRows={10}
-                            maxRows={10}
-                            InputProps={{ style: { minHeight: '40vh',
-                                             fontSize: 14 } }}
-                          />
-                        </div>
-                      </Box>
-                  );
-                  }
-    else {
-        return (
-            ReactVirtualizedTable({fv, results})
-        )
-    } 
-}
+  return(
+    <Box component="div" sx={{ px: 0, mt: 2, border: '1px solid lightgray', borderRadius: '5px' }}>
+      {   isInf ? <Box component="div" sx={childDivStyle}> <AllInclusiveOutlinedIcon fontSize='inherit' sx={iconStyle} /> </Box>
+        : isTrue ? <Box component="div" sx={childDivStyle}> <CheckOutlinedIcon color='success' fontSize='inherit' sx={iconStyle} /> </Box>
+        : isFalse ? <Box component="div" sx={childDivStyle}> <CloseOutlinedIcon color='error' fontSize='inherit' sx={iconStyle} /> </Box>
+        : ReactVirtualizedTable({fv, results})
+      }
+    </Box>
+  )
+};

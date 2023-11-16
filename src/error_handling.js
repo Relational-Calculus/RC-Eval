@@ -7,7 +7,7 @@ export const RCLinter = linter(view => {
     const {state} = view
     const tree = syntaxTree(state)
     tree.cursor().iterate(node => {
-      console.log(`Node ${node.name} from ${node.from} to ${node.to} is Error ${node.type.isError}`)
+      // console.log(`Node ${node.name} from ${node.from} to ${node.to} is Error ${node.type.isError}`)
       if (node.type.isError) diagnostics.push({
         from: node.from,
         to: node.to,
