@@ -12,7 +12,7 @@ export const RCLinter = linter(view => {
         from: node.from,
         to: node.to,
         severity: "warning",
-        message: "Something Went Wrong"
+        message: "Syntax Error"
       })
     })
     return diagnostics

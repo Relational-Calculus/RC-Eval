@@ -25,18 +25,18 @@ const myTheme = createTheme({
     foreground: '#292a2b',
     caret: '#5d00ff',
     selection: '#036dd626',
-    selectionMatch: '#036dd626',
+    selectionMatch: '#036dd616',
     lineHighlight: '#8a91991a',
     gutterBackground: '#fff',
     gutterForeground: '#8a919966',
     fontFamily: 'OCR A Std, monospace'
   },
   styles: [
-    { tag: t.comment, color: '#ecfc08', fontStyle: "italic" },
-    { tag: t.variableName, color: '#42f56c' },
+    { tag: t.definitionKeyword, color: '#aa5bc2' },
+    // { tag: t.variableName, color: '#dea112' },
     { tag: t.string, color: '#0971d9' },
-    { tag: t.operatorKeyword, color: '#f54248' },
-    { tag: t.paren, color: '#292a2b' },
+    { tag: t.operatorKeyword, color: '#de3c10' },
+    { tag: t.paren, color: '#10c210' },
   ],
 });
 
