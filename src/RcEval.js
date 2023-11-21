@@ -119,7 +119,6 @@ export default function RcEval() {
     setEvalState(action);
 
   }, [formState.schema, formState.query, formState.db])
-  console.log(`Form state: ${formState.query}`);
 
   return (
     <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>

@@ -45,8 +45,6 @@ export default function CodeEditor({ query, setFormState }) {
   const [expertMode, setExpertMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
-  console.log(`localQuery state: ${localQuery}`);
   
   const handleChange = (value) => { setLocalQuery(value) };
 
