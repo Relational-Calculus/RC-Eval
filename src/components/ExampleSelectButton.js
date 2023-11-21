@@ -37,38 +37,37 @@ const examples = [{
   db: ''
 }]
 
-for (const [index, element] of exampleNames.entries()) {
-  examples.push({ name: element })
-  for (let i = 0; i < 3; i++) {
-    fetch(exampleImports[index*3 + i]).then(r => r.text()).then(text => {
-      examples[index+1][exampleExt[i]] = text;
-    })
-  }
+const readExampleFiles = (index, i) => {
+  return fetch(exampleImports[index*3 + i]).then(r => r.text())
 }
 
-
 export default function ExampleSelectButton ({ setFormState }) {
+  
+  const [example, setExample] = useState('');
 
-  const [example, setExample] = useState("");
+  useEffect(() => {
+    for (const [index, element] of exampleNames.entries()) {
+      examples.push({ name: element })
+      for (let i = 0; i < 3; i++) {
+        readExampleFiles(index, i)
+          .then(text => {
+            examples[index+1][exampleExt[i]] = text;
+          })
+      }
+    }
+  }, [])
 
   const handleChange = (event) => {
     setExample(event.target.value);
+    findAndSetExample(event.target.value);
   };
 
-  const findAndSetExample = () => {
-    const result = examples.find( ({ name }) => name === example );
+  const findAndSetExample = (example) => {
+    const result = examples.find( element => element.name === example );
     if (result !== undefined) {
       setFormState({ type: 'setFormulaAndTraceAndSig', query: result.query, db: result.db, schema: result.schema });
     }
   }
-
-  const handleClose = () => {
-    findAndSetExample();
-  };
-
-  useEffect(() => {
-    findAndSetExample();
-  }, [example, setExample, setFormState]);
 
 
   return (
@@ -88,7 +87,6 @@ export default function ExampleSelectButton ({ setFormState }) {
             label="Example"
             value={example}
             onChange={handleChange}
-            onClose={handleClose}
           >
             <MenuItem value={""}>None</MenuItem>
             <MenuItem value={"Employees"}>Employees</MenuItem>

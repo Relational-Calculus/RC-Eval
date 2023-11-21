@@ -30,22 +30,18 @@ function evalQuery(evalState, action) {
     return { ...evalState,
             query: {fv: freeVariables.match(regEx), correct: true}};
   } catch (error) {
-      console.log(error)
     return { ...evalState, 
             query: {fv: [], err_msg: error[1], correct: false}};
   }
 }
 
 function evalDb(evalState, action) {
-  console.log(window.checkQueryRewriteFin(action.query))
-  console.log(window.checkQueryRewriteInf(action.query))
   try {
     const dbResult = window.checkDb(action.db);
     const regEx = /[\w. ]+/g
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
-    console.log(error[1][1])
     return { ...evalState,
             db: {err_msg: error[1][1]}, correct: false};
   }
@@ -106,7 +102,7 @@ function evalStateReducer(evalState, action) {
 
 export default function RcEval() {
 
-  const [formState, setFormState] = useReducer(formStateReducer, { query: "", db: "", schema: "", result: ""});
+  const [formState, setFormState] = useReducer(formStateReducer, { query: "", db: "", schema: "" });
   const [evalState, setEvalState] = useReducer(evalStateReducer, 
                                                                 {
                                                                   schema: {result: "", err_msg: "", correct: false},
@@ -123,6 +119,7 @@ export default function RcEval() {
     setEvalState(action);
 
   }, [formState.schema, formState.query, formState.db])
+  console.log(`Form state: ${formState.query}`);
 
   return (
     <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>

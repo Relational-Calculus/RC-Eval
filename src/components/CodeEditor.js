@@ -45,14 +45,16 @@ export default function CodeEditor({ query, setFormState }) {
   const [expertMode, setExpertMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  console.log(`localQuery state: ${localQuery}`);
   
-  const onChange = (value) => { setLocalQuery(value) };
+  const handleChange = (value) => { setLocalQuery(value) };
 
   const editor = useRef();
   const { view } = useCodeMirror({
     container: editor.current,
     placeholder: placeholderStr,
-    onChange: onChange,
+    onChange: handleChange,
     minHeight: "200px",
     theme: myTheme,
     autoFocus: true,
@@ -97,6 +99,7 @@ export default function CodeEditor({ query, setFormState }) {
   const handlePopoverClose = () => {
     setAnchorEl(null);
   }
+
 
 
 
