@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { useCodeMirror } from '@uiw/react-codemirror';
 import { RC } from '../lang-rc/index.js';
 import { createTheme } from '@uiw/codemirror-themes';
@@ -40,7 +40,7 @@ const myTheme = createTheme({
   ],
 });
 
-export default function CodeEditor({ query, setFormState }) {
+const CodeEditor = forwardRef(({ query, setFormState }, ref) => {
   const [localQuery, setLocalQuery] = useState("");
   const [expertMode, setExpertMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -48,9 +48,9 @@ export default function CodeEditor({ query, setFormState }) {
   
   const handleChange = (value) => { setLocalQuery(value) };
 
-  const editor = useRef();
+  // const editor = useRef();
   const { view } = useCodeMirror({
-    container: editor.current,
+    container: ref.current,
     placeholder: placeholderStr,
     onChange: handleChange,
     minHeight: "200px",
@@ -99,7 +99,15 @@ export default function CodeEditor({ query, setFormState }) {
   }
 
 
-
+  const handleFocus = () => {
+    const timer = setTimeout(() => {
+      view.dispatch({
+        selection: {anchor: view.docView.length}
+      })
+      view.focus();
+      if (view.hasFocus) clearTimeout(timer);
+    }, 100);
+  }
 
   return(
           <div className="editorFrame" >
@@ -132,7 +140,7 @@ export default function CodeEditor({ query, setFormState }) {
               )}
               <label className="mode" htmlFor="expertMode">Expert Mode<input type="checkbox" className="mode" id="expertMode" onClick={handleClick}></input></label>
             </div>
-            <div ref={editor} />
+            <div tabIndex={"0"} onFocus={handleFocus} ref={ref} />
             <Popover
                 id="mouse-over-popover"
                 sx={{
@@ -156,4 +164,6 @@ export default function CodeEditor({ query, setFormState }) {
             </Popover>
           </div>
     );
-}
+});
+
+export default CodeEditor;

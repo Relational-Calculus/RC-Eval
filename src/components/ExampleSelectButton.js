@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -40,8 +40,7 @@ const examples = [{
 const readExampleFiles = (index, i) => {
   return fetch(exampleImports[index*3 + i]).then(r => r.text())
 }
-
-export default function ExampleSelectButton ({ setFormState }) {
+const ExampleSelectButton = forwardRef(({ setFormState }, ref) => {
   
   const [example, setExample] = useState('');
 
@@ -60,6 +59,7 @@ export default function ExampleSelectButton ({ setFormState }) {
   const handleChange = (event) => {
     setExample(event.target.value);
     findAndSetExample(event.target.value);
+    ref.current.focus();
   };
 
   const findAndSetExample = (example) => {
@@ -99,4 +99,6 @@ export default function ExampleSelectButton ({ setFormState }) {
       </div>
     </Box>
   );
-}
+});
+
+export default ExampleSelectButton;

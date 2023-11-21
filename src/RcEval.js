@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 // import SchemaTextField from './components/SchemaTextField';
@@ -109,6 +109,7 @@ export default function RcEval() {
                                                                   query: {fv: [], err_msg: "", correct: false},
                                                                   db: {quickresult: "", result: "", err_msg: "", correct: false}
                                                                 })
+  const textEditorRef = useRef(null);
 
   useEffect(() => {
     const action = { type: "queryEval", 
@@ -120,6 +121,7 @@ export default function RcEval() {
 
   }, [formState.schema, formState.query, formState.db])
 
+
   return (
     <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>
       <Grid container spacing={4}>
@@ -129,11 +131,11 @@ export default function RcEval() {
             <DialogBtn textField={<DbTextField db={formState.db} dbLegit={evalState.db.correct} setFormState={setFormState}/>} btnName={"Database"} setFormState={setFormState} />
             <DialogBtn textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} btnName={"Schema"} setFormState={setFormState} />
           </Grid> 
-          <ExampleSelectButton setFormState={setFormState} />
+          <ExampleSelectButton setFormState={setFormState} ref={textEditorRef} />
           <Schemabuttons schema={formState.schema} />
         </Grid>
         <Grid item xs={8}>
-          <CodeEditor query={formState.query} setFormState={setFormState} />
+          <CodeEditor ref={textEditorRef} query={formState.query} setFormState={setFormState} />
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
           }
