@@ -26,9 +26,11 @@ function evalSchema(evalState, action) {
 function evalQuery(evalState, action) {
   try {
     const freeVariables = window.checkQuery(action.query);
+    const pfin = window.checkQueryRewriteFin(action.query);
+    const pinf = window.checkQueryRewriteInf(action.query);
     const regEx = /\w+/g
     return { ...evalState,
-            query: {fv: freeVariables.match(regEx), correct: true}};
+            query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf}};
   } catch (error) {
       console.log(error)
     return { ...evalState, 
@@ -110,7 +112,7 @@ export default function RcEval() {
   const [evalState, setEvalState] = useReducer(evalStateReducer, 
                                                                 {
                                                                   schema: {result: "", err_msg: "", correct: false},
-                                                                  query: {fv: [], err_msg: "", correct: false},
+                                                                  query: {fv: [], err_msg: "", correct: false, pfin: "", pinf: ""},
                                                                   db: {quickresult: "", result: "", err_msg: "", correct: false}
                                                                 })
 
@@ -130,14 +132,14 @@ export default function RcEval() {
         <Grid item xs={0}></Grid>
         <Grid item xs={3}>
           <Grid container direction={'row'}>
-            <DialogBtn textField={<DbTextField db={formState.db} dbLegit={evalState.db.correct} setFormState={setFormState}/>} btnName={"Database"} setFormState={setFormState} />
             <DialogBtn textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} btnName={"Schema"} setFormState={setFormState} />
+            <DialogBtn textField={<DbTextField db={formState.db} dbLegit={evalState.db.correct} setFormState={setFormState}/>} btnName={"Database"} setFormState={setFormState} />
           </Grid> 
           <ExampleSelectButton setFormState={setFormState} />
           <Schemabuttons schema={formState.schema} />
         </Grid>
         <Grid item xs={8}>
-          <CodeEditor query={formState.query} setFormState={setFormState} />
+          <CodeEditor query={formState.query} setFormState={setFormState} pfin={evalState.query.pfin} pinf={evalState.query.pinf} />
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
           }

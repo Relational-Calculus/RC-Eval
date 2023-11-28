@@ -7,6 +7,16 @@ import { lintGutter } from "@codemirror/lint"
 import { RCLinter } from "../error_handling.js";
 import "./CodeEditor.css";
 import Popover from '@mui/material/Popover';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Draggable from 'react-draggable';
+import WhatEvaluates from "./EvaluatedQuery.js";
 
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
@@ -40,13 +50,34 @@ const myTheme = createTheme({
   ],
 });
 
-export default function CodeEditor({ query, setFormState }) {
+function PaperComponent(props) {
+  return (
+    <Draggable
+      handle="#draggable-dialog-title"
+      cancel={'[class*="MuiDialogContent-root"]'}
+    >
+      <Paper {...props} />
+    </Draggable>
+  );
+}
+
+export default function CodeEditor({ query, setFormState, pinf, pfin }) {
   const [localQuery, setLocalQuery] = useState("");
   const [expertMode, setExpertMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   
   const onChange = (value) => { setLocalQuery(value) };
+
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleClickOpen = () => {
+      setOpenDialog(true);
+  };
+
+  const handleClose = () => {
+      setOpenDialog(false); 
+  }; 
 
   const editor = useRef();
   const { view } = useCodeMirror({
@@ -117,18 +148,52 @@ export default function CodeEditor({ query, setFormState }) {
               </button> 
               )}
               { expertMode && expertOperators.map((op, idx) =>
-              <button 
-                type="button" 
-                key={op}
-                className={`operatorBtnClass${idx}`}
-                id={`operatorBtnId${idx}`}
-                onClick={() => setIcon(op)}
-                onMouseEnter={handlePopoverOpen}
-                onMouseLeave={handlePopoverClose}
-              >
-                {op}
-              </button> 
-              )}
+                <button 
+                  type="button" 
+                  key={op}
+                  className={`operatorBtnClass${idx}`}
+                  id={`operatorBtnId${idx}`}
+                  onClick={() => setIcon(op)}
+                  onMouseEnter={handlePopoverOpen}
+                  onMouseLeave={handlePopoverClose}
+                >
+                  {op}
+                </button>
+              )} 
+              {expertMode && 
+                <div>
+                <Button sx={{ color: "info" }} onClick={handleClickOpen}>Examine evaluation?</Button>
+                <Dialog 
+                    open={openDialog}
+                    onClose={(handleClose)}
+                    scroll={'body'}
+                    PaperComponent={PaperComponent}
+                    aria-labelledby= "Examine Query"
+                    fullWidth
+                    >
+                    <DialogTitle id="scroll-dialod-title">Evaluation</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="draggable-dialog-title"></DialogContentText>
+                        <Grid container direction={'column'} spacing={2}>
+                        <Grid item sx={{margin: "5px", color: "text.primary"}}>
+                                <Grid>
+                                This is the safe-range infinit query. If this holds, then the finite part is not necessarily valid:
+                                </Grid>
+                                {pinf}
+                            </Grid>
+                            <Grid item sx={{margin: "5px", color: "text.primary"}}>
+                                <Grid>
+                                This is the finite query. It is rewritten to be safe-range and evaluable. This is how the query is evaluated:   
+                                </Grid>
+                                {pfin}
+                            </Grid>
+                        </Grid>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button sx={{ color: "error" }} onClick={handleClose}> Close </Button>
+                    </DialogActions>
+                  </Dialog>
+            </div>}
               <label className="mode" htmlFor="expertMode">Expert Mode<input type="checkbox" className="mode" id="expertMode" onClick={handleClick}></input></label>
             </div>
             <div ref={editor} />
