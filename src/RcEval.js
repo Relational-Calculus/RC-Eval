@@ -1,12 +1,10 @@
 import React, { useEffect, useReducer, useRef, useState } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import SchemaTextField from './components/SchemaTextField';
 import Schemabuttons from "./components/SchemaButtons";
 import ExampleSelectButton from './components/ExampleSelectButton';
 import CodeEditor from './components/CodeEditor';
 import Result from "./components/DisplayResults";
-// import DbTextFields from "./components/DbTextField";
 import DialogBtn from "./components/DialogBtn";
 import SchemaTextField from "./components/SchemaTextField";
 import DbTextField from "./components/DbTextField";

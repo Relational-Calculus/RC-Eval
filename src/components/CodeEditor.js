@@ -1,12 +1,14 @@
-import { useState, useEffect, forwardRef } from "react";
+import { useState, useEffect, forwardRef, Children } from "react";
 import { useCodeMirror } from '@uiw/react-codemirror';
 import { RC } from '../lang-rc/index.js';
 import { createTheme } from '@uiw/codemirror-themes';
+import { createStyles } from "@mui/material";
 import { tags as t } from '@lezer/highlight';
 import { lintGutter } from "@codemirror/lint"
 import { RCLinter } from "../error_handling.js";
 import "./CodeEditor.css";
 import Popover from '@mui/material/Popover';
+import PopoverPaper from "./PopoverPaper.js";
 
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
@@ -131,6 +133,9 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState 
     }
   }
 
+  const popoverID = open ? "mouse-over-popover" : undefined;
+  const popoverContent = open ? anchorEl.innerText : undefined;
+
   return(
           <div className="editorFrame" >
             <div className="buttonFrame">
@@ -164,25 +169,24 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState 
             </div>
             <div tabIndex={"0"} onFocus={handleFocus} ref={ref} />
             <Popover
-                id="mouse-over-popover"
-                sx={{
-                  pointerEvents: 'none',
-                }}
+                id={popoverID}
+                sx={{ pointerEvents: 'none', }}
                 open={open}
                 anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'center',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'center',
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center', }}
+                transformOrigin={{ vertical: 'top', horizontal: 'center', }}
+                PaperProps={{
+                  style: {
+                    backgroundColor: "transparent",
+                    boxShadow: "none",
+                    borderRadius: 0
+                  }
                 }}
                 onClose={handlePopoverClose}
                 disableAutoFocus={true}
                 disableEnforceFocus={true}
             >
-                <p>HELLO</p>
+              {open && <PopoverPaper content={popoverContent} />}
             </Popover>
           </div>
     );
