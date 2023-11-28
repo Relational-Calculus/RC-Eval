@@ -16,6 +16,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Draggable from 'react-draggable';
+import WhatEvaluates from "./EvaluatedQuery.js";
 
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
