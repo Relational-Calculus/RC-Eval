@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import './SchemaButtons.css';
 import Button from '@mui/material/Button';
 import { table_to_array } from '../utils'
@@ -8,20 +8,25 @@ import { table_to_array } from '../utils'
 // [Tablename2, [{colName: col1, type: type1}, {colName: col2, type: type2}, {colName: col3, type: type3}]]   
 // ]
 
-export default function Schemabuttons({ schema }) {
+const Schemabuttons = forwardRef(({ schema, setFocusState }, ref) => {
     const [localSchema, setLocalSchema] = useState([['', [{colName: '', type: ''}]]]);
-
-    console.log(localSchema)
-
+    
     useEffect(() => {
         setLocalSchema(table_to_array(schema));
       }, [schema, setLocalSchema]);
+
+    const handleClick = (event) => {
+        setFocusState(prevState => {
+            return { state: 'schema', 
+                     schemaBtnText: event.target.innerText }});
+        ref.current.focus();
+    }
     
     return (
         <>
             { localSchema[0][0] !== null && localSchema.map(tableName => (
                 <div className='outer'>
-                    <Button sx={{color: 'black'}} className='button' size='medium'>{tableName[0]}</Button>
+                    <Button sx={{color: 'black'}} className='button' size='medium' onClick={handleClick}>{tableName[0]}</Button>
                     <div className='inner'>
                         {tableName[1].map(columnName => (
                             <div>
@@ -35,4 +40,6 @@ export default function Schemabuttons({ schema }) {
             ))}
         </>
       );
-}
+});
+
+export default Schemabuttons;

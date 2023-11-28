@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { useCodeMirror } from '@uiw/react-codemirror';
 import { RC } from '../lang-rc/index.js';
 import { createTheme } from '@uiw/codemirror-themes';
@@ -16,7 +16,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Draggable from 'react-draggable';
-import WhatEvaluates from "./EvaluatedQuery.js";
 
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
@@ -35,18 +34,18 @@ const myTheme = createTheme({
     foreground: '#292a2b',
     caret: '#5d00ff',
     selection: '#036dd626',
-    selectionMatch: '#036dd626',
+    selectionMatch: '#036dd616',
     lineHighlight: '#8a91991a',
     gutterBackground: '#fff',
     gutterForeground: '#8a919966',
     fontFamily: 'OCR A Std, monospace'
   },
   styles: [
-    { tag: t.comment, color: '#ecfc08', fontStyle: "italic" },
-    { tag: t.variableName, color: '#42f56c' },
+    { tag: t.definitionKeyword, color: '#aa5bc2' },
+    // { tag: t.variableName, color: '#dea112' },
     { tag: t.string, color: '#0971d9' },
-    { tag: t.operatorKeyword, color: '#f54248' },
-    { tag: t.paren, color: '#292a2b' },
+    { tag: t.operatorKeyword, color: '#de3c10' },
+    { tag: t.paren, color: '#10c210' },
   ],
 });
 
@@ -61,13 +60,13 @@ function PaperComponent(props) {
   );
 }
 
-export default function CodeEditor({ query, setFormState, pinf, pfin }) {
+const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState, pinf, pfin }, ref) => {
   const [localQuery, setLocalQuery] = useState("");
   const [expertMode, setExpertMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   
-  const onChange = (value) => { setLocalQuery(value) };
+  const handleChange = (value) => { setLocalQuery(value) };
 
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -79,11 +78,11 @@ export default function CodeEditor({ query, setFormState, pinf, pfin }) {
       setOpenDialog(false); 
   }; 
 
-  const editor = useRef();
+
   const { view } = useCodeMirror({
-    container: editor.current,
+    container: ref.current,
     placeholder: placeholderStr,
-    onChange: onChange,
+    onChange: handleChange,
     minHeight: "200px",
     theme: myTheme,
     autoFocus: true,
@@ -130,6 +129,37 @@ export default function CodeEditor({ query, setFormState, pinf, pfin }) {
   }
 
 
+  const handleFocus = () => {
+    console.log(focusState.schemaBtnText)
+    if (focusState.state === 'example') {
+      const timer = setTimeout(() => {
+        view.focus();
+        view.dispatch({
+          selection: {anchor: view.docView.length}
+        })
+        if (view.hasFocus) clearTimeout(timer);
+      }, 100);
+      setFocusState(prevState => { return { state: '' }})
+    } else if (focusState.state === 'schema') {
+      const cursorPosFrom = view.state.selection.main.from;
+      const cursorPosTo = view.state.selection.main.to;
+      // const textLength = focusState.schemaBtnText.length;
+      const timer = setTimeout(() => {
+        view.focus();
+        view.dispatch({
+          changes: {from: cursorPosFrom, to: cursorPosTo, insert: focusState.schemaBtnText},
+          selection: {anchor: cursorPosFrom+focusState.schemaBtnText.length}
+        })
+        if (view.hasFocus) clearTimeout(timer);
+      }, 100);
+      setFocusState(prevState => { return { state: '', schemaBtnText: '' }})
+    } else {
+      const timer = setTimeout(() => {
+        view.focus();
+        if (view.hasFocus) clearTimeout(timer);
+      }, 100);
+    }
+  }
 
   return(
           <div className="editorFrame" >
@@ -196,7 +226,7 @@ export default function CodeEditor({ query, setFormState, pinf, pfin }) {
             </div>}
               <label className="mode" htmlFor="expertMode">Expert Mode<input type="checkbox" className="mode" id="expertMode" onClick={handleClick}></input></label>
             </div>
-            <div ref={editor} />
+            <div tabIndex={"0"} onFocus={handleFocus} ref={ref} />
             <Popover
                 id="mouse-over-popover"
                 sx={{
@@ -220,4 +250,6 @@ export default function CodeEditor({ query, setFormState, pinf, pfin }) {
             </Popover>
           </div>
     );
-}
+});
+
+export default CodeEditor;

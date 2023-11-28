@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -37,37 +37,38 @@ const examples = [{
   db: ''
 }]
 
-for (const [index, element] of exampleNames.entries()) {
-  examples.push({ name: element })
-  for (let i = 0; i < 3; i++) {
-    fetch(exampleImports[index*3 + i]).then(r => r.text()).then(text => {
-      examples[index+1][exampleExt[i]] = text;
-    })
-  }
+const readExampleFiles = (index, i) => {
+  return fetch(exampleImports[index*3 + i]).then(r => r.text())
 }
+const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) => {
+  
+  const [example, setExample] = useState('');
 
-
-export default function ExampleSelectButton ({ setFormState }) {
-
-  const [example, setExample] = useState("");
+  useEffect(() => {
+    for (const [index, element] of exampleNames.entries()) {
+      examples.push({ name: element })
+      for (let i = 0; i < 3; i++) {
+        readExampleFiles(index, i)
+          .then(text => {
+            examples[index+1][exampleExt[i]] = text;
+          })
+      }
+    }
+  }, [])
 
   const handleChange = (event) => {
     setExample(event.target.value);
+    setFocusState(prevState => { return {...prevState, state: 'example'}});
+    findAndSetExample(event.target.value);
+    ref.current.focus();
   };
 
-  // const handleClose = () => {
-  //   const result = examples.find( ({ name }) => name === example );
-  //   if (result !== undefined) {
-  //     setFormState({ type: 'setFormulaAndTraceAndSig', query: result.query, db: result.db, schema: result.schema });
-  //   }
-  // };
-
-  useEffect(() => {
-    const result = examples.find( ({ name }) => name === example );
+  const findAndSetExample = (example) => {
+    const result = examples.find( element => element.name === example );
     if (result !== undefined) {
       setFormState({ type: 'setFormulaAndTraceAndSig', query: result.query, db: result.db, schema: result.schema });
     }
-  }, [example, setExample, setFormState]);
+  }
 
 
   return (
@@ -87,7 +88,6 @@ export default function ExampleSelectButton ({ setFormState }) {
             label="Example"
             value={example}
             onChange={handleChange}
-            // onClose={handleClose}
           >
             <MenuItem value={""}>None</MenuItem>
             <MenuItem value={"Employees"}>Employees</MenuItem>
@@ -100,4 +100,6 @@ export default function ExampleSelectButton ({ setFormState }) {
       </div>
     </Box>
   );
-}
+});
+
+export default ExampleSelectButton;

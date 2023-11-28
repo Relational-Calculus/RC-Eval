@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 // import SchemaTextField from './components/SchemaTextField';
@@ -32,22 +32,20 @@ function evalQuery(evalState, action) {
     return { ...evalState,
             query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf}};
   } catch (error) {
-      console.log(error)
     return { ...evalState, 
             query: {fv: [], err_msg: error[1], correct: false}};
   }
 }
 
 function evalDb(evalState, action) {
-  console.log(window.checkQueryRewriteFin(action.query))
-  console.log(window.checkQueryRewriteInf(action.query))
   try {
     const dbResult = window.checkDb(action.db);
+    console.log(window.checkQueryRewriteFin(action.query))
+    console.log(window.checkQueryRewriteInf(action.query))
     const regEx = /[\w. ]+/g
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
-    console.log(error[1][1])
     return { ...evalState,
             db: {err_msg: error[1][1]}, correct: false};
   }
@@ -108,13 +106,15 @@ function evalStateReducer(evalState, action) {
 
 export default function RcEval() {
 
-  const [formState, setFormState] = useReducer(formStateReducer, { query: "", db: "", schema: "", result: ""});
+  const [formState, setFormState] = useReducer(formStateReducer, { query: "", db: "", schema: "" });
   const [evalState, setEvalState] = useReducer(evalStateReducer, 
                                                                 {
                                                                   schema: {result: "", err_msg: "", correct: false},
                                                                   query: {fv: [], err_msg: "", correct: false, pfin: "", pinf: ""},
                                                                   db: {quickresult: "", result: "", err_msg: "", correct: false}
                                                                 })
+  const [focusState, setFocusState] = useState({ state: '', schemaBtnText: '' });
+  const textEditorRef = useRef(null);
 
   useEffect(() => {
     const action = { type: "queryEval", 
@@ -126,6 +126,7 @@ export default function RcEval() {
 
   }, [formState.schema, formState.query, formState.db])
 
+
   return (
     <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>
       <Grid container spacing={4}>
@@ -135,11 +136,11 @@ export default function RcEval() {
             <DialogBtn textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} btnName={"Schema"} setFormState={setFormState} />
             <DialogBtn textField={<DbTextField db={formState.db} dbLegit={evalState.db.correct} setFormState={setFormState}/>} btnName={"Database"} setFormState={setFormState} />
           </Grid> 
-          <ExampleSelectButton setFormState={setFormState} />
-          <Schemabuttons schema={formState.schema} />
+          <ExampleSelectButton setFormState={setFormState} setFocusState={setFocusState} ref={textEditorRef} />
+          <Schemabuttons ref={textEditorRef} schema={formState.schema} setFocusState={setFocusState} />
         </Grid>
         <Grid item xs={8}>
-          <CodeEditor query={formState.query} setFormState={setFormState} pfin={evalState.query.pfin} pinf={evalState.query.pinf} />
+          <CodeEditor query={formState.query} setFormState={setFormState} focusState={focusState} setFocusState={setFocusState} pfin={evalState.query.pfin} pinf={evalState.query.pinf}/>
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
           }
