@@ -2,7 +2,6 @@ import { useState, useEffect, forwardRef, Children } from "react";
 import { useCodeMirror } from '@uiw/react-codemirror';
 import { RC } from '../lang-rc/index.js';
 import { createTheme } from '@uiw/codemirror-themes';
-import { createStyles } from "@mui/material";
 import { tags as t } from '@lezer/highlight';
 import { lintGutter } from "@codemirror/lint"
 import { RCLinter } from "../error_handling.js";
@@ -19,6 +18,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Draggable from 'react-draggable';
 import WhatEvaluates from "./EvaluatedQuery.js";
+// import { makeStyles } from '@material-ui/core/styles';
 
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
@@ -242,11 +242,21 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
                 anchorEl={anchorEl}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center', }}
                 transformOrigin={{ vertical: 'top', horizontal: 'center', }}
-                PaperProps={{
-                  style: {
-                    backgroundColor: "transparent",
-                    boxShadow: "none",
-                    borderRadius: 0
+                // PaperProps={{
+                //   style: {
+                //     backgroundColor: "transparent",
+                //     boxShadow: "none",
+                //     borderRadius: 0,
+                //     // pointerEvents: "auto"
+                //   }
+                // }}
+                slotProps={{
+                  paper: {
+                    style: {
+                      backgroundColor: "transparent",
+                      boxShadow: "none",
+                      borderRadius: 0
+                    }
                   }
                 }}
                 onClose={handlePopoverClose}
