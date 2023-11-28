@@ -41,8 +41,21 @@ button:hover {
 .buttonFrame {
     background-color: #b2bcc6;
     margin: 0;
-    padding: 16px;
+    padding: 20px;
     overflow: hidden;
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
+}
+
+.expertFrame {
+    float: right;
+    --bgcolor: rgba(96, 86, 91, 0.0);
+    background: var(--bgcolor);
+    font-size: 14px;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    display: block;
+    text-align: center;
+    padding: 0px 0px;
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
 }

@@ -191,9 +191,11 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
                   {op}
                 </button>
               )} 
+              <div className="expertFrame">
+              <label className="mode" htmlFor="expertMode">Expert Mode<input type="checkbox" className="mode" id="expertMode" onClick={handleClick}></input></label>
               {expertMode && 
                 <div>
-                <Button sx={{ color: "info" }} onClick={handleClickOpen}>Examine evaluation?</Button>
+                <Button onClick={handleClickOpen}>Examine evaluation?</Button>
                 <Dialog 
                     open={openDialog}
                     onClose={(handleClose)}
@@ -225,7 +227,7 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
                     </DialogActions>
                   </Dialog>
             </div>}
-              <label className="mode" htmlFor="expertMode">Expert Mode<input type="checkbox" className="mode" id="expertMode" onClick={handleClick}></input></label>
+            </div>
             </div>
             <div tabIndex={"0"} onFocus={handleFocus} ref={ref} />
             <Popover
