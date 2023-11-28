@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 // import SchemaTextField from './components/SchemaTextField';
@@ -38,6 +38,8 @@ function evalQuery(evalState, action) {
 function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
+    console.log(window.checkQueryRewriteFin(action.query))
+    console.log(window.checkQueryRewriteInf(action.query))
     const regEx = /[\w. ]+/g
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
@@ -109,6 +111,7 @@ export default function RcEval() {
                                                                   query: {fv: [], err_msg: "", correct: false},
                                                                   db: {quickresult: "", result: "", err_msg: "", correct: false}
                                                                 })
+  const [focusState, setFocusState] = useState({ state: '', schemaBtnText: '' });
   const textEditorRef = useRef(null);
 
   useEffect(() => {
@@ -131,11 +134,11 @@ export default function RcEval() {
             <DialogBtn textField={<DbTextField db={formState.db} dbLegit={evalState.db.correct} setFormState={setFormState}/>} btnName={"Database"} setFormState={setFormState} />
             <DialogBtn textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} btnName={"Schema"} setFormState={setFormState} />
           </Grid> 
-          <ExampleSelectButton setFormState={setFormState} ref={textEditorRef} />
-          <Schemabuttons schema={formState.schema} />
+          <ExampleSelectButton setFormState={setFormState} setFocusState={setFocusState} ref={textEditorRef} />
+          <Schemabuttons ref={textEditorRef} schema={formState.schema} setFocusState={setFocusState} />
         </Grid>
         <Grid item xs={8}>
-          <CodeEditor ref={textEditorRef} query={formState.query} setFormState={setFormState} />
+          <CodeEditor ref={textEditorRef} query={formState.query} setFormState={setFormState} focusState={focusState} setFocusState={setFocusState} />
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
           }

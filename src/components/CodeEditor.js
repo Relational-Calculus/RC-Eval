@@ -40,7 +40,7 @@ const myTheme = createTheme({
   ],
 });
 
-const CodeEditor = forwardRef(({ query, setFormState }, ref) => {
+const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState }, ref) => {
   const [localQuery, setLocalQuery] = useState("");
   const [expertMode, setExpertMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -100,13 +100,35 @@ const CodeEditor = forwardRef(({ query, setFormState }, ref) => {
 
 
   const handleFocus = () => {
-    const timer = setTimeout(() => {
-      view.dispatch({
-        selection: {anchor: view.docView.length}
-      })
-      view.focus();
-      if (view.hasFocus) clearTimeout(timer);
-    }, 100);
+    console.log(focusState.schemaBtnText)
+    if (focusState.state === 'example') {
+      const timer = setTimeout(() => {
+        view.focus();
+        view.dispatch({
+          selection: {anchor: view.docView.length}
+        })
+        if (view.hasFocus) clearTimeout(timer);
+      }, 100);
+      setFocusState(prevState => { return { state: '' }})
+    } else if (focusState.state === 'schema') {
+      const cursorPosFrom = view.state.selection.main.from;
+      const cursorPosTo = view.state.selection.main.to;
+      // const textLength = focusState.schemaBtnText.length;
+      const timer = setTimeout(() => {
+        view.focus();
+        view.dispatch({
+          changes: {from: cursorPosFrom, to: cursorPosTo, insert: focusState.schemaBtnText},
+          selection: {anchor: cursorPosFrom+focusState.schemaBtnText.length}
+        })
+        if (view.hasFocus) clearTimeout(timer);
+      }, 100);
+      setFocusState(prevState => { return { state: '', schemaBtnText: '' }})
+    } else {
+      const timer = setTimeout(() => {
+        view.focus();
+        if (view.hasFocus) clearTimeout(timer);
+      }, 100);
+    }
   }
 
   return(

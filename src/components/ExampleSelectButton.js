@@ -40,7 +40,7 @@ const examples = [{
 const readExampleFiles = (index, i) => {
   return fetch(exampleImports[index*3 + i]).then(r => r.text())
 }
-const ExampleSelectButton = forwardRef(({ setFormState }, ref) => {
+const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) => {
   
   const [example, setExample] = useState('');
 
@@ -58,6 +58,7 @@ const ExampleSelectButton = forwardRef(({ setFormState }, ref) => {
 
   const handleChange = (event) => {
     setExample(event.target.value);
+    setFocusState(prevState => { return {...prevState, state: 'example'}});
     findAndSetExample(event.target.value);
     ref.current.focus();
   };
