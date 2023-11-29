@@ -1,0 +1,1 @@
+EXISTS ssn. Employees(ssn, name, lot) AND lot > 10

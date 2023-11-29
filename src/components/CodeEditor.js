@@ -2,7 +2,6 @@ import { useState, useEffect, forwardRef, Children } from "react";
 import { useCodeMirror } from '@uiw/react-codemirror';
 import { RC } from '../lang-rc/index.js';
 import { createTheme } from '@uiw/codemirror-themes';
-import { createStyles } from "@mui/material";
 import { tags as t } from '@lezer/highlight';
 import { lintGutter } from "@codemirror/lint"
 import { RCLinter } from "../error_handling.js";
@@ -80,7 +79,6 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
   const handleClose = () => {
       setOpenDialog(false); 
   }; 
-
 
   const { view } = useCodeMirror({
     container: ref.current,
@@ -245,11 +243,21 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
                 anchorEl={anchorEl}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center', }}
                 transformOrigin={{ vertical: 'top', horizontal: 'center', }}
-                PaperProps={{
-                  style: {
-                    backgroundColor: "transparent",
-                    boxShadow: "none",
-                    borderRadius: 0
+                // PaperProps={{
+                //   style: {
+                //     backgroundColor: "transparent",
+                //     boxShadow: "none",
+                //     borderRadius: 0,
+                //     // pointerEvents: "auto"
+                //   }
+                // }}
+                slotProps={{
+                  paper: {
+                    style: {
+                      backgroundColor: "transparent",
+                      boxShadow: "none",
+                      borderRadius: 0
+                    }
                   }
                 }}
                 onClose={handlePopoverClose}
