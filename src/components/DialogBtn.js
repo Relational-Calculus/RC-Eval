@@ -7,9 +7,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import Grid from '@mui/material/Grid';
 import DialogTitle from '@mui/material/DialogTitle';
 import InputFileUpload from './InputFileUpload';
+import React from 'react';
 
 
-export default function DialogBtn({textField, btnName, setFormState}) {
+export default function DialogBtn({textField, btnName, setFormState, correct=true}) {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -20,10 +21,13 @@ export default function DialogBtn({textField, btnName, setFormState}) {
         setOpen(false); 
     }; 
 
+    const color = correct ? "info" : "red" 
 
-    return (
+    
+
+    return ( 
         <div>
-        <Button sx={{ color: "info" }} onClick={handleClickOpen}>{btnName.toUpperCase()}</Button>
+        <Button sx={{ color: color }} onClick={handleClickOpen}>{btnName.toUpperCase()}</Button>
         <Dialog 
             open={open}
             onClose={(handleClose)}
@@ -31,9 +35,9 @@ export default function DialogBtn({textField, btnName, setFormState}) {
             aria-labelledby= "Loaded database"
             fullWidth
             >
-            <DialogTitle id="scroll-dialod-title">Current {btnName}</DialogTitle>
-            <DialogContent>
-                <DialogContentText id="scroll-dialog-description"></DialogContentText>
+            <DialogTitle color={color} id="scroll-dialod-title" >Current {btnName}</DialogTitle>
+            <DialogContent >
+                <DialogContentText color={color} id="scroll-dialog-description"></DialogContentText>
                 <Grid container direction={'column'} spacing={2}>
                     <Grid item sx={{margin: "5px", color: "text.primary"}}>
                         {textField}
@@ -46,7 +50,7 @@ export default function DialogBtn({textField, btnName, setFormState}) {
             <DialogActions>
                 <Button sx={{ color: "error" }} onClick={handleClose}> Close </Button>
             </DialogActions>
-         </Dialog>
+        </Dialog>
     </div>
     );
-} 
+}

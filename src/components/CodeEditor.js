@@ -18,7 +18,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Draggable from 'react-draggable';
-import WhatEvaluates from "./EvaluatedQuery.js";
+import * as React from 'react';
 
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
@@ -26,8 +26,8 @@ import WhatEvaluates from "./EvaluatedQuery.js";
 
 // Constants
 const extensions = [RC(), lintGutter(), RCLinter];
-const operators = ['∃', '∀', '∧', '∨', '⇒', '¬', '='];
-const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '=', '<', '>', 'AVG', 'MAX', 'MIN', 'CNT','SUM', 'LET', 'IN'];
+const operators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈'];
+const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈', '<', '>', 'AVG', 'MAX', 'MIN', 'CNT','SUM', 'LET', 'IN'];
 const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
 
 const myTheme = createTheme({
@@ -164,6 +164,7 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
     }
   }
 
+
   const popoverID = open ? "mouse-over-popover" : undefined;
   const popoverContent = open ? anchorEl.innerText : undefined;
 
@@ -200,16 +201,17 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
               <label className="mode" htmlFor="expertMode">Expert Mode<input type="checkbox" className="mode" id="expertMode" onClick={handleClick}></input></label>
               {expertMode && 
                 <div>
+                <React.Fragment>
                 <Button onClick={handleClickOpen}>Examine evaluation?</Button>
                 <Dialog 
                     open={openDialog}
                     onClose={(handleClose)}
                     scroll={'body'}
                     PaperComponent={PaperComponent}
-                    aria-labelledby= "Examine Query"
+                    aria-labelledby= "draggable-dialog-title"
                     fullWidth
                     >
-                    <DialogTitle id="scroll-dialod-title">Evaluation</DialogTitle>
+                    <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">Evaluation</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="draggable-dialog-title"></DialogContentText>
                         <Grid container direction={'column'} spacing={2}>
@@ -228,9 +230,10 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
                         </Grid>
                     </DialogContent>
                     <DialogActions>
-                        <Button sx={{ color: "error" }} onClick={handleClose}> Close </Button>
+                        <Button sx={{ color: "error" }} autoFocus onClick={handleClose}> Close </Button>
                     </DialogActions>
                   </Dialog>
+                  </React.Fragment>
             </div>}
             </div>
             </div>
