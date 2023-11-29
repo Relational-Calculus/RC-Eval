@@ -1,4 +1,4 @@
-import { useState, useEffect, forwardRef, Children } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { useCodeMirror } from '@uiw/react-codemirror';
 import { RC } from '../lang-rc/index.js';
 import { createTheme } from '@uiw/codemirror-themes';
@@ -17,15 +17,17 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Draggable from 'react-draggable';
-import WhatEvaluates from "./EvaluatedQuery.js";
-// import { makeStyles } from '@material-ui/core/styles';
+import { autocompletion } from "@codemirror/autocomplete";
+import myCompletions from "../autocompletion.js";
+
+
 
 // Define the extensions outside the component for the best performance.
 // If you need dynamic extensions, use React.useMemo to minimize reference changes
 // which cause costly re-renders.
 
 // Constants
-const extensions = [RC(), lintGutter(), RCLinter];
+const extensions = [RC(), lintGutter(), RCLinter, autocompletion({ override: [myCompletions]})];
 const operators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈'];
 const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈', '<', '>', 'AVG', 'MAX', 'MIN', 'CNT','SUM', 'LET', 'IN'];
 const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
