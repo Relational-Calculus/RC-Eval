@@ -26,8 +26,8 @@ import WhatEvaluates from "./EvaluatedQuery.js";
 
 // Constants
 const extensions = [RC(), lintGutter(), RCLinter];
-const operators = ['∃', '∀', '∧', '∨', '⇒', '¬', '='];
-const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '=', '<', '>', 'AVG', 'MAX', 'MIN', 'CNT','SUM', 'LET', 'IN'];
+const operators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈'];
+const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈', '<', '>', 'AVG', 'MAX', 'MIN', 'CNT','SUM', 'LET', 'IN'];
 const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
 
 const myTheme = createTheme({
@@ -80,7 +80,6 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
   const handleClose = () => {
       setOpenDialog(false); 
   }; 
-
 
   const { view } = useCodeMirror({
     container: ref.current,

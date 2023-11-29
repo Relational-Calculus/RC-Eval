@@ -25,7 +25,7 @@ const buttonExamples = {
         operatorName: 'NOT',
         example:  '<span style="color:purple">v</span> ⊨ <b>¬</b> <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span> ⊭ <span style="color:green">φ</span><br />∃ a. T(a, b) ∧ P(b, c)'
     },
-    '=': {
+    '≈': {
         operatorName: 'EQUALS',
         example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t1</span> ≈ <span style="color:#00aadd">t2</span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>) <b>=</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>)<br />∃ a, b. T(a, b, c) ∧ a=10'
     },
@@ -59,7 +59,8 @@ const buttonExamples = {
     },
     'LET': {
         operatorName: 'LET',
-        example:  'LET DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") AND attends(student,"DIS")<br />&emsp;IN DIS(lecturer, student)'
+        example:  `DB, <span style="color:purple">v</span> ⊨ LET p(x_1, ...,  x_n) = alpha
+        LET DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") AND attends(student,"DIS")<br />&emsp;IN DIS(lecturer, student)`
     },
     'IN': {
         operatorName: 'IN',
@@ -70,7 +71,7 @@ const buttonExamples = {
 export default function PopoverPaper({ content }) {
     const name = buttonExamples[content].operatorName;
     const example = buttonExamples[content].example;
-
+    
     return (
         <div style={{pointerEvents: "auto"}}>
             <div className="arrow-up" style={{
