@@ -201,7 +201,7 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
               <label className="mode" htmlFor="expertMode">Expert Mode<input type="checkbox" className="mode" id="expertMode" onClick={handleClick}></input></label>
               {expertMode && 
                 <div>
-                <React.Fragment>
+                <>
                 <Button onClick={handleClickOpen}>Examine evaluation?</Button>
                 <Dialog 
                     open={openDialog}
@@ -233,7 +233,7 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
                         <Button sx={{ color: "error" }} autoFocus onClick={handleClose}> Close </Button>
                     </DialogActions>
                   </Dialog>
-                  </React.Fragment>
+                  </>
             </div>}
             </div>
             </div>
