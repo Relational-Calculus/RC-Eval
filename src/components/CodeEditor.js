@@ -134,7 +134,6 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
 
 
   const handleFocus = () => {
-    console.log(focusState.schemaBtnText)
     if (focusState.state === 'example') {
       const timer = setTimeout(() => {
         view.focus();

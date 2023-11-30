@@ -38,8 +38,8 @@ function evalQuery(evalState, action) {
 function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
-    console.log(window.checkQueryRewriteFin(action.query))
-    console.log(window.checkQueryRewriteInf(action.query))
+    // console.log(window.checkQueryRewriteFin(action.query))
+    // console.log(window.checkQueryRewriteInf(action.query))
     const regEx = /[\w. ]+/g
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};

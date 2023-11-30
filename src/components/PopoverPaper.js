@@ -3,39 +3,39 @@ import { Typography } from "@mui/material"
 const buttonExamples = {
     '∃': {
         operatorName: 'EXISTS',
-        example:  '<span style="color:purple">v</span> ⊨ <b>∃</b>x. <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(x↦<span style="color:blue">c</span>) ⊨ <span style="color:green">φ</span> for some <span style="color:blue">c</span> ∈ 𝔻<br />∃ a, b. T()'
+        example:  '<span style="color:purple">v</span> ⊨ <b>∃</b>x. <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(x↦<span style="color:blue">c</span>) ⊨ <span style="color:green">φ</span> for some <span style="color:blue">c</span> ∈ 𝔻<hr width="100%" size="2">∃ a, b. T()'
     },
     '∀': {
         operatorName: 'FORALL',
-        example:  '<span style="color:purple">v</span> ⊨ <b>∀</b>x. <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(x↦<span style="color:blue">c</span>) ⊨ <span style="color:green">φ</span> for all <span style="color:blue">c</span> ∈ 𝔻<br/>∀ a, b. T()'
+        example:  '<span style="color:purple">v</span> ⊨ <b>∀</b>x. <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(x↦<span style="color:blue">c</span>) ⊨ <span style="color:green">φ</span> for all <span style="color:blue">c</span> ∈ 𝔻<hr width="100%" size="2">∀ a, b. T()'
     },
     '∧': {
         operatorName: 'AND',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> <b>∧</b> <span style="color:green">ψ</span> ⟺ <span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> and <span style="color:purple">v</span> ⊨ <span style="color:green">ψ</span><br />T() ∧ P()'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> <b>∧</b> <span style="color:green">ψ</span> ⟺ <span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> and <span style="color:purple">v</span> ⊨ <span style="color:green">ψ</span><hr width="100%" size="2">T() ∧ P()'
     },
     '∨': {
         operatorName: 'OR',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> <b>∨</b> <span style="color:green">ψ</span> ⟺ <span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> or <span style="color:purple">v</span> ⊨ <span style="color:green">ψ</span><br />T() ∨ P()'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> <b>∨</b> <span style="color:green">ψ</span> ⟺ <span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> or <span style="color:purple">v</span> ⊨ <span style="color:green">ψ</span><hr width="100%" size="2">T() ∨ P()'
     },
     '⇒': {
         operatorName: 'IMPLIES',
-        example:  '<span style="color:green">φ</span> <strong>⇒</strong> <span style="color:green">ψ</span> := (¬<span style="color:green">φ</span>) ∨ <span style="color:green">ψ</span><br />EKS. på implies'
+        example:  '<span style="color:green">φ</span> <strong>⇒</strong> <span style="color:green">ψ</span> := (¬<span style="color:green">φ</span>) ∨ <span style="color:green">ψ</span><hr width="100%" size="2">EKS. på implies'
     },
     '¬': {
         operatorName: 'NOT',
-        example:  '<span style="color:purple">v</span> ⊨ <b>¬</b> <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span> ⊭ <span style="color:green">φ</span><br />∃ a. T(a, b) ∧ P(b, c)'
+        example:  '<span style="color:purple">v</span> ⊨ <b>¬</b> <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span> ⊭ <span style="color:green">φ</span><hr width="100%" size="2">∃ a. T(a, b) ∧ P(b, c)'
     },
     '≈': {
         operatorName: 'EQUALS',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t1</span> ≈ <span style="color:#00aadd">t2</span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>) <b>=</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>)<br />∃ a, b. T(a, b, c) ∧ a=10'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t1</span> ≈ <span style="color:#00aadd">t2</span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>) <b>=</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a=10'
     },
     '<': {
         operatorName: 'LESS THAN',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t1</span> ≈ <span style="color:#00aadd">t2</span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>) <b>=</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>)<br />∃ a, b. T(a, b, c) ∧ a=10'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t1</span> ≈ <span style="color:#00aadd">t2</span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>) <b>=</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a=10'
     },
     '>': {
         operatorName: 'GREATER THAN',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t1</span> ≈ <span style="color:#00aadd">t2</span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>) <b>=</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>)<br />∃ a, b. T(a, b, c) ∧ a=10'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t1</span> ≈ <span style="color:#00aadd">t2</span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>) <b>=</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a=10'
     },
     'AVG': {
         operatorName: 'AVERAGE',
@@ -59,7 +59,7 @@ const buttonExamples = {
     },
     'LET': {
         operatorName: 'LET',
-        example:  `DB, <span style="color:purple">v</span> ⊨ LET p(x_1, ...,  x_n) = alpha
+        example:  `DB, <span style="color:purple">v</span> ⊨ LET p(x_1, ...,  x_n) = alpha<hr width="100%" size="2">
         LET DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") AND attends(student,"DIS")<br />&emsp;IN DIS(lecturer, student)`
     },
     'IN': {
