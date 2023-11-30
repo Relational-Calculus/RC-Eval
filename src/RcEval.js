@@ -8,6 +8,7 @@ import Result from "./components/DisplayResults";
 import DialogBtn from "./components/DialogBtn";
 import SchemaTextField from "./components/SchemaTextField";
 import DbTextField from "./components/DbTextField";
+import JStable2latex from "./components/DownloadResultsScema";
 
 
 function evalSchema(evalState, action) {
@@ -109,7 +110,7 @@ export default function RcEval() {
                                                                 {
                                                                   schema: {result: "", err_msg: "", correct: false},
                                                                   query: {fv: [], err_msg: "", correct: false, pfin: "", pinf: ""},
-                                                                  db: {quickresult: "", result: "", err_msg: "", correct: false}
+                                                                  db: {quickresult: "", result: "", err_msg: "", correct: true}
                                                                 })
   const [focusState, setFocusState] = useState({ state: '', schemaBtnText: '' });
   const textEditorRef = useRef(null);
@@ -130,14 +131,18 @@ export default function RcEval() {
         <Grid item xs={0}></Grid>
         <Grid item xs={3}>
           <Grid container direction={'row'}>
-            <DialogBtn textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} btnName={"Schema"} setFormState={setFormState} />
-            <DialogBtn textField={<DbTextField db={formState.db} dbLegit={evalState.db.correct} setFormState={setFormState}/>} btnName={"Database"} setFormState={setFormState} />
+            <DialogBtn textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} btnName={"Schema"} setFormState={setFormState} correct={evalState.schema.correct} />
+            <DialogBtn textField={<DbTextField db={formState.db} dbLegit={evalState.db.correct} setFormState={setFormState}/>} btnName={"Database"} setFormState={setFormState} correct={evalState.db.correct}/>
+            <DialogBtn textField={<JStable2latex fv={evalState.query.fv} result={evalState.db.result}> </JStable2latex>} btnName={"Latex"} setFormState={setFormState}/>
           </Grid> 
           <ExampleSelectButton setFormState={setFormState} setFocusState={setFocusState} ref={textEditorRef} />
           <Schemabuttons ref={textEditorRef} schema={formState.schema} setFocusState={setFocusState} />
         </Grid>
         <Grid item xs={8}>
           <CodeEditor ref={textEditorRef} query={formState.query} setFormState={setFormState} focusState={focusState} setFocusState={setFocusState} pfin={evalState.query.pfin} pinf={evalState.query.pinf}/>
+          {/* { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
+            <JStable2latex fv={evalState.query.fv} result={evalState.db.result}> </JStable2latex>
+          } */}
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
           }
