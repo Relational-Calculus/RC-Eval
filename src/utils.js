@@ -72,4 +72,27 @@ export function table_to_array(table) {
         });
 
         return result;
-    }
+}
+
+
+export function schema_from_tablename(tableName, tableArray) {
+    let schemaStr = tableName;
+    let colNames = [];
+    let colNameIdx = 0;
+    schemaStr += "(";
+
+    tableArray.forEach((elem, idx) => {
+        if (elem[0][0] === tableName) {
+            colNameIdx = idx;
+        }
+    })
+
+    tableArray[colNameIdx][1].map(col => {
+        colNames.push(col.colName);
+    })
+
+    schemaStr += colNames.join(', ');
+    schemaStr += ")";
+
+    return schemaStr;
+}

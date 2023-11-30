@@ -7,11 +7,6 @@
     margin-left: 40px;
 }
 
-.inner .button {
-    outline: none;
-    box-shadow: none;
-}
-
 .button {
     color: black;
     font-size: 12px;
