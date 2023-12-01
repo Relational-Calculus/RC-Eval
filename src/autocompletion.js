@@ -1,5 +1,5 @@
 // import { completeFromList } from "@codemirror/autocomplete";
-import {syntaxTree,  CompletionContext } from "@codemirror/language"
+import {syntaxTree } from "@codemirror/language"
 
 // let keywords = "EXISTS FORALL IMPLIES AND OR EQUALS NOT AVG MAX MIN CNT SUM LET IN"
 //   .split(" ")
@@ -54,7 +54,7 @@ export default function myCompletions(context) {
     // We could probably use the syntax tree within this function to get the tablenames added dynamically to the autocompletions
     const completions = getCompletionList(context);
   
-    if (word.from == word.to && !context.explicit)
+    if (word.from === word.to && !context.explicit)
       return null
     return {
       from: word.from,

@@ -10,18 +10,9 @@ import Popover from '@mui/material/Popover';
 import PopoverPaper from "./PopoverPaper.js";
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Draggable from 'react-draggable';
 import { autocompletion } from "@codemirror/autocomplete";
 import myCompletions from "../autocompletion.js";
-
+import ExamineDialog from "./ExamineDialog.js";
 
 
 // Define the extensions outside the component for the best performance.
@@ -49,23 +40,11 @@ const myTheme = createTheme({
   },
   styles: [
     { tag: t.definitionKeyword, color: '#aa5bc2' },
-    // { tag: t.variableName, color: '#dea112' },
     { tag: t.string, color: '#0971d9' },
     { tag: t.operatorKeyword, color: '#de3c10' },
     { tag: t.paren, color: '#10c210' },
   ],
 });
-
-function PaperComponent(props) {
-  return (
-    <Draggable
-      handle="#draggable-dialog-title"
-      cancel={'[class*="MuiDialogContent-root"]'}
-    >
-      <Paper {...props} />
-    </Draggable>
-  );
-}
 
 const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState, pinf, pfin }, ref) => {
   const [localQuery, setLocalQuery] = useState("");
@@ -74,16 +53,6 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
   const open = Boolean(anchorEl);
   
   const handleChange = (value) => { setLocalQuery(value) };
-
-  const [openDialog, setOpenDialog] = useState(false);
-
-  const handleClickOpen = () => {
-      setOpenDialog(true);
-  };
-
-  const handleClose = () => {
-      setOpenDialog(false); 
-  }; 
 
   const { view } = useCodeMirror({
     container: ref.current,
@@ -148,7 +117,6 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
     } else if (focusState.state === 'schema') {
       const cursorPosFrom = view.state.selection.main.from;
       const cursorPosTo = view.state.selection.main.to;
-      // const textLength = focusState.schemaBtnText.length;
       const timer = setTimeout(() => {
         view.focus();
         view.dispatch({
@@ -206,42 +174,7 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
                 labelPlacement="end"
                 control={<Checkbox className="mode" id="expertMode" label="Expert Mode" onClick={handleClick} color="info" sx={{color: "info.main", padding: "0 5px 0 0"}} />} 
               />
-              {expertMode && 
-                <div>
-                <>
-                <Button sx={{color: 'info.main'}} onClick={handleClickOpen}>Examine evaluation?</Button>
-                <Dialog 
-                    open={openDialog}
-                    onClose={(handleClose)}
-                    scroll={'body'}
-                    PaperComponent={PaperComponent}
-                    aria-labelledby= "draggable-dialog-title"
-                    fullWidth
-                    >
-                    <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">Evaluation</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="draggable-dialog-title"></DialogContentText>
-                        <Grid container direction={'column'} spacing={2}>
-                        <Grid item sx={{margin: "5px", color: "text.primary"}}>
-                                <Grid>
-                                This is the safe-range infinit query. If this holds, then the finite part is not necessarily valid:
-                                </Grid>
-                                {pinf}
-                            </Grid>
-                            <Grid item sx={{margin: "5px", color: "text.primary"}}>
-                                <Grid>
-                                This is the finite query. It is rewritten to be safe-range and evaluable. This is how the query is evaluated:   
-                                </Grid>
-                                {pfin}
-                            </Grid>
-                        </Grid>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button sx={{ color: "error" }} autoFocus onClick={handleClose}> Close </Button>
-                    </DialogActions>
-                  </Dialog>
-                  </>
-            </div>}
+              { expertMode && <div> <ExamineDialog pinf={pinf} pfin={pfin} /> </div> }
             </div>
             </div>
             <div tabIndex={"0"} onFocus={handleFocus} ref={ref} />
@@ -252,14 +185,6 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
                 anchorEl={anchorEl}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'center', }}
                 transformOrigin={{ vertical: 'top', horizontal: 'center', }}
-                // PaperProps={{
-                //   style: {
-                //     backgroundColor: "transparent",
-                //     boxShadow: "none",
-                //     borderRadius: 0,
-                //     // pointerEvents: "auto"
-                //   }
-                // }}
                 slotProps={{
                   paper: {
                     style: {

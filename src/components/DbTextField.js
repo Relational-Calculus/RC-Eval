@@ -52,9 +52,9 @@ export default function DbTextField({ db, dbLegit, setFormState, color='red'}) {
             onBlur={handleBlur}
             minRows={10}
             maxRows={10}
+            color="text"
             InputProps={{ style: { minHeight: '40vh',
                                    fontSize: 14, align: 'top' } }}
-            sx={{color:color}}
           />
           {/* </ThemeProvider> */}
     </div>
