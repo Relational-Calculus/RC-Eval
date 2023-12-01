@@ -139,7 +139,16 @@ export default function RcEval() {
           <Schemabuttons ref={textEditorRef} schema={formState.schema} setFocusState={setFocusState} />
         </Grid>
         <Grid item xs={9}>
-          <CodeEditor ref={textEditorRef} query={formState.query} setFormState={setFormState} focusState={focusState} setFocusState={setFocusState} pfin={evalState.query.pfin} pinf={evalState.query.pinf}/>
+          <CodeEditor 
+            ref={textEditorRef} 
+            query={formState.query}
+            schema={formState.schema} 
+            setFormState={setFormState} 
+            focusState={focusState} 
+            setFocusState={setFocusState} 
+            pfin={evalState.query.pfin} 
+            pinf={evalState.query.pinf}
+          />
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
           }

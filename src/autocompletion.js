@@ -59,6 +59,6 @@ export default function myCompletions(context) {
     return {
       from: word.from,
       options: completions,
-      validFor: /\w*/
+      validFor: /^\w*$/
     }
   }

@@ -10,9 +10,10 @@ import Popover from '@mui/material/Popover';
 import PopoverPaper from "./PopoverPaper.js";
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { autocompletion } from "@codemirror/autocomplete";
+import { autocompletion, completeFromList, ifNotIn } from "@codemirror/autocomplete";
 import myCompletions from "../autocompletion.js";
 import ExamineDialog from "./ExamineDialog.js";
+import { schema_to_completion_list } from '../utils.js'
 
 
 // Define the extensions outside the component for the best performance.
@@ -20,7 +21,7 @@ import ExamineDialog from "./ExamineDialog.js";
 // which cause costly re-renders.
 
 // Constants
-const extensions = [RC(), lintGutter(), RCLinter, autocompletion({ override: [myCompletions]})];
+// const extensions = [RC(), lintGutter(), RCLinter, autocompletion({ override: [myCompletions]})];
 const operators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈'];
 const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈', '<', '>', 'AVG', 'MAX', 'MIN', 'CNT','SUM', 'LET', 'IN'];
 const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
@@ -46,13 +47,20 @@ const myTheme = createTheme({
   ],
 });
 
-const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState, pinf, pfin }, ref) => {
+const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFocusState, pinf, pfin }, ref) => {
   const [localQuery, setLocalQuery] = useState("");
   const [expertMode, setExpertMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   
   const handleChange = (value) => { setLocalQuery(value) };
+
+  // Get dynamic completion list for current tablenames
+  const tableNames = schema_to_completion_list(schema);
+  const tablenameCompletion = tableNames.length === 0 ? "" : ifNotIn(["TableExpression", "PrefixExpression"], completeFromList([...tableNames]))
+  // Setting the extensions for the text editor
+  const extensions = tableNames.length === 0 ? [RC(), lintGutter(), RCLinter, autocompletion({ override: [myCompletions]})]
+                                             : [RC(), lintGutter(), RCLinter, autocompletion({ override: [myCompletions, tablenameCompletion]})]
 
   const { view } = useCodeMirror({
     container: ref.current,
@@ -107,7 +115,6 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
   const handleFocus = () => {
     if (focusState.state === 'example') {
       const timer = setTimeout(() => {
-        view.focus();
         view.dispatch({
           selection: {anchor: view.docView.length}
         })
@@ -118,7 +125,6 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
       const cursorPosFrom = view.state.selection.main.from;
       const cursorPosTo = view.state.selection.main.to;
       const timer = setTimeout(() => {
-        view.focus();
         view.dispatch({
           changes: {from: cursorPosFrom, to: cursorPosTo, insert: focusState.schemaBtnText},
           selection: {anchor: cursorPosFrom+focusState.schemaBtnText.length}
