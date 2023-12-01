@@ -125,19 +125,27 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
       >
         <div>
           <FormControl fullWidth>
-            <InputLabel id="example-select-label">Example</InputLabel>
+            <InputLabel sx={{color: 'text.primary'}} id="example-select-label">Example</InputLabel>
             <Select
               id="example-select"
               label="Example"
               value={example}
               onChange={handleChange}
+              sx={{
+                color: 'text.primary', 
+                // "&:hover": {
+                //   "&& fieldset": {
+                //     borderColor: "#125E23"
+                //   }
+                // }
+              }}
             >
-              <MenuItem value={""}>None</MenuItem>
-              <MenuItem value={"Employees"}>Employees</MenuItem>
-              <MenuItem value={"Platonic"}>Platonic Triangles</MenuItem>
-              <MenuItem value={"Product"}>Computer Shop</MenuItem>
-              <MenuItem value={"Reviews"}>Suspicious Reviews</MenuItem>
-              <MenuItem value={"Ships"}>Battleships</MenuItem>
+              <MenuItem sx={{color: 'text.primary'}} value={""}>None</MenuItem>
+              <MenuItem sx={{color: 'text.primary'}} value={"Employees"}>Employees</MenuItem>
+              <MenuItem sx={{color: 'text.primary'}} value={"Platonic"}>Platonic Triangles</MenuItem>
+              <MenuItem sx={{color: 'text.primary'}} value={"Product"}>Computer Shop</MenuItem>
+              <MenuItem sx={{color: 'text.primary'}} value={"Reviews"}>Suspicious Reviews</MenuItem>
+              <MenuItem sx={{color: 'text.primary'}} value={"Ships"}>Battleships</MenuItem>
             </Select>
           </FormControl>
         </div>
@@ -153,15 +161,23 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
       >
         <div>
           <FormControl fullWidth>
-            <InputLabel id="query-select-label">Query Examples</InputLabel>
+            <InputLabel sx={{color: 'text.primary'}} id="query-select-label">Query Examples</InputLabel>
             <Select
               id="query-select"
               label="Query Examples"
               value={queryExample}
               onChange={handleChangeQuery}
+              sx={{
+                color: 'text.primary',
+                // "&:hover": {
+                //   "&& fieldset": {
+                //     borderColor: "#125E23"
+                //   }
+                // }
+              }}
             >
              { queries.ex.map((elem, idx) => 
-              (idx <= exampleQueryImports[example].length) && <MenuItem value={elem.exName}>{elem.exName === '' ? "None" : elem.exName}</MenuItem>
+              (idx <= exampleQueryImports[example].length) && <MenuItem sx={{color: 'text.primary'}} value={elem.exName}>{elem.exName === '' ? "None" : elem.exName}</MenuItem>
             ) } 
             </Select>
           </FormControl>

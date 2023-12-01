@@ -8,6 +8,7 @@ button {
     display: block;
     text-align: center;
     padding: 5px 10px;
+    color: #F3E283;
 }
 
 button:hover {
@@ -24,7 +25,12 @@ button:hover {
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
     display: block;
     text-align: center;
-    padding: 5px 10px;
+    /* padding-top: 0; */
+    padding: 5px 10px; 
+}
+
+.MuiFormControlLabel-labelPlacementEnd {
+    color: #3474eb;
 }
 
 
@@ -39,7 +45,7 @@ button:hover {
 }
 
 .buttonFrame {
-    background-color: #b2bcc6;
+    background-color: #231426;
     margin: 0;
     padding: 20px;
     overflow: hidden;

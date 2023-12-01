@@ -53,7 +53,6 @@ export default function myCompletions(context) {
     // Create function that gives a list of completion words context.state.doc.toString() gets the text in the editor.
     // We could probably use the syntax tree within this function to get the tablenames added dynamically to the autocompletions
     const completions = getCompletionList(context);
-    // console.log(completions)
   
     if (word.from == word.to && !context.explicit)
       return null

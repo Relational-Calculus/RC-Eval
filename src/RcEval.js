@@ -128,7 +128,7 @@ export default function RcEval() {
   return (
     <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>
       <Grid container spacing={4}>
-        <Grid item xs={0}></Grid>
+        {/* <Grid item xs={0}></Grid> */}
         <Grid item xs={3}>
           <Grid container direction={'row'}>
             <DialogBtn textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} btnName={"Schema"} setFormState={setFormState} correct={evalState.schema.correct} />
@@ -138,16 +138,13 @@ export default function RcEval() {
           <ExampleSelectButton setFormState={setFormState} setFocusState={setFocusState} ref={textEditorRef} />
           <Schemabuttons ref={textEditorRef} schema={formState.schema} setFocusState={setFocusState} />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={9}>
           <CodeEditor ref={textEditorRef} query={formState.query} setFormState={setFormState} focusState={focusState} setFocusState={setFocusState} pfin={evalState.query.pfin} pinf={evalState.query.pinf}/>
-          {/* { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
-            <JStable2latex fv={evalState.query.fv} result={evalState.db.result}> </JStable2latex>
-          } */}
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
           }
         </Grid>
-        <Grid item xs={1}></Grid>
+        {/* <Grid item xs={1}></Grid> */}
       </Grid>
     </Box>
   );

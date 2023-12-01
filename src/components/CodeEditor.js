@@ -8,6 +8,8 @@ import { RCLinter } from "../error_handling.js";
 import "./CodeEditor.css";
 import Popover from '@mui/material/Popover';
 import PopoverPaper from "./PopoverPaper.js";
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -198,11 +200,16 @@ const CodeEditor = forwardRef(({ query, setFormState, focusState, setFocusState,
                 </button>
               )} 
               <div className="expertFrame">
-              <label className="mode" htmlFor="expertMode">Expert Mode<input type="checkbox" className="mode" id="expertMode" onClick={handleClick}></input></label>
+              <FormControlLabel 
+                className="mode" 
+                label="Expert Mode" 
+                labelPlacement="end"
+                control={<Checkbox className="mode" id="expertMode" label="Expert Mode" onClick={handleClick} color="info" sx={{color: "info.main", padding: "0 5px 0 0"}} />} 
+              />
               {expertMode && 
                 <div>
                 <>
-                <Button onClick={handleClickOpen}>Examine evaluation?</Button>
+                <Button sx={{color: 'info.main'}} onClick={handleClickOpen}>Examine evaluation?</Button>
                 <Dialog 
                     open={openDialog}
                     onClose={(handleClose)}

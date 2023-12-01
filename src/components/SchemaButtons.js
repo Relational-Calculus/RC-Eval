@@ -8,28 +8,6 @@ import { table_to_array, schema_from_tablename } from '../utils'
 // [Tablename2, [{colName: col1, type: type1}, {colName: col2, type: type2}, {colName: col3, type: type3}]]   
 // ]
 
-// function schema_from_tablename(tableName, tableArray) {
-//     let schemaStr = tableName;
-//     let colNames = [];
-//     let colNameIdx = 0;
-//     schemaStr += "(";
-
-//     tableArray.forEach((elem, idx) => {
-//         if (elem[0][0] === tableName) {
-//             colNameIdx = idx;
-//         }
-//     })
-
-//     tableArray[colNameIdx][1].map(col => {
-//         colNames.push(col.colName);
-//     })
-
-//     schemaStr += colNames.join(', ');
-//     schemaStr += ")";
-
-//     return schemaStr;
-// }
-
 const Schemabuttons = forwardRef(({ schema, setFocusState }, ref) => {
     const [localSchema, setLocalSchema] = useState([['', [{colName: '', type: ''}]]]);
 

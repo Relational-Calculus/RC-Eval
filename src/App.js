@@ -10,7 +10,16 @@ import NavBar from "./components/NavBar";
 const lightTheme = createTheme({
   palette: {
     contrastThreshold: 4.5,
-    mode: 'light'
+    mode: 'light',
+    primary: {
+      main: '#231426',
+    },
+    text: {
+      secondary: '#F3E283'
+    },
+    info: {
+      main: '#3474eb'
+    }
   },
   typography: {
     button: {
