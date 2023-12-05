@@ -1,16 +1,13 @@
-import ReactVirtualizedTable from "./DatabaseTable";
-import { createData, fv_to_columns } from '../utils'
-import { FixedHeaderContent } from "react-virtuoso";
-import { TextField } from "@mui/material";
+import IconButton from '@mui/material/IconButton';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
-
-
-export default function JStable2latex(fv, result) {
-    const header = fv.fv;
+export default function CopyResultLatex({ fv, result }) {
+    const header = fv;
     const headerLength = header.length
-    const rows = fv.result; 
+    const rows = result; 
     var latexTableBegining = ["\\begin{table}[]","\\centering","\\begin{tabular}","{|","\\hline"];  //[3] = amount of free variables, [5] = free variables
     const latexTableEnd = ["\\end{tabular}", "\\caption{}", "\\label{tab:my-table}", "\\end{table}"]
+
     //Add number of rows
     for (let i = 0; i < headerLength; i++) {
         latexTableBegining[3] += "l|"
@@ -35,25 +32,18 @@ export default function JStable2latex(fv, result) {
         
     }
 
-    const latexTable = latexTableBegining.concat(latexTableEnd)
-    const latexJoined = latexTable.join(' ')
+    const latexTable = latexTableBegining.concat(latexTableEnd);
+    const latexJoined = latexTable.join(' ');
+
+    const handleClick = () => {
+        navigator.clipboard.writeText(latexJoined);
+    }
 
     return (
-        <div>
-        {/* <ThemeProvider theme={theme}> */}
-          <TextField
-            multiline
-            fullWidth
-            variant="outlined"
-            id="outlined-required"
-            label="Latex"
-            value={latexJoined}
-            minRows={10}
-            maxRows={10}
-            InputProps={{ style: { minHeight: '40vh',
-                                   fontSize: 14, align: 'top' } }}
-          />
-          {/* </ThemeProvider> */}
-    </div>
-    );
+        <div className='tooltip' style={{display: 'flex', justifyContent: 'flex-end'}}>
+            <IconButton aria-label="copy" size="large" onClick={handleClick}>
+                <ContentCopyIcon fontSize="inherit" />
+            </IconButton>
+        </div>
+    )
 }

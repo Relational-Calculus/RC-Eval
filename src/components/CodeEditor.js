@@ -62,6 +62,7 @@ const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFoc
   const extensions = tableNames.length === 0 ? [RC(), lintGutter(), RCLinter, autocompletion({ override: [myCompletions]})]
                                              : [RC(), lintGutter(), RCLinter, autocompletion({ override: [myCompletions, tablenameCompletion]})]
 
+
   const { view } = useCodeMirror({
     container: ref.current,
     placeholder: placeholderStr,

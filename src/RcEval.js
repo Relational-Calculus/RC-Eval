@@ -8,7 +8,8 @@ import Result from "./components/DisplayResults";
 import DialogBtn from "./components/DialogBtn";
 import SchemaTextField from "./components/SchemaTextField";
 import DbTextField from "./components/DbTextField";
-import JStable2latex from "./components/DownloadResultsScema";
+// import JStable2latex from "./components/DownloadResultsScema";
+import CopyResultLatex from "./components/CopyResultLatex";
 
 
 function evalSchema(evalState, action) {
@@ -128,15 +129,36 @@ export default function RcEval() {
   return (
     <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>
       <Grid container spacing={4}>
-        {/* <Grid item xs={0}></Grid> */}
         <Grid item xs={3}>
           <Grid container direction={'row'}>
-            <DialogBtn textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} btnName={"Schema"} setFormState={setFormState} correct={evalState.schema.correct} />
-            <DialogBtn textField={<DbTextField db={formState.db} dbLegit={evalState.db.correct} setFormState={setFormState}/>} btnName={"Database"} setFormState={setFormState} correct={evalState.db.correct}/>
-            <DialogBtn textField={<JStable2latex fv={evalState.query.fv} result={evalState.db.result}> </JStable2latex>} btnName={"Latex"} setFormState={setFormState}/>
+            <DialogBtn 
+              textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} 
+              btnName={"Schema"} 
+              setFormState={setFormState} 
+              correct={evalState.schema.correct} 
+            />
+            <DialogBtn 
+              textField={<DbTextField db={formState.db} dbLegit={evalState.db.correct} setFormState={setFormState}/>} 
+              btnName={"Database"} 
+              setFormState={setFormState} 
+              correct={evalState.db.correct}
+            />
+            {/* <DialogBtn 
+              textField={<JStable2latex fv={evalState.query.fv} result={evalState.db.result} />} 
+              btnName={"Latex"} 
+              setFormState={setFormState}
+            /> */}
           </Grid> 
-          <ExampleSelectButton setFormState={setFormState} setFocusState={setFocusState} ref={textEditorRef} />
-          <Schemabuttons ref={textEditorRef} schema={formState.schema} setFocusState={setFocusState} />
+          <ExampleSelectButton 
+            setFormState={setFormState} 
+            setFocusState={setFocusState} 
+            ref={textEditorRef} 
+          />
+          <Schemabuttons 
+            ref={textEditorRef} 
+            schema={formState.schema} 
+            setFocusState={setFocusState} 
+          />
         </Grid>
         <Grid item xs={9}>
           <CodeEditor 
@@ -150,10 +172,16 @@ export default function RcEval() {
             pinf={evalState.query.pinf}
           />
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
-            <Result fv={evalState.query.fv} results={evalState.db.result} quickresult={evalState.db.quickresult} />
+            <div>
+              <Result 
+                fv={evalState.query.fv} 
+                results={evalState.db.result} 
+                quickresult={evalState.db.quickresult} 
+              />
+              <CopyResultLatex fv={evalState.query.fv} result={evalState.db.result} />
+            </div>
           }
         </Grid>
-        {/* <Grid item xs={1}></Grid> */}
       </Grid>
     </Box>
   );
