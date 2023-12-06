@@ -3,7 +3,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 export default function CopyResultLatex({ fv, result }) {
     const header = fv;
-    const headerLength = header.length
+    const headerLength = header === null ? 0 : header.length;
     const rows = result; 
     var latexTableBegining = ["\\begin{table}[]","\\centering","\\begin{tabular}","{|","\\hline"];  //[3] = amount of free variables, [5] = free variables
     const latexTableEnd = ["\\end{tabular}", "\\caption{}", "\\label{tab:my-table}", "\\end{table}"]

@@ -178,7 +178,7 @@ export default function RcEval() {
                 results={evalState.db.result} 
                 quickresult={evalState.db.quickresult} 
               />
-              <CopyResultLatex fv={evalState.query.fv} result={evalState.db.result} />
+              { evalState.query.fv !== null && <CopyResultLatex fv={evalState.query.fv} result={evalState.db.result} />}
             </div>
           }
         </Grid>
