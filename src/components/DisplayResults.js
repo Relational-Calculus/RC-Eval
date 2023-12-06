@@ -3,6 +3,8 @@ import ReactVirtualizedTable from './DatabaseTable'
 import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import CopyResultLatex from './CopyResultLatex';
+import React from 'react';
 
 const childDivStyle = {
   height: '250px', 
@@ -27,12 +29,17 @@ export default function Result({fv, results, quickresult}) {
   const isFalse = quickresult === "" && fv == null;
 
   return(
+    <div>
     <Box component="div" sx={{ px: 0, mt: 2, border: '1px solid lightgray', borderRadius: '5px' }}>
       {   isInf ? <Box component="div" sx={childDivStyle}> <AllInclusiveOutlinedIcon fontSize='inherit' sx={iconStyle} /> </Box>
         : isTrue ? <Box component="div" sx={childDivStyle}> <CheckOutlinedIcon color='success' fontSize='inherit' sx={iconStyle} /> </Box>
         : isFalse ? <Box component="div" sx={childDivStyle}> <CloseOutlinedIcon color='error' fontSize='inherit' sx={iconStyle} /> </Box>
-        : ReactVirtualizedTable({fv, results})
+        : <React.Fragment> {ReactVirtualizedTable({fv, results} )} </React.Fragment> 
       }
     </Box>
+      {!(isFalse || isTrue || isInf) ? CopyResultLatex({fv, results})
+      : null}
+      
+    </div>
   )
 };

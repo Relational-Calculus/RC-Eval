@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Box } from "@mui/material";
 
 // dbLegit is evalState.db.correct : Boolean
 // if dbLegit = false then mark the textField
 
-export default function DbTextField({ db, dbLegit, setFormState, color='red'}) {
+export default function DbTextField({ db, dbLegit, setFormState}) {
     const [localDb, setLocalDb] = useState("");
 
     const handleChange = (event) => {
@@ -39,8 +40,15 @@ export default function DbTextField({ db, dbLegit, setFormState, color='red'}) {
     // });
   
     return (
+/*       <Box
+      component="form"
+      sx={{
+      '& .MuiTextField-root': { width: '100%' },
+      }}
+      noValidate
+      autoComplete="off"
+     > */
         <div>
-        {/* <ThemeProvider theme={theme}> */}
           <TextField
             multiline
             fullWidth
@@ -52,11 +60,10 @@ export default function DbTextField({ db, dbLegit, setFormState, color='red'}) {
             onBlur={handleBlur}
             minRows={10}
             maxRows={10}
-            color="text"
             InputProps={{ style: { minHeight: '40vh',
                                    fontSize: 14, align: 'top' } }}
           />
-          {/* </ThemeProvider> */}
     </div>
+    // </Box>
     );
   } 
