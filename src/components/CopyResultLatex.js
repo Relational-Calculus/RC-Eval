@@ -3,9 +3,9 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 export default function CopyResultLatex({ fv, results }) {
     const header = fv;
-    console.log(fv)
-    const headerLength = header.length
+    const headerLength = header !== null ? header.length : 0;
     const rows = results; 
+    const rowsLength = rows !== null ? rows.length : 0;
     var latexTableBegining = ["\\begin{table}[]","\\centering","\\begin{tabular}","{|","\\hline"];  //[3] = amount of free variables, [5] = free variables
     const latexTableEnd = ["\\end{tabular}", "\\caption{}", "\\label{tab:my-table}", "\\end{table}"]
 
@@ -23,7 +23,7 @@ export default function CopyResultLatex({ fv, results }) {
     latexTableBegining.pop()
     latexTableBegining.push("\\\\ \\hline")
 
-    for (let i = 0; i < rows.length; i+=headerLength) {
+    for (let i = 0; i < rowsLength; i+=headerLength) {
         for (let j = 0; j < headerLength; j++) {
                 latexTableBegining.push(rows[i+j])
                 latexTableBegining.push("&")
