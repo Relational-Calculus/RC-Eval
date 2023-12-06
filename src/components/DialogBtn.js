@@ -10,7 +10,7 @@ import InputFileUpload from './InputFileUpload';
 import React from 'react';
 
 
-export default function DialogBtn({textField, btnName, setFormState, correct=true}) {
+export default function DialogBtn({textField, btnName, setFormState, correct}) {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -22,6 +22,8 @@ export default function DialogBtn({textField, btnName, setFormState, correct=tru
     }; 
 
     const color = correct ? "info" : "red" 
+
+
 
     
 
