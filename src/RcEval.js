@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Schemabuttons from "./components/SchemaButtons";
@@ -8,8 +8,6 @@ import Result from "./components/DisplayResults";
 import DialogBtn from "./components/DialogBtn";
 import SchemaTextField from "./components/SchemaTextField";
 import DbTextField from "./components/DbTextField";
-// import JStable2latex from "./components/DownloadResultsScema";
-import CopyResultLatex from "./components/CopyResultLatex";
 
 
 function evalSchema(evalState, action) {
@@ -143,11 +141,6 @@ export default function RcEval() {
               setFormState={setFormState} 
               correct={evalState.db.correct}
             />
-            {/* <DialogBtn 
-              textField={<JStable2latex fv={evalState.query.fv} result={evalState.db.result} />} 
-              btnName={"Latex"} 
-              setFormState={setFormState}
-            /> */}
           </Grid> 
           <ExampleSelectButton 
             setFormState={setFormState} 

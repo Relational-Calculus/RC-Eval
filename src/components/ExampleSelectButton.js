@@ -79,10 +79,10 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
     }
   }, [])
 
-  // console.log("HI")
 
   const handleChange = (event) => {
     setExample(event.target.value);
+    setQueryExample('');
     setFocusState(prevState => { return {...prevState, state: 'example'}});
     findAndSetExample(event.target.value);
     ref.current.focus();
@@ -125,7 +125,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
       >
         <div>
           <FormControl fullWidth>
-            <InputLabel sx={{color: 'text.primary'}} id="example-select-label">Example</InputLabel>
+            <InputLabel sx={{color: 'text.primary'}} id="example-select-label"><em>Example</em></InputLabel>
             <Select
               id="example-select"
               label="Example"
@@ -133,11 +133,6 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
               onChange={handleChange}
               sx={{
                 color: 'text.primary', 
-                // "&:hover": {
-                //   "&& fieldset": {
-                //     borderColor: "#125E23"
-                //   }
-                // }
               }}
             >
               <MenuItem sx={{color: 'text.primary'}} value={""}>None</MenuItem>
@@ -150,6 +145,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
           </FormControl>
         </div>
       </Box>
+      { example !== "" && 
       <Box
       component="form"
       sx={{
@@ -160,8 +156,8 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
       autoComplete="off"
       >
         <div>
-          <FormControl fullWidth>
-            <InputLabel sx={{color: 'text.primary'}} id="query-select-label">Query Examples</InputLabel>
+          <FormControl fullWidth size="small">
+            <InputLabel sx={{color: 'text.primary', fontSize: "14px"}} id="query-select-label"><em>Query Examples</em></InputLabel>
             <Select
               id="query-select"
               label="Query Examples"
@@ -169,11 +165,6 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
               onChange={handleChangeQuery}
               sx={{
                 color: 'text.primary',
-                // "&:hover": {
-                //   "&& fieldset": {
-                //     borderColor: "#125E23"
-                //   }
-                // }
               }}
             >
              { queries.ex.map((elem, idx) => 
@@ -182,7 +173,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
             </Select>
           </FormControl>
         </div>
-      </Box>
+      </Box>}
     </>
   );
 });
