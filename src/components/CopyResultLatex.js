@@ -9,7 +9,6 @@ export default function CopyResultLatex({ fv, results }) {
     var latexTableBegining = ["\\begin{table}[]","\\centering","\\begin{tabular}","{|","\\hline"];  //[3] = amount of free variables, [5] = free variables
     const latexTableEnd = ["\\end{tabular}", "\\caption{}", "\\label{tab:my-table}", "\\end{table}"]
 
-    //Add number of rows
     for (let i = 0; i < headerLength; i++) {
         latexTableBegining[3] += "l|"
     }
