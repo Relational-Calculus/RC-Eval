@@ -1,5 +1,6 @@
 import IconButton from '@mui/material/IconButton';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import Tooltip from '@mui/material/Tooltip';
 
 export default function CopyResultLatex({ fv, results }) {
     const header = fv;
@@ -42,9 +43,11 @@ export default function CopyResultLatex({ fv, results }) {
 
     return (
         <div className='tooltip' style={{display: 'flex', justifyContent: 'flex-end'}}>
-            <IconButton aria-label="copy" size="large" onClick={handleClick}>
-                <ContentCopyIcon fontSize="inherit" />
-            </IconButton>
+            <Tooltip title="Copy Table To Latex">
+                <IconButton aria-label="copy" size="large" onClick={handleClick}>
+                    <ContentCopyIcon fontSize="inherit" />
+                </IconButton>
+            </Tooltip>
         </div>
     )
 }
