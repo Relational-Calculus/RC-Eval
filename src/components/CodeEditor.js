@@ -14,6 +14,7 @@ import { autocompletion, completeFromList, ifNotIn } from "@codemirror/autocompl
 import myCompletions from "../autocompletion.js";
 import ExamineDialog from "./ExamineDialog.js";
 import { schema_to_completion_list } from '../utils.js'
+import RANFDialog from "./RANFdialog.js";
 
 
 // Define the extensions outside the component for the best performance.
@@ -47,7 +48,7 @@ const myTheme = createTheme({
   ],
 });
 
-const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFocusState, pinf, pfin }, ref) => {
+const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFocusState, pinf, pfin, f }, ref) => {
   const [localQuery, setLocalQuery] = useState("");
   const [expertMode, setExpertMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -181,6 +182,7 @@ const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFoc
                 labelPlacement="end"
                 control={<Checkbox className="mode" id="expertMode" label="Expert Mode" onClick={handleClick} color="info" sx={{color: "info.main", padding: "0 5px 0 0"}} />} 
               />
+              {<div> <RANFDialog query={localQuery} f={f} /> </div>}  
               { expertMode && <div> <ExamineDialog pinf={pinf} pfin={pfin} /> </div> }
             </div>
             </div>

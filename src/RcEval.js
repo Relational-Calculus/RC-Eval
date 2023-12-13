@@ -23,12 +23,17 @@ function evalSchema(evalState, action) {
 
 function evalQuery(evalState, action) {
   try {
+    // const queryInfo =window.checkQuery(action.query).split(",")
     const freeVariables = window.checkQuery(action.query);
+    console.log(freeVariables)
     const pfin = window.checkQueryRewriteFin(action.query);
     const pinf = window.checkQueryRewriteInf(action.query);
+    const f = window.checkQueryIsMon(action.query)
+    // console.log("f:", window.checkQueryIsMon(action.query))
+    
     const regEx = /\w+/g
     return { ...evalState,
-            query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf}};
+            query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, f:f}};
   } catch (error) {
     return { ...evalState, 
             query: {fv: [], err_msg: error[1], correct: false}};
@@ -44,6 +49,7 @@ function evalDb(evalState, action) {
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
+    console.log(evalState.err_msg)
     return { ...evalState,
             db: {err_msg: error[1][1]}, correct: false};
   }
@@ -108,7 +114,7 @@ export default function RcEval() {
   const [evalState, setEvalState] = useReducer(evalStateReducer, 
                                                                 {
                                                                   schema: {result: "", err_msg: "", correct: false},
-                                                                  query: {fv: [], err_msg: "", correct: false, pfin: "", pinf: ""},
+                                                                  query: {fv: [], err_msg: "", correct: false, pfin: "", pinf: "", f: ""},
                                                                   db: {quickresult: "", result: "", err_msg: "", correct: true}
                                                                 })
   const [focusState, setFocusState] = useState({ state: '', schemaBtnText: '' });
@@ -163,6 +169,7 @@ export default function RcEval() {
             setFocusState={setFocusState} 
             pfin={evalState.query.pfin} 
             pinf={evalState.query.pinf}
+            f = {evalState.query.f}
           />
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <div>
