@@ -50,8 +50,6 @@ export default function InputFileUpload({type, setFormState}) {
   };
 
 
-
-
   return (
     <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
       Upload file

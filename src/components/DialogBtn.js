@@ -22,9 +22,6 @@ export default function DialogBtn({textField, btnName, setFormState, correct}) {
     }; 
 
     const color = correct ? "info" : "red" 
-
-
-
     
 
     return ( 

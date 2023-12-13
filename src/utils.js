@@ -109,3 +109,25 @@ export function schema_to_completion_list(schema) {
     }
     return tableNames;
 }
+
+// ['∃', '∀', '∧', '∨', '⇒', '¬', '≈', '<', '>', 'AVG', 'MAX', 'MIN', 'CNT','SUM', 'LET', 'IN'];
+
+function replacer(match, p1, p2, p3, offset, string) {
+    const escapeSymbols = {
+        '∃': '$\\exists$',
+        '∀': '$\\forall$',
+        '∧': '$\\and$',
+        '∨': '$\\or$',
+        '⇒': '$\\implies$',
+        '¬': '$\\not$',
+        '≈': '$\\approx$',
+        '_': '\\_',
+        '>': '$>$',
+        '<': '$<$'
+    }
+    return escapeSymbols[match];
+}
+
+export function check_string_for_special_character(str) {
+    return str.replaceAll(/[∃∀∧∨⇒¬≈_<>]/g, replacer);
+}

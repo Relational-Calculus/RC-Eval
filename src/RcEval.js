@@ -168,7 +168,8 @@ export default function RcEval() {
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <div>
               <Result 
-                fv={evalState.query.fv} 
+                fv={evalState.query.fv}
+                query={formState.query}
                 results={evalState.db.result} 
                 quickresult={evalState.db.quickresult} 
               />
