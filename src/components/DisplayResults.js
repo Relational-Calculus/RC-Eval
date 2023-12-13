@@ -23,23 +23,21 @@ const iconStyle = {
 }
 
 
-export default function Result({fv, results, quickresult}) {
+export default function Result({fv, query, results, quickresult}) {
   const isInf = quickresult === "INF";
   const isTrue = quickresult === "()";
   const isFalse = quickresult === "" && fv == null;
 
   return(
     <div>
-    <Box component="div" sx={{ px: 0, mt: 2, border: '1px solid lightgray', borderRadius: '5px' }}>
-      {   isInf ? <Box component="div" sx={childDivStyle}> <AllInclusiveOutlinedIcon fontSize='inherit' sx={iconStyle} /> </Box>
-        : isTrue ? <Box component="div" sx={childDivStyle}> <CheckOutlinedIcon color='success' fontSize='inherit' sx={iconStyle} /> </Box>
-        : isFalse ? <Box component="div" sx={childDivStyle}> <CloseOutlinedIcon color='error' fontSize='inherit' sx={iconStyle} /> </Box>
-        : <React.Fragment> {ReactVirtualizedTable({fv, results} )} </React.Fragment> 
-      }
-    </Box>
-      {!(isFalse || isTrue || isInf) ? CopyResultLatex({fv, results})
-      : null}
-      
+      <Box component="div" sx={{ px: 0, mt: 2, border: '1px solid lightgray', borderRadius: '5px' }}>
+        {   isInf ? <Box component="div" sx={childDivStyle}> <AllInclusiveOutlinedIcon fontSize='inherit' sx={iconStyle} /> </Box>
+          : isTrue ? <Box component="div" sx={childDivStyle}> <CheckOutlinedIcon color='success' fontSize='inherit' sx={iconStyle} /> </Box>
+          : isFalse ? <Box component="div" sx={childDivStyle}> <CloseOutlinedIcon color='error' fontSize='inherit' sx={iconStyle} /> </Box>
+          : <React.Fragment> {ReactVirtualizedTable({fv, results} )} </React.Fragment> 
+        }
+      </Box>
+        { !(isFalse || isTrue || isInf) && CopyResultLatex({fv, query, results}) }
     </div>
   )
 };

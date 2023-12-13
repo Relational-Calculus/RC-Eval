@@ -12,7 +12,7 @@ const lightTheme = createTheme({
     contrastThreshold: 4.5,
     mode: 'light',
     primary: {
-      main: '#231426',
+      main: '#231426', 
     },
     secondary: {
       main: '#345254'
@@ -21,7 +21,7 @@ const lightTheme = createTheme({
       secondary: '#F3E283'
     },
     info: {
-      main: '#3474eb'
+      main: '#F3E283'
     }
   },
   typography: {

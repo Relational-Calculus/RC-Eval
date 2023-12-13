@@ -35,6 +35,7 @@ function evalQuery(evalState, action) {
     return { ...evalState,
             query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, f:f}};
   } catch (error) {
+    console.log(error);
     return { ...evalState, 
             query: {fv: [], err_msg: error[1], correct: false}};
   }
@@ -136,7 +137,7 @@ export default function RcEval() {
         <Grid item xs={3}>
           <Grid container direction={'row'}>
             <DialogBtn 
-              textField={<SchemaTextField schema={formState.schema} setFormState={setFormState}/>} 
+              textField={<SchemaTextField schema={formState.schema} schemaLegit={evalState.schema.correct} setFormState={setFormState}/>} 
               btnName={"Schema"} 
               setFormState={setFormState} 
               correct={evalState.schema.correct} 
@@ -174,7 +175,8 @@ export default function RcEval() {
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <div>
               <Result 
-                fv={evalState.query.fv} 
+                fv={evalState.query.fv}
+                query={formState.query}
                 results={evalState.db.result} 
                 quickresult={evalState.db.quickresult} 
               />

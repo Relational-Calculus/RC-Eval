@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 
-export default function SchemaTextField({ schema, setFormState }) {
+export default function SchemaTextField({ schema, schemaLegit, setFormState }) {
     const [localSchema, setLocalSchema] = useState("");
 
     const handleChange = (event) => {
@@ -20,20 +19,14 @@ export default function SchemaTextField({ schema, setFormState }) {
 
     
     return (
-        <Box
-          component="form"
-          sx={{
-          '& .MuiTextField-root': { width: '100%' },
-          }}
-          noValidate
-          autoComplete="off"
-        >
           <div>
             <TextField
               multiline
-              required
-              id="outlined-multiline-required"
-              label="Schema"
+              fullWidth
+              variant="outlined"
+              id="outlined-required"
+              label=""
+              error={!schemaLegit}
               value={localSchema}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -41,6 +34,5 @@ export default function SchemaTextField({ schema, setFormState }) {
                                fontSize: 14 } }}
             />
           </div>
-        </Box>
     );
 }

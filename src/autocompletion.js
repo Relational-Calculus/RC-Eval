@@ -25,8 +25,8 @@ function getCompletionList(context) {
 
     const tree = syntaxTree(context.state)
     tree.cursor().iterate(node => {
-    //   console.log(`Node ${node.name} from ${node.from} to ${node.to} is Error ${node.type.isError}`)
-    //   console.log(node.type)
+      // console.log(`Node ${node.name} from ${node.from} to ${node.to} is Error ${node.type.isError}`)
+      // console.log(node.type)
     //   if (node.name === 'TableName') {
     //     // console.log("WHATUPPS")
     //     operatorKeywords = operatorKeywords.concat(' ', docStr.substring(node.from, node.to));
