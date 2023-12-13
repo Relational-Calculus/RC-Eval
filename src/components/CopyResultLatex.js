@@ -43,7 +43,7 @@ export default function CopyResultLatex({ fv, results }) {
 
     return (
         <div className='tooltip' style={{display: 'flex', justifyContent: 'flex-end'}}>
-            <Tooltip title="Copy Table To Latex">
+            <Tooltip title="Copy Table To LaTeꞳ">
                 <IconButton aria-label="copy" size="large" onClick={handleClick}>
                     <ContentCopyIcon fontSize="inherit" />
                 </IconButton>
