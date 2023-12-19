@@ -177,15 +177,17 @@ const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFoc
                 </button>
               )} 
               <div className="expertFrame">
-              <FormControlLabel 
-                className="mode" 
-                label="Expert Mode" 
-                labelPlacement="end"
-                control={<Checkbox className="mode" id="expertMode" label="Expert Mode" onClick={handleClick} color="info" sx={{color: "info.main", padding: "0 5px 0 0"}} />} 
-              />
-              {<div> <RANFDialog query={localQuery} f={f} /> </div>}  
-              { expertMode && <div> <ExamineDialog pinf={pinf} pfin={pfin} /> </div> }
-            </div>
+                <FormControlLabel 
+                  className="mode" 
+                  label="Expert Mode" 
+                  labelPlacement="end"
+                  control={<Checkbox className="mode" id="expertMode" label="Expert Mode" onClick={handleClick} color="info" sx={{color: "info.main", padding: "0 5px 0 0"}} />} 
+                />
+                <div className="infoChild"> 
+                  <RANFDialog query={localQuery} f={f} />
+                  { expertMode && <ExamineDialog pinf={pinf} pfin={pfin} /> }
+                </div> 
+              </div>
             </div>
             <div tabIndex={"0"} onFocus={handleFocus} ref={ref} />
             <Popover

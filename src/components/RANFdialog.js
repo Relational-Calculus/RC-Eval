@@ -14,6 +14,7 @@ import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
 import Box from '@mui/material/Box';
 import React from 'react';
+import Tooltip from '@mui/material/Tooltip';
 
 const extensions = [RC()];
 
@@ -96,7 +97,9 @@ export default function RANFDialog({ query, f }) {
 
     return (
         <>
-            <Button sx={{color: 'info.main'}} onClick={handleClick}>RANF?</Button>
+            <Tooltip title="Is your query in Relational Algebra Normal Form?">
+                <Button sx={{color: 'info.main'}} onClick={handleClick}>RANF</Button>
+            </Tooltip>
             <Dialog 
                 open={openDialog}
                 onClose={(handleClose)}
