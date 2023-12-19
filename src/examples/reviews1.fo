@@ -1,2 +1,2 @@
-Brands(brand) AND (EXISTS user, rating. NOT EXISTS product. NOT (
-NOT Products(brand, product) OR Reviews(product, user, rating)))
+Brands(brand) ∧ (∃ user, rating. ¬ ∃ product. ¬ (
+¬ Products(brand, product) ∨ Reviews(product, user, rating)))

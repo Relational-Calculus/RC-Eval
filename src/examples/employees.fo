@@ -1,1 +1,1 @@
-EXISTS lot. Employees(ssn,"John",lot)
+∃ lot. Employees(ssn,"John",lot)

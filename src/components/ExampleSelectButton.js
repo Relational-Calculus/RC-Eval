@@ -25,7 +25,7 @@ import ships3 from '../examples/ships3.fo';
 import employees1 from '../examples/employees1.fo';
 import employees2 from '../examples/employees2.fo';
 import employees3 from '../examples/employees3.fo';
-import reviews1 from '../examples/reviews1.fo'
+import reviews1 from '../examples/reviews1.fo';
 
 
 const exampleImports = [employeesDb, employeesFo, employeesSig, 

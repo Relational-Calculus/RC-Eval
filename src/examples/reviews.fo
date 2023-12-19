@@ -1,2 +1,2 @@
-Brands(brand) AND (EXISTS user, rating. FORALL product.
-Products(brand, product) IMPLIES Reviews(product, user, rating))
+Brands(brand) ∧ (EXISTS user, rating. ∀ product.
+Products(brand, product) ⇒ Reviews(product, user, rating))
