@@ -11,14 +11,11 @@ export default function CopyResultLatex({ fv, query, results }) {
     var latexTableBegining = ["\\begin{table}[]","\\centering","\\begin{tabular}","{|","\\hline"];  //[3] = amount of free variables, [5] = free variables
     const latexTableEnd = ["\\end{tabular}", "\\caption{}", "\\label{tab:my-table}", "\\end{table}"]
 
-<<<<<<< HEAD
-=======
     const header = fv.join(" ")
         .replaceAll(/[_]/g, "\\_")
         .split(" ");
 
     //Add number of rows
->>>>>>> ad684f3a859f867366d961fc8d7950cb7b7e36fe
     for (let i = 0; i < headerLength; i++) {
         latexTableBegining[3] += "l|"
     }

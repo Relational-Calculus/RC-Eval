@@ -1,0 +1,2 @@
+Ships(name, _, _) OR
+Outcomes(name, _, _)

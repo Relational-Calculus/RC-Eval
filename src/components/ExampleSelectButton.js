@@ -19,9 +19,13 @@ import reviewsSig from '../examples/reviews.sig'
 import shipsDb from '../examples/ships.db'
 import shipsFo from '../examples/ships.fo'
 import shipsSig from '../examples/ships.sig'
+import ships1 from '../examples/ships1.fo';
+import ships2 from '../examples/ships2.fo';
+import ships3 from '../examples/ships3.fo';
 import employees1 from '../examples/employees1.fo';
 import employees2 from '../examples/employees2.fo';
 import employees3 from '../examples/employees3.fo';
+import reviews1 from '../examples/reviews1.fo'
 
 
 const exampleImports = [employeesDb, employeesFo, employeesSig, 
@@ -35,8 +39,8 @@ const exampleQueryImports = {
                         Employees: [employees1, employees2, employees3],
                         Platonic: [],
                         Product: [],
-                        Reviews: [],
-                        Ships: [] 
+                        Reviews: [reviews1],
+                        Ships: [ships1, ships2, ships3] 
                     }
 
 const examples = [{ name: '', query: '', schema: '', db: '', ex: [{ exName: '', query: '' }] }];

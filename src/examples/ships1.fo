@@ -1,0 +1,3 @@
+EXISTS launched.
+Ships(name, _, launched) AND
+launched < 1921

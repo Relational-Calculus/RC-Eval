@@ -1,0 +1,2 @@
+Classes(_, "bb", country, _, _, _) AND
+Classes(_, "bc", country, _, _, _)

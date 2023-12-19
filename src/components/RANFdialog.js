@@ -51,6 +51,7 @@ function PaperComponent(props) {
 
 const MAXCHAR = 74;
 
+// Copied from Examine Dialog button
 // Split the strings s.t. they fit in the dialog box
 function fitStringOnScreen(queryStr) {
     const strArray = queryStr.split(' ');
@@ -90,9 +91,8 @@ export default function RANFDialog({ query, f }) {
 
     console.log(containsForAll)
 
-    /* const pinfFittedTxt = pinf !== undefined ? fitStringOnScreen(pinf) : "";
-    const pfinFittedTxt = pfin !== undefined ? fitStringOnScreen(pfin) : "";
- */
+    const fFittedTxt = f !== undefined ? fitStringOnScreen(f) : "";
+
 
     return (
         <>
@@ -113,21 +113,22 @@ export default function RANFDialog({ query, f }) {
                     {  isMon ? <Box component="div" > Your query is RANF </Box>
                     : containsForAll ? <Box component="div" > Your query is not RANF as it contains "FORALL" try rewriting this to (¬∃) x ¬ </Box>
                     : containsImplies ? <Box component="div" > Your query is not RANF as it contains "IMPLIES" try rewriting this to (¬φ) ∨ ψ</Box>
-                    : <Box component="div" > <Grid> Your query is not RANF because of the subquery: </Grid> <Grid> {f} </Grid></Box>}
-                        </Grid>
-                   {/*      <Grid item sx={{margin: "5px", color: "text.primary"}}>
+                    : <Box component="div" > 
+                        <Grid item sx={{margin: "5px", color: "text.primary"}}>
                             <Grid>
-                            This is the finite query. It is rewritten to be safe-range and evaluable. This is how the query is evaluated:   
+                            Your query is not RANF because of the subquery:   
                             </Grid>
                             <CodeMirror 
                                 maxWidth="550px"
                                 theme={myTheme}
                                 extensions={extensions}
-                                value={pfinFittedTxt}
+                                value={fFittedTxt}
                                 readOnly={true}
                                 basicSetup={{ lineNumbers: false }}
                             />
-                        </Grid> */}
+                        </Grid>
+                        </Box>}
+                    </Grid>
                     </Grid>
                 </DialogContent>
                 <DialogActions>

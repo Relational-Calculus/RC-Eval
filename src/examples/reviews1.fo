@@ -1,0 +1,2 @@
+Brands(brand) AND (EXISTS user, rating. NOT EXISTS product. NOT (
+NOT Products(brand, product) OR Reviews(product, user, rating)))
