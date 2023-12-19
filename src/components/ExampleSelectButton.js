@@ -24,28 +24,28 @@ import employees2 from '../examples/employees2.fo';
 import employees3 from '../examples/employees3.fo';
 
 
-const exampleImports = [employeesDb, employeesFo, employeesSig, 
-                      platonicDb, platonicFo, platonicSig, 
-                      productDb, productFo, productSig,
-                      reviewsDb, reviewsFo, reviewsSig,
-                      shipsDb, shipsFo, shipsSig];
+const exampleImports = [employeesDb, employeesSig, 
+                      platonicDb, platonicSig, 
+                      productDb, productSig,
+                      reviewsDb, reviewsSig,
+                      shipsDb, shipsSig];
 
 const exampleQueryImports = {
                         '': [],
-                        Employees: [employees1, employees2, employees3],
-                        Platonic: [],
-                        Product: [],
-                        Reviews: [],
-                        Ships: [] 
+                        Employees: [employeesFo, employees1, employees2, employees3],
+                        Platonic: [platonicFo],
+                        Product: [productFo],
+                        Reviews: [reviewsFo],
+                        Ships: [shipsFo] 
                     }
 
-const examples = [{ name: '', query: '', schema: '', db: '', ex: [{ exName: '', query: '' }] }];
+const examples = [{ name: '', schema: '', db: '', ex: [{ exName: '', query: '' }] }];
 
 const exampleNames = ["Employees", "Platonic", "Product", "Reviews", "Ships"];
-const exampleExt = ['db', 'query', 'schema']
+const exampleExt = ['db', 'schema']
 
 const readExampleFiles = (index, i) => {
-  return fetch(exampleImports[index*3 + i]).then(r => r.text())
+  return fetch(exampleImports[index*2 + i]).then(r => r.text())
 }
 
 const readExampleFilesQuery = (arr,i) => {
@@ -61,7 +61,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
   useEffect(() => {
     for (const [index, element] of exampleNames.entries()) {
       examples.push({ name: element })
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 2; i++) {
         readExampleFiles(index, i)
           .then(text => {
             examples[index+1][exampleExt[i]] = text;
@@ -73,7 +73,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
       for (let j = 0; j < exampleQueryImports[element].length; j++) {
         readExampleFilesQuery(exampleQueryImports[element], j)
         .then(text => {
-          examples[index+1].ex.push({ exName: element+j, query: text });
+          examples[index+1].ex.push({ exName: "Example "+(j+1), query: text });
         })
       }
     }
@@ -98,7 +98,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
   const findAndSetExample = (val) => {
     const result = examples.find( element => element.name === val );
     if (result !== undefined) {
-      setFormState({ type: 'setFormulaAndTraceAndSig', query: result.query, db: result.db, schema: result.schema });
+      setFormState({ type: 'setFormulaAndTraceAndSig', query: '', db: result.db, schema: result.schema });
     }
   }
 
