@@ -8,6 +8,7 @@ import Result from "./components/DisplayResults";
 import DialogBtn from "./components/DialogBtn";
 import SchemaTextField from "./components/SchemaTextField";
 import DbTextField from "./components/DbTextField";
+import { prevSnippetField } from "@codemirror/autocomplete";
 
 
 function evalSchema(evalState, action) {
@@ -25,7 +26,6 @@ function evalQuery(evalState, action) {
   try {
     // const queryInfo =window.checkQuery(action.query).split(",")
     const freeVariables = window.checkQuery(action.query);
-    console.log(freeVariables)
     const pfin = window.checkQueryRewriteFin(action.query);
     const pinf = window.checkQueryRewriteInf(action.query);
     const f = window.checkQueryIsMon(action.query)
@@ -46,7 +46,7 @@ function evalDb(evalState, action) {
     const dbResult = window.checkDb(action.db);
     // console.log(window.checkQueryRewriteFin(action.query))
     // console.log(window.checkQueryRewriteInf(action.query))
-    const regEx = /[\w. ]+/g
+    const regEx = /[\w. ']+/g
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {

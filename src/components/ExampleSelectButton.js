@@ -16,6 +16,9 @@ import productSig from '../examples/product.sig'
 import reviewsDb from '../examples/reviews.db'
 import reviewsFo from '../examples/reviews.fo'
 import reviewsSig from '../examples/reviews.sig'
+import moviesDB from '../examples/movies.db'
+import moviesSig from '../examples/movies.sig'
+import moviesFo from '../examples/movies.fo'
 import shipsDb from '../examples/ships.db'
 import shipsFo from '../examples/ships.fo'
 import shipsSig from '../examples/ships.sig'
@@ -32,7 +35,8 @@ const exampleImports = [employeesDb, employeesSig,
                       platonicDb, platonicSig, 
                       productDb, productSig,
                       reviewsDb, reviewsSig,
-                      shipsDb, shipsSig];
+                      shipsDb, shipsSig,
+                      moviesDB, moviesSig];
 
 const exampleQueryImports = {
                         '': [],
@@ -40,12 +44,13 @@ const exampleQueryImports = {
                         Platonic: [platonicFo],
                         Product: [productFo],
                         Reviews: [reviewsFo, reviews1],
-                        Ships: [shipsFo, ships1, ships2, ships3] 
+                        Ships: [shipsFo, ships1, ships2, ships3],
+                        Movies: [moviesFo]
                     }
 
 const examples = [{ name: '', schema: '', db: '', ex: [{ exName: '', query: '' }] }];
 
-const exampleNames = ["Employees", "Platonic", "Product", "Reviews", "Ships"];
+const exampleNames = ["Employees", "Platonic", "Product", "Reviews", "Ships", "Movies"];
 const exampleExt = ['db', 'schema']
 
 const readExampleFiles = (index, i) => {
@@ -145,6 +150,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
               <MenuItem sx={{color: 'text.primary'}} value={"Product"}>Computer Shop</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Reviews"}>Suspicious Reviews</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Ships"}>Battleships</MenuItem>
+              <MenuItem sx={{color: 'text.primary'}} value={"Movies"}>Movies</MenuItem>
             </Select>
           </FormControl>
         </div>

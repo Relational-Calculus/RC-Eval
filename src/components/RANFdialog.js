@@ -90,8 +90,6 @@ export default function RANFDialog({ query, f }) {
         setOpenDialog(false); 
     };
 
-    console.log(containsForAll)
-
     const fFittedTxt = f !== undefined ? fitStringOnScreen(f) : "";
 
 
