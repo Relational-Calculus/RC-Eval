@@ -4,6 +4,7 @@ import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import CopyResultLatex from './CopyResultLatex';
+import { prevSnippetField } from '@codemirror/autocomplete';
 
 const childDivStyle = {
   height: '250px', 
@@ -24,8 +25,8 @@ const iconStyle = {
 
 export default function Result({fv, query, results, quickresult}) {
   const isInf = quickresult === "INF";
-  const isTrue = quickresult === "()";
-  const isFalse = quickresult === "" && fv == null;
+  const isTrue = quickresult === ":\ntrue";
+  const isFalse = quickresult === "" && fv === null;
 
   return(
     <div>
@@ -33,7 +34,7 @@ export default function Result({fv, query, results, quickresult}) {
         {   isInf ? <Box component="div" sx={childDivStyle}> <AllInclusiveOutlinedIcon fontSize='inherit' sx={iconStyle} /> </Box>
           : isTrue ? <Box component="div" sx={childDivStyle}> <CheckOutlinedIcon color='success' fontSize='inherit' sx={iconStyle} /> </Box>
           : isFalse ? <Box component="div" sx={childDivStyle}> <CloseOutlinedIcon color='error' fontSize='inherit' sx={iconStyle} /> </Box>
-          : <> {ReactVirtualizedTable({fv, results} )} </> 
+          : <> { ReactVirtualizedTable({fv, results}) } </> 
         }
       </Box>
         { !(isFalse || isTrue || isInf) && CopyResultLatex({fv, query, results}) }
