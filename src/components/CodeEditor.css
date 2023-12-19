@@ -1,40 +1,8 @@
-button {
-    float: left;
-    border: 0px;
-    border-radius: 15%;
-    --bgcolor: rgba(96, 86, 91, 0.0);
-    background: var(--bgcolor);
-    font-size: 15px;
-    display: block;
-    text-align: center;
-    padding: 5px 10px;
-    color: #F3E283;
-}
-
-button:hover {
-    cursor: pointer;
-    --bgcolor: rgba(101, 98, 98, 0.4);
-    background: var(--bgcolor);
-}
-
-.mode {
-    float: right;
-    --bgcolor: rgba(96, 86, 91, 0.0);
-    background: var(--bgcolor);
-    font-size: 14px;
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
-    display: block;
-    text-align: center;
-    /* padding-top: 0; */
-    padding: 5px 10px; 
-}
-
-.MuiFormControlLabel-labelPlacementEnd {
-    color: #F3E283;
-}
-
-
 .editorFrame {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 100%;
     border: 2px solid lightgrey;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -45,6 +13,10 @@ button:hover {
 }
 
 .buttonFrame {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* justify-content: space-between; */
     background-color: #231426;
     margin: 0;
     padding: 20px;
@@ -54,14 +26,58 @@ button:hover {
 }
 
 .expertFrame {
-    float: right;
+    display: flex;
+    flex-direction: column;
     --bgcolor: rgba(96, 86, 91, 0.0);
     background: var(--bgcolor);
     font-size: 14px;
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
-    display: block;
     text-align: center;
     padding: 0px 0px;
+    margin-left: auto;
     border-top-left-radius: 19px;
     border-top-right-radius: 19px;
+}
+
+.mode {
+    display: flex;
+    justify-content: flex-end;
+    --bgcolor: rgba(96, 86, 91, 0.0);
+    background: var(--bgcolor);
+    font-size: 14px;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    text-align: center;
+    /* padding-top: 0; */
+    padding: 5px 10px;
+}
+
+.infoChild {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    width: auto;
+}
+
+button {
+    display: flex;
+    justify-content: flex-start;
+    border: 0px;
+    border-radius: 15%;
+    --bgcolor: rgba(96, 86, 91, 0.0);
+    background: var(--bgcolor);
+    font-size: 15px;
+    text-align: center;
+    max-height: 30px;
+    padding: 5px 10px;
+    color: #F3E283;
+}
+
+button:hover {
+    cursor: pointer;
+    --bgcolor: rgba(101, 98, 98, 0.4);
+    background: var(--bgcolor);
+}
+
+.MuiFormControlLabel-labelPlacementEnd {
+    color: #F3E283;
 }

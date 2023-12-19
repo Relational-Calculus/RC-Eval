@@ -12,6 +12,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { RC } from '../lang-rc/index.js';
 import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
+import Tooltip from '@mui/material/Tooltip';
 
 const extensions = [RC()];
 
@@ -82,7 +83,9 @@ export default function ExamineDialog({ pinf, pfin }) {
 
     return (
         <>
-            <Button sx={{color: 'info.main'}} onClick={handleClick}>Examine evaluation?</Button>
+            <Tooltip title="Examine the evaluation of your query">
+                <Button sx={{color: 'info.main'}} onClick={handleClick}>Evaluation</Button>
+            </Tooltip>
             <Dialog 
                 open={openDialog}
                 onClose={(handleClose)}
