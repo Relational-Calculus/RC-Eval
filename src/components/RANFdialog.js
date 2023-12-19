@@ -70,7 +70,7 @@ function fitStringOnScreen(queryStr) {
     return strArray.join(' ');
 }
 
-export default function RANFDialog({ query, f }) {
+export default function RANFDialog({ query, f , expertMode, msg}) {
     const [openDialog, setOpenDialog] = useState(false);
 
     const reImplies = /(IMPLIES | ⇒)/g
@@ -90,7 +90,7 @@ export default function RANFDialog({ query, f }) {
         setOpenDialog(false); 
     };
 
-    console.log(containsForAll)
+    // console.log(containsForAll)
 
     const fFittedTxt = f !== undefined ? fitStringOnScreen(f) : "";
 
@@ -129,7 +129,9 @@ export default function RANFDialog({ query, f }) {
                                 readOnly={true}
                                 basicSetup={{ lineNumbers: false }}
                             />
-                        </Grid>
+                            </Grid>
+                            { expertMode ? <Grid> <Box component="div" > {msg} </Box> </Grid>
+                            : <Grid> </Grid> }
                         </Box>}
                     </Grid>
                     </Grid>

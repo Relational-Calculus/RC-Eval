@@ -25,7 +25,7 @@ function evalQuery(evalState, action) {
   try {
     // const queryInfo =window.checkQuery(action.query).split(",")
     const freeVariables = window.checkQuery(action.query);
-    console.log(freeVariables)
+    //console.log(freeVariables)
     const pfin = window.checkQueryRewriteFin(action.query);
     const pinf = window.checkQueryRewriteInf(action.query);
     const f = window.checkQueryIsMon(action.query)
@@ -35,7 +35,7 @@ function evalQuery(evalState, action) {
     return { ...evalState,
             query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, f:f}};
   } catch (error) {
-    console.log(error);
+    console.log("error:", error);
     return { ...evalState, 
             query: {fv: [], err_msg: error[1], correct: false}};
   }
@@ -50,7 +50,7 @@ function evalDb(evalState, action) {
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
-    console.log(evalState.err_msg)
+    console.log("err:", error);
     return { ...evalState,
             db: {err_msg: error[1][1]}, correct: false};
   }

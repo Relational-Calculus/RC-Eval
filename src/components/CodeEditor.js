@@ -184,7 +184,7 @@ const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFoc
                   control={<Checkbox className="mode" id="expertMode" label="Expert Mode" onClick={handleClick} color="info" sx={{color: "info.main", padding: "0 5px 0 0"}} />} 
                 />
                 <div className="infoChild"> 
-                  <RANFDialog query={localQuery} f={f} />
+                  <RANFDialog query={localQuery} f={f} expertMode={expertMode} msg="test" />
                   { expertMode && <ExamineDialog pinf={pinf} pfin={pfin} /> }
                 </div> 
               </div>
