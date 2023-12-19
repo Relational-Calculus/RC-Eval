@@ -1,0 +1,5 @@
+Movies(title:string, year:int, length:int, genre:string, studioName:string, producerC:int)
+StarsIn(movieTitle:string, movieYear:int, starName:string) 
+MovieStar(name:string, address:string, gender:string, birthdate:string) 
+MovieExec(name:string, address:string, cert:int, netWorth:int) 
+Studio(name:string, address:string, presC:int)

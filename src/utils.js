@@ -70,7 +70,6 @@ export function table_to_array(table) {
         result.push(tableResult)
         tableResult = [];
         });
-
         return result;
 }
 
@@ -100,13 +99,23 @@ export function schema_from_tablename(tableName, tableArray) {
 // Get dynamic completion list for current tablenames
 // FUNCTION THAT TAKES schema AND GIVES US A STRING OF TABLENAMES
 export function schema_to_completion_list(schema) {
-    let tableNames = schema.match(/\w+(?=\()/g);
-    // let schemas = schema.match(/\w+\)$/g);
-    if (tableNames === null) {
+    const table = table_to_array(schema);
+    let tableNames = []
+    if (table[0].length === 1) {
         return []
     } else {
-        tableNames = tableNames.map((kw) => ({ label: kw, type: "keyword" }));
+        table.forEach((elem) => {
+            tableNames.push({ label: elem[0][0], type: "keyword", apply: schema_from_tablename(elem[0][0], table) })
+        })
     }
+    // CODE FOR JUST AUTOCOMPLETING TABLENAME
+    // let tableNames = schema.match(/\w+(?=\()/g);
+    // if (tableNames === null) {
+    //     return []
+    // } else {
+        
+    //     tableNames = tableNames.map((kw) => ({ label: kw, type: "keyword" }));
+    // }
     return tableNames;
 }
 
