@@ -24,17 +24,12 @@ function evalSchema(evalState, action) {
 
 function evalQuery(evalState, action) {
   try {
-    // const queryInfo =window.checkQuery(action.query).split(",")
     const queryResults = window.checkQuery(action.query);
+    const f = window.checkQueryIsMon(action.query)
     const freeVariables = queryResults[0];
     const pfin = queryResults[1];
     const pinf = queryResults[2];
-    // const freeVariables = window.checkQuery(action.query);
-    // const pfin = window.checkQueryRewriteFin(action.query);
-    // const pinf = window.checkQueryRewriteInf(action.query);
-    const f = window.checkQueryIsMon(action.query)
-    // console.log("f:", window.checkQueryIsMon(action.query))
-    
+
     const regEx = /\w+/g
     return { ...evalState,
             query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, f:f}};
@@ -48,8 +43,6 @@ function evalQuery(evalState, action) {
 function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
-    // console.log(window.checkQueryRewriteFin(action.query))
-    // console.log(window.checkQueryRewriteInf(action.query))
     const regEx = /[\w. ']+/g
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
