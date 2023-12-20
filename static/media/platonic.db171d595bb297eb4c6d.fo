@@ -1,0 +1,3 @@
+teaches(lecturer,course) ∧
+attends(student,course) ∧
+likes(student,lecturer)

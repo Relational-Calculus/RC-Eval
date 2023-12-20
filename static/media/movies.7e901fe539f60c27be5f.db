@@ -1,0 +1,31 @@
+Movies
+("Star Wars", 1977, 124, "sciFi", "Fox", 12345)
+("Gone With the Wind", 1939, 231, "drama", "MGM", 10101)
+("Wayne's World", 1992, 95, "comedy", "Paramount", 99999)
+("Galaxy Quest", 1999, 104, "comedy", "DreamWorks", 67890)
+("Pretty Woman", 1990, 119, "romance", "Disney", 999)
+("Love Actually", 1990, 119, "romance", "Disney", 999)
+
+StarsIn
+("Star Wars", 1977, "Harrison Ford")
+("Star Wars", 1977, "Carrie Fisher")
+("Star Wars", 1977, "Mark Hamill")
+("Gone With the Wind", 1939, "Vivien Leigh")
+("Wayne's World", 1992, "Dana Carvey")
+("Wayne's World", 1992, "Mike Meyers")
+("Love Actually", 1990, "Carrie Fisher")
+
+MovieStar
+("Harrison Ford", "789 Palm Drive", "M", "0/0/00")
+("Mark Hamill", "456 Oak Road", "M", "8/8/88")
+("Carrie Fisher", "123 Maple Street", "F", "9/9/99")
+("Carrie Fisher", "5 Locust Lane", "F", "9/9/99")
+("Sandra Bullock", "123 Happy Road, Malibu", "F", "26/7/64")
+
+MovieExec
+("George Lucas", "Cool Road 2", 1, 100)
+("Ted Turner", "Cool Road 4", 1, 100)
+
+Studio
+("Disney", "Cool Road 111", 2)
+("MGM", "Cool Street 1", 3)

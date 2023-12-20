@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d249980c.css",
+    "main.js": "/static/js/main.edb0a8f2.js",
+    "static/js/27.4de542f9.chunk.js": "/static/js/27.4de542f9.chunk.js",
+    "static/media/ships.db": "/static/media/ships.550a1799130cfd7babd8.db",
+    "static/media/product.db": "/static/media/product.e5c2923b9f416c134a2e.db",
+    "static/media/movies.db": "/static/media/movies.7e901fe539f60c27be5f.db",
+    "index.html": "/index.html",
+    "static/media/platonic.db": "/static/media/platonic.9cbda5425579faaa07b2.db",
+    "static/media/movies.sig": "/static/media/movies.c03a6c306ad00bb0c35d.sig",
+    "static/media/reviews.db": "/static/media/reviews.e896660d74d9221eb6db.db",
+    "static/media/ships.sig": "/static/media/ships.dc277d63a0cd09cbc1ce.sig",
+    "static/media/product.sig": "/static/media/product.bd36175233f43fa0814f.sig",
+    "static/media/reviews1.fo": "/static/media/reviews1.bbde9148022a637be201.fo",
+    "static/media/platonic.sig": "/static/media/platonic.6d117e6009f1fd2fbe01.sig",
+    "static/media/reviews.fo": "/static/media/reviews.1290dbe8407aa46e001a.fo",
+    "static/media/reviews.sig": "/static/media/reviews.b585771d7b54b6cf6230.sig",
+    "static/media/ships.fo": "/static/media/ships.e6f886ca2e7ae494ec09.fo",
+    "static/media/ships1.fo": "/static/media/ships1.e6f886ca2e7ae494ec09.fo",
+    "static/media/employees.db": "/static/media/employees.f46b1cd038a9f74f5f1c.db",
+    "static/media/platonic.fo": "/static/media/platonic.db171d595bb297eb4c6d.fo",
+    "static/media/ships3.fo": "/static/media/ships3.e65c1aac0afac42acb10.fo",
+    "static/media/movies.fo": "/static/media/movies.514dec572725e19dfd8f.fo",
+    "static/media/employees2.fo": "/static/media/employees2.e1f2c24679d8051962af.fo",
+    "static/media/employees1.fo": "/static/media/employees1.68f343879e16caac1fa9.fo",
+    "static/media/employees3.fo": "/static/media/employees3.4406c8174e7636004ab5.fo",
+    "static/media/employees.sig": "/static/media/employees.5281366c1eb8939e71c0.sig",
+    "static/media/ships2.fo": "/static/media/ships2.539e78a8a8ad83cc5436.fo",
+    "static/media/employees.fo": "/static/media/employees.d8f8386bd9f28385aee0.fo",
+    "static/media/product.fo": "/static/media/product.ae2bd72a1b80130c0410.fo"
+  },
+  "entrypoints": [
+    "static/css/main.d249980c.css",
+    "static/js/main.edb0a8f2.js"
+  ]
+}
