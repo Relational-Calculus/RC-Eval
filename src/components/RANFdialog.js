@@ -15,6 +15,8 @@ import { tags as t } from '@lezer/highlight';
 import Box from '@mui/material/Box';
 import React from 'react';
 import Tooltip from '@mui/material/Tooltip';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 const extensions = [RC()];
 
@@ -128,9 +130,11 @@ export default function RANFDialog({ query, f1 , expertMode, msg1}) {
                                 basicSetup={{ lineNumbers: false }}
                             />
                             </Grid>
-                            { expertMode ? <Box component="div" > The reason is that: {msg1}  </Box> 
-                            : null }
-                             
+                            { expertMode && 
+                                <Alert sx={{mt: '15px'}} variant="filled" severity="info">
+                                    <AlertTitle>The reason is that:</AlertTitle>
+                                    {msg1}
+                                </Alert> } 
                         </Box>}
                     </Grid>
                     </Grid>
