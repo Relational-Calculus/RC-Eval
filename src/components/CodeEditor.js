@@ -49,7 +49,7 @@ const myTheme = createTheme({
   ],
 });
 
-const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFocusState, pinf, pfin, f }, ref) => {
+const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFocusState, pinf, pfin, f1, msg1 }, ref) => {
   const [localQuery, setLocalQuery] = useState("");
   const [expertMode, setExpertMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -184,7 +184,7 @@ const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFoc
                   control={<Checkbox className="mode" id="expertMode" label="Expert Mode" onClick={handleClick} color="info" sx={{color: "info.main", padding: "0 5px 0 0"}} />} 
                 />
                 <div className="infoChild"> 
-                  <RANFDialog query={localQuery} f={f} />
+                  <RANFDialog query={localQuery} f1={f1} expertMode={expertMode} msg1={msg1} />
                   { expertMode && <ExamineDialog pinf={pinf} pfin={pfin} /> }
                 </div> 
               </div>

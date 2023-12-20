@@ -70,12 +70,12 @@ function fitStringOnScreen(queryStr) {
     return strArray.join(' ');
 }
 
-export default function RANFDialog({ query, f }) {
+export default function RANFDialog({ query, f1 , expertMode, msg1}) {
     const [openDialog, setOpenDialog] = useState(false);
 
     const reImplies = /(IMPLIES | ⇒)/g
     const reForAll = /(∀ | FORALL)/g
-    const isMon = f === "[]"
+    const isMon = f1 === "[]"
 
     var containsForAll = reForAll.test(query) 
     var containsImplies = reImplies.test(query)
@@ -90,7 +90,7 @@ export default function RANFDialog({ query, f }) {
         setOpenDialog(false); 
     };
 
-    const fFittedTxt = f !== undefined ? fitStringOnScreen(f) : "";
+    const fFittedTxt = f1 !== undefined ? fitStringOnScreen(f1) : "";
 
 
     return (
@@ -127,7 +127,10 @@ export default function RANFDialog({ query, f }) {
                                 readOnly={true}
                                 basicSetup={{ lineNumbers: false }}
                             />
-                        </Grid>
+                            </Grid>
+                            { expertMode ? <Box component="div" > The reason is that: {msg1}  </Box> 
+                            : null }
+                             
                         </Box>}
                     </Grid>
                     </Grid>

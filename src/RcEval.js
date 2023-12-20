@@ -25,14 +25,22 @@ function evalSchema(evalState, action) {
 function evalQuery(evalState, action) {
   try {
     const queryResults = window.checkQuery(action.query);
-    const f = window.checkQueryIsMon(action.query)
     const freeVariables = queryResults[0];
     const pfin = queryResults[1];
     const pinf = queryResults[2];
-
+    // const freeVariables = window.checkQuery(action.query);
+    // const pfin = window.checkQueryRewriteFin(action.query);
+    // const pinf = window.checkQueryRewriteInf(action.query);
+    const f = window.checkQueryIsMon(action.query)
+    const f1 = f[0];
+    const msg1 = f[1]; 
+    console.log("f1:", typeof f1)
+    console.log("msg:", typeof msg1)
+    // console.log("f:", window.checkQueryIsMon(action.query))
+    
     const regEx = /\w+/g
     return { ...evalState,
-            query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, f:f}};
+            query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, f1:f1, msg1:msg1}};
   } catch (error) {
     // console.log(error);
     return { ...evalState, 
@@ -112,7 +120,7 @@ export default function RcEval() {
   const [evalState, setEvalState] = useReducer(evalStateReducer, 
                                                                 {
                                                                   schema: {result: "", err_msg: "", correct: false},
-                                                                  query: {fv: [], err_msg: "", correct: false, pfin: "", pinf: "", f: ""},
+                                                                  query: {fv: [], err_msg: "", correct: false, pfin: "", pinf: "", f1: "", msg1:""},
                                                                   db: {quickresult: "", result: "", err_msg: "", correct: true}
                                                                 })
   const [focusState, setFocusState] = useState({ state: '', schemaBtnText: '' });
@@ -170,7 +178,8 @@ export default function RcEval() {
             setFocusState={setFocusState} 
             pfin={evalState.query.pfin} 
             pinf={evalState.query.pinf}
-            f = {evalState.query.f}
+            f1 = {evalState.query.f1}
+            msg1 = {evalState.query.msg1}
           />
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <div>
