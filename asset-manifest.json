@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/RC-Eval/static/css/main.d249980c.css",
-    "main.js": "/RC-Eval/static/js/main.295986b4.js",
+    "main.js": "/RC-Eval/static/js/main.24bfc553.js",
     "static/js/27.4de542f9.chunk.js": "/RC-Eval/static/js/27.4de542f9.chunk.js",
     "static/media/ships.db": "/RC-Eval/static/media/ships.550a1799130cfd7babd8.db",
     "static/media/product.db": "/RC-Eval/static/media/product.e5c2923b9f416c134a2e.db",
@@ -32,6 +32,6 @@
   },
   "entrypoints": [
     "static/css/main.d249980c.css",
-    "static/js/main.295986b4.js"
+    "static/js/main.24bfc553.js"
   ]
 }
