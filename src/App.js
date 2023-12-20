@@ -36,7 +36,7 @@ function App() {
     // <RcEval />
     <ThemeProvider theme={lightTheme}>
       <Box>
-        <BrowserRouter basename="/">
+        <BrowserRouter basename="/rc-eval">
           <NavBar />
           <Routes>
             <Route path="/" element={<RcEval />} />

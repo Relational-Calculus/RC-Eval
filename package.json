@@ -1,6 +1,7 @@
 {
   "name": "rc-eval",
   "version": "0.1.0",
+  "homepage": "https://relational-calculus.github.io/RC-Eval",
   "private": true,
   "dependencies": {
     "@codemirror/autocomplete": "^6.11.1",
@@ -28,9 +29,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "rm -rf ./node_modules/.cache && react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -t"
   },
   "eslintConfig": {
     "extends": [

@@ -130,9 +130,11 @@ export default function RcEval() {
 
   
   return (
-    <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>
+    // <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>
+    <div style={{margin: "100px 0", padding: 0}}>
       <Grid container spacing={4}>
-        <Grid item xs={3}>
+        <Grid item sm={0} md={1}></Grid>
+        <Grid item md={2}>
           <Grid container direction={'row'}>
             <DialogBtn 
               textField={<SchemaTextField schema={formState.schema} schemaLegit={evalState.schema.correct} setFormState={setFormState}/>} 
@@ -158,7 +160,7 @@ export default function RcEval() {
             setFocusState={setFocusState} 
           />
         </Grid>
-        <Grid item xs={9}>
+        <Grid item md={8}>
           <CodeEditor 
             ref={textEditorRef} 
             query={formState.query}
@@ -182,7 +184,9 @@ export default function RcEval() {
             </div>
           }
         </Grid>
+        <Grid item sm={0} md={1}></Grid>
       </Grid>
-    </Box>
+    {/* </Box> */}
+    </div>
   );
 }
