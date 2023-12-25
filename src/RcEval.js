@@ -1,6 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Schemabuttons from "./components/SchemaButtons";
 import ExampleSelectButton from './components/ExampleSelectButton';
 import CodeEditor from './components/CodeEditor';
@@ -16,6 +15,7 @@ function evalSchema(evalState, action) {
     return { ...evalState,
             schema: {result: schemaResult, correct: true}};
   } catch (error) {
+    console.log(error);
     return { ...evalState, 
             schema: {err_msg: error[2], correct: false}};
   }
@@ -27,21 +27,16 @@ function evalQuery(evalState, action) {
     const freeVariables = queryResults[0];
     const pfin = queryResults[1];
     const pinf = queryResults[2];
-    // const freeVariables = window.checkQuery(action.query);
-    // const pfin = window.checkQueryRewriteFin(action.query);
-    // const pinf = window.checkQueryRewriteInf(action.query);
-    const f = window.checkQueryIsMon(action.query)
+
+    const f = window.checkQueryIsMon(action.query);
     const f1 = f[0];
     const msg1 = f[1]; 
-    console.log("f1:", typeof f1)
-    console.log("msg:", typeof msg1)
-    // console.log("f:", window.checkQueryIsMon(action.query))
     
-    const regEx = /\w+/g
+    const regEx = /[\w.-]+/g
     return { ...evalState,
             query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, f1:f1, msg1:msg1}};
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     return { ...evalState, 
             query: {fv: [], err_msg: error[1], correct: false}};
   }
@@ -50,11 +45,11 @@ function evalQuery(evalState, action) {
 function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
-    const regEx = /[\w. ']+/g
+    const regEx = /[\w. '-]+/g
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
-    // console.log(error)
+    console.log(error)
     return { ...evalState,
             db: {err_msg: error[1][1]}, correct: false};
   }

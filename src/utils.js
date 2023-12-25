@@ -86,9 +86,9 @@ export function schema_from_tablename(tableName, tableArray) {
         }
     })
 
-    tableArray[colNameIdx][1].map(col => {
-        colNames.push(col.colName);
-    })
+    tableArray[colNameIdx][1].map(col => 
+        colNames.push(col.colName)
+    )
 
     schemaStr += colNames.join(', ');
     schemaStr += ")";
