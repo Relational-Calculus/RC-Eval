@@ -8,7 +8,6 @@ import Result from "./components/DisplayResults";
 import DialogBtn from "./components/DialogBtn";
 import SchemaTextField from "./components/SchemaTextField";
 import DbTextField from "./components/DbTextField";
-import { prevSnippetField } from "@codemirror/autocomplete";
 
 
 function evalSchema(evalState, action) {
