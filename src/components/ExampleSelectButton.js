@@ -4,6 +4,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+import './ExampleSelectButton.css';
 import employeesDb from '../examples/employees.db'
 import employeesFo from '../examples/employees.fo'
 import employeesSig from '../examples/employees.sig'
@@ -123,7 +124,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
   const queries = queriesFound !== undefined ? queriesFound : examples.find( element => element.name === '' );
 
   return (
-    <>
+    <div className='wrapper'>
       <Box
         component="form"
         sx={{
@@ -157,6 +158,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
       </Box>
       { example !== "" && 
       <Box
+      className='queryBox'
       component="form"
       sx={{
         '& .MuiTextField-root': { width: '100%' },
@@ -166,7 +168,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
       autoComplete="off"
       >
         <div>
-          <FormControl fullWidth size="small">
+          <FormControl className='queryExamples' fullWidth size="small">
             <InputLabel sx={{color: 'text.primary', fontSize: "14px"}} id="query-select-label"><em>Query Examples</em></InputLabel>
             <Select
               id="query-select"
@@ -184,7 +186,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
           </FormControl>
         </div>
       </Box>}
-    </>
+    </div>
   );
 });
 

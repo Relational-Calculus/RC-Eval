@@ -82,3 +82,41 @@ button:hover {
 .MuiFormControlLabel-labelPlacementEnd {
     color: #F3E283;
 }
+
+@media only screen and (max-width: 1225px) {
+    button {
+        text-align: center;
+        font-size: 10px;
+        height: 20px;
+    }
+
+    .expertFrame {
+        flex-direction: row;
+    }
+
+    .editorFrame {
+        height: 270px;
+    }
+
+    .mode .MuiCheckbox-root {
+        padding: 0;
+        margin: 0px 0px 10px 10px;
+    }
+
+    .infoChild {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 0px;
+    }
+
+    .infoChild .MuiButton-root  {
+        font-size: 10px;
+        height: 20px;
+        margin-left: -20px;
+    }
+
+    .mode .MuiFormControlLabel-label {
+        font-size: 0;
+    }
+
+}

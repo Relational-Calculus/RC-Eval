@@ -7,6 +7,7 @@ import Result from "./components/DisplayResults";
 import DialogBtn from "./components/DialogBtn";
 import SchemaTextField from "./components/SchemaTextField";
 import DbTextField from "./components/DbTextField";
+import './RcEval.css';
 
 
 function evalSchema(evalState, action) {
@@ -134,10 +135,10 @@ export default function RcEval() {
   return (
     // <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>
     <div style={{margin: "100px 0", padding: 0}}>
-      <Grid container spacing={4}>
-        <Grid item sm={0} md={1}></Grid>
-        <Grid item md={2}>
-          <Grid container direction={'row'}>
+      <Grid className="outerContainer" container spacing={4}>
+        <Grid item md={0} lg={1}></Grid>
+        <Grid item md={3} lg={2}>
+          <Grid className="databaseBtn" container direction={'row'}>
             <DialogBtn 
               textField={<SchemaTextField schema={formState.schema} schemaLegit={evalState.schema.correct} setFormState={setFormState}/>} 
               btnName={"Schema"} 
@@ -150,7 +151,7 @@ export default function RcEval() {
               setFormState={setFormState} 
               correct={evalState.db.correct}
             />
-          </Grid> 
+          </Grid>
           <ExampleSelectButton 
             setFormState={setFormState} 
             setFocusState={setFocusState} 
@@ -162,7 +163,7 @@ export default function RcEval() {
             setFocusState={setFocusState} 
           />
         </Grid>
-        <Grid item md={8}>
+        <Grid item xs={12} md={8} lg={8}>
           <CodeEditor 
             ref={textEditorRef} 
             query={formState.query}
@@ -183,11 +184,10 @@ export default function RcEval() {
                 results={evalState.db.result} 
                 quickresult={evalState.db.quickresult} 
               />
-              {/* <CopyResultLatex fv={evalState.query.fv} result={evalState.db.result} /> */}
             </div>
           }
         </Grid>
-        <Grid item sm={0} md={1}></Grid>
+        <Grid item md={0} lg={1}></Grid>
       </Grid>
     {/* </Box> */}
     </div>

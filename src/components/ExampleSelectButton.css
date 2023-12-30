@@ -1,0 +1,13 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 750px) {
+    .wrapper {
+      flex-direction: row;
+    }
+    .queryBox {
+        margin-left: 10px;
+    }
+}

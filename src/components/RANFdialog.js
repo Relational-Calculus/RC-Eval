@@ -17,6 +17,8 @@ import React from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import Typography from '@mui/material/Typography';
+import CheckIcon from '@mui/icons-material/Check';
 
 const extensions = [RC()];
 
@@ -113,14 +115,14 @@ export default function RANFDialog({ query, f1 , expertMode, msg1}) {
                     <DialogContentText id="draggable-dialog-title"></DialogContentText>
                     <Grid container direction={'column'} spacing={2}>
                     <Grid item sx={{margin: "5px", color: "text.primary"}}>
-                    {  isMon ? <Box component="div" > Your query is RANF </Box>
-                    : containsForAll ? <Box component="div" > Your query is not RANF as it contains "FORALL" try rewriting this to (¬∃) x ¬ </Box>
-                    : containsImplies ? <Box component="div" > Your query is not RANF as it contains "IMPLIES" try rewriting this to (¬φ) ∨ ψ</Box>
+                    {  isMon ? <Typography variant="body2" sx={{fontSize: '15px'}}><CheckIcon color='success' fontSize='15px'/> Your query is RANF</Typography> 
+                    : containsForAll ? <Box component="div" > Your query is <b>not</b> RANF as it contains "FORALL" try rewriting this to (¬∃) x ¬ </Box>
+                    : containsImplies ? <Box component="div" > Your query is <b>not</b> RANF as it contains "IMPLIES" try rewriting this to (¬φ) ∨ ψ</Box>
                     : <Box component="div" > 
                         <Grid item sx={{margin: "5px", color: "text.primary"}}>
-                            <Grid>
-                            Your query is not RANF because of the subquery:   
-                            </Grid>
+                            <Typography variant="body2" sx={{mb: '10px'}}>
+                                Your query is <b>not</b> RANF because of the subquery:
+                            </Typography>
                             <CodeMirror 
                                 maxWidth="550px"
                                 theme={myTheme}
@@ -131,10 +133,11 @@ export default function RANFDialog({ query, f1 , expertMode, msg1}) {
                             />
                             </Grid>
                             { expertMode && 
-                                <Alert sx={{mt: '15px'}} variant="filled" severity="info">
+                                <Alert icon={false} sx={{mt: '25px'}} severity="warning">
                                     <AlertTitle>The reason is that:</AlertTitle>
                                     {msg1}
-                                </Alert> } 
+                                </Alert> 
+                            } 
                         </Box>}
                     </Grid>
                     </Grid>

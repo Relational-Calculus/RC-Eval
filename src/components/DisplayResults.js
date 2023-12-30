@@ -24,7 +24,7 @@ const iconStyle = {
 
 export default function Result({fv, query, results, quickresult}) {
   const isInf = quickresult === "INF";
-  const isTrue = quickresult === ":\ntrue";
+  const isTrue = quickresult === "()";
   const isFalse = quickresult === "" && fv === null;
 
   return(

@@ -15,7 +15,7 @@ const lightTheme = createTheme({
       main: '#231426', 
     },
     secondary: {
-      main: '#345254'
+      main: '#0909FFAF'
     },
     text: {
       secondary: '#F3E283'
