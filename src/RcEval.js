@@ -46,7 +46,9 @@ function evalQuery(evalState, action) {
 function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
-    const regEx = /[\w. '-]+/g
+    const regEx = /[\/\w. '-]+/g
+    console.log(dbResult)
+    console.log(dbResult.match(regEx))
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {

@@ -13,6 +13,7 @@ import { createData, fv_to_columns } from '../utils'
 export default function ReactVirtualizedTable({ fv, results }) {
   const columns = fv_to_columns(fv);
   const rows = createData(results, fv);
+  // console.log(rows)
   
   const VirtuosoTableComponents = {
     Scroller: React.forwardRef((props, ref) => (
