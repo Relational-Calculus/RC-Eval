@@ -81,6 +81,8 @@ export default function ExamineDialog({ pinf, pfin }) {
     const pinfFittedTxt = pinf !== undefined ? fitStringOnScreen(pinf) : "";
     const pfinFittedTxt = pfin !== undefined ? fitStringOnScreen(pfin) : "";
 
+    const notemptypinf = pinfFittedTxt !== "[]"
+
     return (
         <>
             <Tooltip title="Examine the evaluation of your query">
@@ -98,10 +100,11 @@ export default function ExamineDialog({ pinf, pfin }) {
                 <DialogContent>
                     <DialogContentText id="draggable-dialog-title"></DialogContentText>
                     <Grid container direction={'column'} spacing={2}>
-                    <Grid item sx={{margin: "5px", color: "text.primary"}}>
+                        <Grid item sx={{margin: "5px", color: "text.primary"}}>
                             <Grid>
                             This is the safe-range infinite query. If this holds, then the finite part is not necessarily valid:
                             </Grid>
+                            { notemptypinf ? 
                             <CodeMirror 
                                 maxWidth="550px"
                                 theme={myTheme}
@@ -110,6 +113,15 @@ export default function ExamineDialog({ pinf, pfin }) {
                                 readOnly={true}
                                 basicSetup={{ lineNumbers: false }}
                             />
+                            :                             
+                            <CodeMirror 
+                                maxWidth="550px"
+                                theme={myTheme}
+                                extensions={extensions}
+                                value={""}
+                                readOnly={true}
+                                basicSetup={{ lineNumbers: false }}
+                            /> }
                         </Grid>
                         <Grid item sx={{margin: "5px", color: "text.primary"}}>
                             <Grid>
