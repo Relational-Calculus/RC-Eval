@@ -15,7 +15,7 @@
 .buttonFrame {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     /* justify-content: space-between; */
     background-color: #231426;
     margin: 0;
@@ -28,6 +28,7 @@
 .expertFrame {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     --bgcolor: rgba(96, 86, 91, 0.0);
     background: var(--bgcolor);
     font-size: 14px;
@@ -55,7 +56,7 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-start;
-    width: auto;
+    padding: 0px 10px;
 }
 
 button {
@@ -80,4 +81,42 @@ button:hover {
 
 .MuiFormControlLabel-labelPlacementEnd {
     color: #F3E283;
+}
+
+@media only screen and (max-width: 1225px) {
+    button {
+        text-align: center;
+        font-size: 10px;
+        height: 20px;
+    }
+
+    .expertFrame {
+        flex-direction: row;
+    }
+
+    .editorFrame {
+        height: 270px;
+    }
+
+    .mode .MuiCheckbox-root {
+        padding: 0;
+        margin: 0px 0px 10px 10px;
+    }
+
+    .infoChild {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 0px;
+    }
+
+    .infoChild .MuiButton-root  {
+        font-size: 10px;
+        height: 20px;
+        margin-left: -20px;
+    }
+
+    .mode .MuiFormControlLabel-label {
+        font-size: 0;
+    }
+
 }

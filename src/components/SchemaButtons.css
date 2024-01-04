@@ -16,3 +16,9 @@
 i {
     color: gray;
 }
+
+@media only screen and (max-width: 900px) {
+    .outer {
+      display: none;
+    }
+  }

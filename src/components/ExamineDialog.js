@@ -13,6 +13,7 @@ import { RC } from '../lang-rc/index.js';
 import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
 import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 
 const extensions = [RC()];
 
@@ -100,11 +101,14 @@ export default function ExamineDialog({ pinf, pfin }) {
                 <DialogContent>
                     <DialogContentText id="draggable-dialog-title"></DialogContentText>
                     <Grid container direction={'column'} spacing={2}>
-                        <Grid item sx={{margin: "5px", color: "text.primary"}}>
-                            <Grid>
-                            This is the safe-range infinite query. If this holds, then the finite part is not necessarily valid:
-                            </Grid>
-                            { notemptypinf ? 
+                    <Grid item sx={{margin: "5px", color: "text.primary"}}>
+                        <Typography variant="body1" sx={{textDecoration: 'underline'}}>
+                            Safe-range infinite query
+                        </Typography>
+                        <Typography variant="subtitle2" sx={{mb: '10px'}}>
+                            <i>If this evaluates to true, then the finite part is not necessarily valid</i>
+                        </Typography>
+                        {notemptypinf ? 
                             <CodeMirror 
                                 maxWidth="550px"
                                 theme={myTheme}
@@ -124,9 +128,12 @@ export default function ExamineDialog({ pinf, pfin }) {
                             /> }
                         </Grid>
                         <Grid item sx={{margin: "5px", color: "text.primary"}}>
-                            <Grid>
-                            This is the finite query. It is rewritten to be safe-range and evaluable. This is how the query is evaluated:   
-                            </Grid>
+                            <Typography variant="body1" sx={{textDecoration: 'underline'}}>
+                                Safe-range finite query
+                            </Typography>
+                            <Typography variant="subtitle2" sx={{mb: '10px'}}>
+                                <i>This is how the query is evaluated</i>
+                            </Typography>
                             <CodeMirror 
                                 maxWidth="550px"
                                 theme={myTheme}

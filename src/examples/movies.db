@@ -20,7 +20,7 @@ MovieStar
 ("Mark Hamill", "456 Oak Road", "M", "8/8/88")
 ("Carrie Fisher", "123 Maple Street", "F", "9/9/99")
 ("Carrie Fisher", "5 Locust Lane", "F", "9/9/99")
-("Sandra Bullock", "123 Happy Road, Malibu", "F", "26/7/64")
+("Sandra Bullock", "123 Happy Road - Malibu", "F", "26/7/64")
 
 MovieExec
 ("George Lucas", "Cool Road 2", 1, 100)

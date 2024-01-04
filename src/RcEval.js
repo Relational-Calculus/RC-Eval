@@ -1,6 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Schemabuttons from "./components/SchemaButtons";
 import ExampleSelectButton from './components/ExampleSelectButton';
 import CodeEditor from './components/CodeEditor';
@@ -8,7 +7,7 @@ import Result from "./components/DisplayResults";
 import DialogBtn from "./components/DialogBtn";
 import SchemaTextField from "./components/SchemaTextField";
 import DbTextField from "./components/DbTextField";
-import { prevSnippetField } from "@codemirror/autocomplete";
+import './RcEval.css';
 
 
 function evalSchema(evalState, action) {
@@ -17,6 +16,7 @@ function evalSchema(evalState, action) {
     return { ...evalState,
             schema: {result: schemaResult, correct: true}};
   } catch (error) {
+    console.log(error);
     return { ...evalState, 
             schema: {err_msg: error[2], correct: false}};
   }
@@ -24,26 +24,20 @@ function evalSchema(evalState, action) {
 
 function evalQuery(evalState, action) {
   try {
-    // const queryInfo =window.checkQuery(action.query).split(",")
     const queryResults = window.checkQuery(action.query);
     const freeVariables = queryResults[0];
     const pfin = queryResults[1];
     const pinf = queryResults[2];
-    // const freeVariables = window.checkQuery(action.query);
-    // const pfin = window.checkQueryRewriteFin(action.query);
-    // const pinf = window.checkQueryRewriteInf(action.query);
-    const f = window.checkQueryIsMon(action.query)
+
+    const f = window.checkQueryIsMon(action.query);
     const f1 = f[0];
     const msg1 = f[1]; 
-    console.log("f1:", typeof f1)
-    console.log("msg:", typeof msg1)
-    // console.log("f:", window.checkQueryIsMon(action.query))
     
-    const regEx = /\w+/g
+    const regEx = /[\w.-]+/g
     return { ...evalState,
             query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, f1:f1, msg1:msg1}};
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     return { ...evalState, 
             query: {fv: [], err_msg: error[1], correct: false}};
   }
@@ -52,13 +46,13 @@ function evalQuery(evalState, action) {
 function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
-    // console.log(window.checkQueryRewriteFin(action.query))
-    // console.log(window.checkQueryRewriteInf(action.query))
-    const regEx = /[\w. ']+/g
+    const regEx = /[\/\w. '-]+/g
+    console.log(dbResult)
+    console.log(dbResult.match(regEx))
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
-    // console.log(error)
+    console.log(error)
     return { ...evalState,
             db: {err_msg: error[1][1]}, correct: false};
   }
@@ -141,10 +135,12 @@ export default function RcEval() {
 
   
   return (
-    <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>
-      <Grid container spacing={4}>
-        <Grid item xs={3}>
-          <Grid container direction={'row'}>
+    // <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>
+    <div style={{margin: "100px 0", padding: 0}}>
+      <Grid className="outerContainer" container spacing={4}>
+        <Grid item md={0} lg={1}></Grid>
+        <Grid item md={3} lg={2}>
+          <Grid className="databaseBtn" container direction={'row'}>
             <DialogBtn 
               textField={<SchemaTextField schema={formState.schema} schemaLegit={evalState.schema.correct} setFormState={setFormState}/>} 
               btnName={"Schema"} 
@@ -157,7 +153,7 @@ export default function RcEval() {
               setFormState={setFormState} 
               correct={evalState.db.correct}
             />
-          </Grid> 
+          </Grid>
           <ExampleSelectButton 
             setFormState={setFormState} 
             setFocusState={setFocusState} 
@@ -169,7 +165,7 @@ export default function RcEval() {
             setFocusState={setFocusState} 
           />
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={12} md={8} lg={8}>
           <CodeEditor 
             ref={textEditorRef} 
             query={formState.query}
@@ -190,11 +186,12 @@ export default function RcEval() {
                 results={evalState.db.result} 
                 quickresult={evalState.db.quickresult} 
               />
-              {/* <CopyResultLatex fv={evalState.query.fv} result={evalState.db.result} /> */}
             </div>
           }
         </Grid>
+        <Grid item md={0} lg={1}></Grid>
       </Grid>
-    </Box>
+    {/* </Box> */}
+    </div>
   );
 }

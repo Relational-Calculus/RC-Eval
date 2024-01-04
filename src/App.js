@@ -15,13 +15,14 @@ const lightTheme = createTheme({
       main: '#231426', 
     },
     secondary: {
-      main: '#345254'
+      main: '#0909FFAF'
     },
     text: {
       secondary: '#F3E283'
     },
     info: {
-      main: '#F3E283'
+      main: '#F3E283',
+      secondary: '#3393FF'
     }
   },
   typography: {
@@ -36,7 +37,7 @@ function App() {
     // <RcEval />
     <ThemeProvider theme={lightTheme}>
       <Box>
-        <BrowserRouter basename="/">
+        <BrowserRouter basename="/RC-Eval">
           <NavBar />
           <Routes>
             <Route path="/" element={<RcEval />} />

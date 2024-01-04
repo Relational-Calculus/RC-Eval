@@ -1,12 +1,4 @@
-// import { completeFromList } from "@codemirror/autocomplete";
 import {syntaxTree } from "@codemirror/language"
-
-// let keywords = "EXISTS FORALL IMPLIES AND OR EQUALS NOT AVG MAX MIN CNT SUM LET IN"
-//   .split(" ")
-//   .map((kw) => ({ label: kw, type: "keyword" }));
-
-// let rcCompletion = completeFromList([...keywords]);
-// node.matchContext(["TableName", "(", "varList", ""]) && 
 
 function getCompletionList(context) {
     const operators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈']
@@ -18,20 +10,11 @@ function getCompletionList(context) {
         .split(" ")
         .map((kw) => ({ label: kw, type: "method" }));
     
-    // const methods = simpleMethods.concat(aggMethod);
-
     let identifiers = ""
     const docStr = context.state.doc.toString();
 
     const tree = syntaxTree(context.state)
     tree.cursor().iterate(node => {
-      // console.log(`Node ${node.name} from ${node.from} to ${node.to} is Error ${node.type.isError}`)
-      // console.log(node.type)
-    //   if (node.name === 'TableName') {
-    //     // console.log("WHATUPPS")
-    //     operatorKeywords = operatorKeywords.concat(' ', docStr.substring(node.from, node.to));
-    //   } 
-    //   console.log(node.matchContext(["varList"]))
       if (node.matchContext(["varList"]) && node.name === 'Identifier') {
         identifiers = identifiers.concat(' ', docStr.substring(node.from, node.to));
       }

@@ -1,0 +1,12 @@
+.outerContainer {
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 900px) {
+    .outerContainer {
+      flex-direction: column;
+    }
+    .databaseBtn {
+        margin: 0 auto;
+    }
+  }

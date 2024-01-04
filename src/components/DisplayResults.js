@@ -4,7 +4,6 @@ import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import CopyResultLatex from './CopyResultLatex';
-import { prevSnippetField } from '@codemirror/autocomplete';
 
 const childDivStyle = {
   height: '250px', 
@@ -25,7 +24,7 @@ const iconStyle = {
 
 export default function Result({fv, query, results, quickresult}) {
   const isInf = quickresult === "INF";
-  const isTrue = quickresult === ":\ntrue";
+  const isTrue = quickresult === "()";
   const isFalse = quickresult === "" && fv === null;
 
   return(
