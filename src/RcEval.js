@@ -38,8 +38,18 @@ function evalQuery(evalState, action) {
             query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, f1:f1, msg1:msg1}};
   } catch (error) {
     console.log(error);
+
+    // if (error[1][1] === "Failure") {
+    //   const f = window.checkQueryIsMon(action.query);
+    //   const f1 = f[0];
+    //   const msg1 = f[1]; 
+
+    //   return { ...evalState, 
+    //     query: {fv: [], err_msg: error[1], correct: false, f1:f1, msg1:msg1}};
+    // }
+
     return { ...evalState, 
-            query: {fv: [], err_msg: error[1], correct: false}};
+      query: {fv: [], err_msg: error[1], correct: false}};
   }
 }
 

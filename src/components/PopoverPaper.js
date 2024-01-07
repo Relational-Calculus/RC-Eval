@@ -27,15 +27,15 @@ const buttonExamples = {
     },
     '≈': {
         operatorName: 'EQUALS',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t1</span> ≈ <span style="color:#00aadd">t2</span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>) <b>=</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a ≈ 10'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t<sub>1</sub></span> ≈ <span style="color:#00aadd">t<sub>2</sub></span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>1</sub></span>) <b>≈</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>2</sub></span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a ≈ 10'
     },
     '<': {
         operatorName: 'LESS THAN',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t1</span> ≈ <span style="color:#00aadd">t2</span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>) <b>=</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a < 10'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t<sub>1</sub></span> < <span style="color:#00aadd">t<sub>2</sub></span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>1</sub></span>) <b><</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>2</sub></span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a < 10'
     },
     '>': {
         operatorName: 'GREATER THAN',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t1</span> ≈ <span style="color:#00aadd">t2</span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>) <b>=</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t1</span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a > 10'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t<sub>1</sub></span> > <span style="color:#00aadd">t<sub>2</sub></span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd"><sub>1</sub></span>) <b>></b> <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>2</sub></span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a > 10'
     },
     'AVG': {
         operatorName: 'AVERAGE',

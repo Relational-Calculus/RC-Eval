@@ -1,4 +1,6 @@
-∃ cl, l, t, co, b, r. 
-Ships(n,cl,l) ∧
-Classes(cl,t,co,ng,b,d) ∧
-Outcomes(n,"Guadalcanal",r)
+LET NDN(name, d, numguns) =
+EXISTS class.
+Classes(class, _, _, numguns, _, d) AND
+Ships(name, class, _) AND
+Outcomes(name, "Guadalcanal", _)
+IN NDN(name, d, numguns)
