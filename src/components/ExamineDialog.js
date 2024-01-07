@@ -82,6 +82,8 @@ export default function ExamineDialog({ pinf, pfin }) {
     const pinfFittedTxt = pinf !== undefined ? fitStringOnScreen(pinf) : "";
     const pfinFittedTxt = pfin !== undefined ? fitStringOnScreen(pfin) : "";
 
+    const notemptypinf = pinfFittedTxt !== "[]"
+
     return (
         <>
             <Tooltip title="Examine the evaluation of your query">
@@ -106,6 +108,7 @@ export default function ExamineDialog({ pinf, pfin }) {
                         <Typography variant="subtitle2" sx={{mb: '10px'}}>
                             <i>If this evaluates to true, then the finite part is not necessarily valid</i>
                         </Typography>
+                        {notemptypinf ? 
                             <CodeMirror 
                                 maxWidth="550px"
                                 theme={myTheme}
@@ -114,6 +117,15 @@ export default function ExamineDialog({ pinf, pfin }) {
                                 readOnly={true}
                                 basicSetup={{ lineNumbers: false }}
                             />
+                            :                             
+                            <CodeMirror 
+                                maxWidth="550px"
+                                theme={myTheme}
+                                extensions={extensions}
+                                value={""}
+                                readOnly={true}
+                                basicSetup={{ lineNumbers: false }}
+                            /> }
                         </Grid>
                         <Grid item sx={{margin: "5px", color: "text.primary"}}>
                             <Typography variant="body1" sx={{textDecoration: 'underline'}}>
