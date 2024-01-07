@@ -1,4 +1,0 @@
-∃ cl, l, t, co, b, r. 
-Ships(n,cl,l) ∧
-Classes(cl,t,co,ng,b,d) ∧
-Outcomes(n,"Guadalcanal",r)
