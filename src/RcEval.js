@@ -55,7 +55,7 @@ function evalQuery(evalState, action) {
 function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
-    const regEx = /[\/\w. '-]+/g
+    const regEx = /[/\w. '-]+/g
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
@@ -197,7 +197,6 @@ export default function RcEval() {
         </Grid>
         <Grid item md={0} lg={1}></Grid>
       </Grid>
-    {/* </Box> */}
     </div>
   );
 }

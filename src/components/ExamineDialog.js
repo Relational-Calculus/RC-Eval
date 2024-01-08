@@ -80,10 +80,8 @@ export default function ExamineDialog({ pinf, pfin }) {
         setOpenDialog(false); 
     };
 
-    const pinfFittedTxt = pinf !== undefined ? fitStringOnScreen(pinf) : "";
+    const pinfFittedTxt = pinf !== undefined & pinf !== "[]" ? fitStringOnScreen(pinf) : "";
     const pfinFittedTxt = pfin !== undefined ? fitStringOnScreen(pfin) : "";
-
-    const notemptypinf = pinfFittedTxt !== "[]"
 
     return (
         <>
@@ -109,24 +107,14 @@ export default function ExamineDialog({ pinf, pfin }) {
                         <Typography variant="subtitle2" sx={{mb: '10px'}}>
                             <i>If this evaluates to true, then the finite part is not necessarily valid</i>
                         </Typography>
-                        {notemptypinf ? 
-                            <CodeMirror 
-                                maxWidth="550px"
-                                theme={myTheme}
-                                extensions={extensions}
-                                value={pinfFittedTxt}
-                                readOnly={true}
-                                basicSetup={{ lineNumbers: false }}
-                            />
-                            :                             
-                            <CodeMirror 
-                                maxWidth="550px"
-                                theme={myTheme}
-                                extensions={extensions}
-                                value={""}
-                                readOnly={true}
-                                basicSetup={{ lineNumbers: false }}
-                            /> }
+                        <CodeMirror 
+                            maxWidth="550px"
+                            theme={myTheme}
+                            extensions={extensions}
+                            value={pinfFittedTxt}
+                            readOnly={true}
+                            basicSetup={{ lineNumbers: false }}
+                        />
                         </Grid>
                         <Grid item sx={{margin: "5px", color: "text.primary"}}>
                             <Typography variant="body1" sx={{textDecoration: 'underline'}}>
