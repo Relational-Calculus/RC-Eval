@@ -31,6 +31,7 @@ const myTheme = createTheme({
     },
     styles: [
       { tag: t.definitionKeyword, color: '#aa5bc2' },
+      { tag: t.modifier, color: '#f2912d' },
       { tag: t.string, color: '#0971d9' },
       { tag: t.operatorKeyword, color: '#de3c10' },
       { tag: t.paren, color: '#10c210' },

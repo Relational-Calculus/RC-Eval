@@ -3,19 +3,19 @@ import { Typography } from "@mui/material"
 const buttonExamples = {
     '∃': {
         operatorName: 'EXISTS',
-        example:  '<span style="color:purple">v</span> ⊨ <b>∃</b>x. <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(x↦<span style="color:blue">c</span>) ⊨ <span style="color:green">φ</span> for some <span style="color:blue">c</span> ∈ 𝔻<hr width="100%" size="2">∃ a, b. T(a, b, c)'
+        example:  '<span style="color:purple">v</span> ⊨ <b>∃</b>x. <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(x↦<span style="color:blue">c</span>) ⊨ <span style="color:green">φ</span> for some <span style="color:blue">c</span> ∈ 𝔻<hr width="100%" size="2"><b>∃</b> a, b. T(a, b, c)'
     },
     '∀': {
         operatorName: 'FORALL',
-        example:  '<span style="color:purple">v</span> ⊨ <b>∀</b>x. <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(x↦<span style="color:blue">c</span>) ⊨ <span style="color:green">φ</span> for all <span style="color:blue">c</span> ∈ 𝔻<hr width="100%" size="2">∀ a, b. T(a, b, c)'
+        example:  '<span style="color:purple">v</span> ⊨ <b>∀</b>x. <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(x↦<span style="color:blue">c</span>) ⊨ <span style="color:green">φ</span> for all <span style="color:blue">c</span> ∈ 𝔻<hr width="100%" size="2"><b>∀</b> a, b. T(a, b, c)'
     },
     '∧': {
         operatorName: 'AND',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> <b>∧</b> <span style="color:green">ψ</span> ⟺ <span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> and <span style="color:purple">v</span> ⊨ <span style="color:green">ψ</span><hr width="100%" size="2">T(a, b) ∧ P(b, c)'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> <b>∧</b> <span style="color:green">ψ</span> ⟺ <span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> and <span style="color:purple">v</span> ⊨ <span style="color:green">ψ</span><hr width="100%" size="2">T(a, b) <b>∧</b> P(b, c)'
     },
     '∨': {
         operatorName: 'OR',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> <b>∨</b> <span style="color:green">ψ</span> ⟺ <span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> or <span style="color:purple">v</span> ⊨ <span style="color:green">ψ</span><hr width="100%" size="2">T(a, b) ∨ P(b, c)'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> <b>∨</b> <span style="color:green">ψ</span> ⟺ <span style="color:purple">v</span> ⊨ <span style="color:green">φ</span> or <span style="color:purple">v</span> ⊨ <span style="color:green">ψ</span><hr width="100%" size="2">T(a, b) <b>∨</b> P(b, c)'
     },
     '⇒': {
         operatorName: 'IMPLIES',
@@ -23,23 +23,23 @@ const buttonExamples = {
     },
     '¬': {
         operatorName: 'NOT',
-        example:  '<span style="color:purple">v</span> ⊨ <b>¬</b> <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span> ⊭ <span style="color:green">φ</span><hr width="100%" size="2">∃ a. T(a, b) ∧ ¬ b = 10'
+        example:  '<span style="color:purple">v</span> ⊨ <b>¬</b> <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span> ⊭ <span style="color:green">φ</span><hr width="100%" size="2">∃ a. T(a, b) ∧ <b>¬</b> b = 10'
     },
     '≈': {
         operatorName: 'EQUALS',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t<sub>1</sub></span> ≈ <span style="color:#00aadd">t<sub>2</sub></span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>1</sub></span>) <b>≈</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>2</sub></span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a ≈ 10'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t<sub>1</sub></span> ≈ <span style="color:#00aadd">t<sub>2</sub></span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>1</sub></span>) <b>≈</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>2</sub></span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a <b>≈</b> 10'
     },
     '<': {
         operatorName: 'LESS THAN',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t<sub>1</sub></span> < <span style="color:#00aadd">t<sub>2</sub></span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>1</sub></span>) <b><</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>2</sub></span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a < 10'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t<sub>1</sub></span> < <span style="color:#00aadd">t<sub>2</sub></span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>1</sub></span>) <b><</b> <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>2</sub></span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a <b><</b> 10'
     },
     '>': {
         operatorName: 'GREATER THAN',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t<sub>1</sub></span> > <span style="color:#00aadd">t<sub>2</sub></span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd"><sub>1</sub></span>) <b>></b> <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>2</sub></span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a > 10'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t<sub>1</sub></span> > <span style="color:#00aadd">t<sub>2</sub></span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd"><sub>1</sub></span>) <b>></b> <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>2</sub></span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a <b>></b> 10'
     },
     'AVG': {
         operatorName: 'AVERAGE',
-        example:  'avg_speed <- <b>AVG</b> speed PC(_, speed, _, _, _)'
+        example:  '<span style="color:purple">v</span> ⊨ y &larr; <b>AVG</b>(<span style="color:#00aadd">t</span>; <span style="text-decoration:underline; text-underline-offset: -11px;">&#103;</span>) <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(y) = <b>AVG</b>(M)<hr width="100%" size="2">avg_speed <- <b>AVG</b> speed PC(_, speed, _, _, _)'
     },
     'MED': {
         operatorName: 'MEDIAN',
@@ -63,13 +63,13 @@ const buttonExamples = {
     },
     'LET': {
         operatorName: 'LET',
-        example:  `DB, <span style="color:purple">v</span> ⊨ <b>LET</b> P(x<sub>1</sub>, ...,  x<sub>n</sub>) = &alpha; <b>IN</b> &beta; <i>iff</i><br />&emsp;DB(P => (<span style="color:purple">w</span>(x<sub>1</sub>), ..., <span style="color:purple">w</span>(x<sub>n</sub>) | DB, <span style="color:purple">w</span> |= &alpha;|<sub>v(&alpha;)</sub>), <span style="color:purple">v</span> |= &beta; and fv(&alpha;) = (x<sub>1</sub>, ...,  x<sub>n</sub>))<hr width="100%" size="2">
-        LET DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") ∧ attends(student,"DIS")<br />IN DIS(lecturer, student)`
+        example:  `DB, <span style="color:purple">v</span> ⊨ <b>LET</b> P(x<sub>1</sub>, ...,  x<sub>n</sub>) = &alpha; <b>IN</b> &beta; ⟺ <br />&emsp;DB(P => (<span style="color:purple">w</span>(x<sub>1</sub>), ..., <span style="color:purple">w</span>(x<sub>n</sub>) | DB, <span style="color:purple">w</span> |= &alpha;|<sub>v(&alpha;)</sub>), <span style="color:purple">v</span> |= &beta; and fv(&alpha;) = (x<sub>1</sub>, ...,  x<sub>n</sub>))<hr width="100%" size="2">
+        <b>LET</b> DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") ∧ attends(student,"DIS")<br />IN DIS(lecturer, student)`
     },
     'IN': {
         operatorName: 'IN',
-        example:  `DB, <span style="color:purple">v</span> ⊨ <b>LET</b> P(x<sub>1</sub>, ...,  x<sub>n</sub>) = &alpha; <b>IN</b> &beta; <i>iff</i><br />&emsp;DB(P => (<span style="color:purple">w</span>(x<sub>1</sub>), ..., <span style="color:purple">w</span>(x<sub>n</sub>) | DB, <span style="color:purple">w</span> |= &alpha;|<sub>v(&alpha;)</sub>), <span style="color:purple">v</span> |= &beta; and fv(&alpha;) = (x<sub>1</sub>, ...,  x<sub>n</sub>))<hr width="100%" size="2">
-        LET DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") ∧ attends(student,"DIS")<br />IN DIS(lecturer, student)`
+        example:  `DB, <span style="color:purple">v</span> ⊨ <b>LET</b> P(x<sub>1</sub>, ...,  x<sub>n</sub>) = &alpha; <b>IN</b> &beta; ⟺ <br />&emsp;DB(P => (<span style="color:purple">w</span>(x<sub>1</sub>), ..., <span style="color:purple">w</span>(x<sub>n</sub>) | DB, <span style="color:purple">w</span> |= &alpha;|<sub>v(&alpha;)</sub>), <span style="color:purple">v</span> |= &beta; and fv(&alpha;) = (x<sub>1</sub>, ...,  x<sub>n</sub>))<hr width="100%" size="2">
+        LET DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") ∧ attends(student,"DIS")<br /><b>IN</b> DIS(lecturer, student)`
     }
 }
 
