@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/RC-Eval/static/css/main.59c1e07d.css",
-    "main.js": "/RC-Eval/static/js/main.29482402.js",
+    "main.js": "/RC-Eval/static/js/main.5d799ee2.js",
     "static/js/27.4de542f9.chunk.js": "/RC-Eval/static/js/27.4de542f9.chunk.js",
     "static/media/ships.db": "/RC-Eval/static/media/ships.550a1799130cfd7babd8.db",
     "static/media/product.db": "/RC-Eval/static/media/product.e5c2923b9f416c134a2e.db",
@@ -29,11 +29,11 @@
     "static/media/employees3.fo": "/RC-Eval/static/media/employees3.4406c8174e7636004ab5.fo",
     "static/media/employees.sig": "/RC-Eval/static/media/employees.5281366c1eb8939e71c0.sig",
     "static/media/ships2.fo": "/RC-Eval/static/media/ships2.539e78a8a8ad83cc5436.fo",
-    "static/media/employees.fo": "/RC-Eval/static/media/employees.d8f8386bd9f28385aee0.fo",
-    "static/media/product.fo": "/RC-Eval/static/media/product.ae2bd72a1b80130c0410.fo"
+    "static/media/product.fo": "/RC-Eval/static/media/product.ae2bd72a1b80130c0410.fo",
+    "static/media/employees.fo": "/RC-Eval/static/media/employees.5bcd6ef4ec6551b27eea.fo"
   },
   "entrypoints": [
     "static/css/main.59c1e07d.css",
-    "static/js/main.29482402.js"
+    "static/js/main.5d799ee2.js"
   ]
 }
