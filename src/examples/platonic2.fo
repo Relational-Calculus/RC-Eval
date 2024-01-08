@@ -1,0 +1,3 @@
+LET DIS(lecturer, student) = 
+  teaches(lecturer, "DIS") ∧ attends(student, "DIS")
+IN DIS(lecturer, student)

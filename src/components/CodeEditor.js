@@ -24,7 +24,7 @@ import RANFDialog from "./RANFdialog.js";
 // Constants
 // const extensions = [RC(), lintGutter(), RCLinter, autocompletion({ override: [myCompletions]})];
 const operators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈'];
-const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈', '<', '>', 'AVG', 'MAX', 'MIN', 'CNT','SUM', 'LET', 'IN'];
+const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈', '<', '>', 'AVG', 'MED', 'MAX', 'MIN', 'CNT', 'SUM', 'LET', 'IN'];
 const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
 
 const myTheme = createTheme({

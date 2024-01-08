@@ -37,19 +37,19 @@ function evalQuery(evalState, action) {
     return { ...evalState,
             query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, f1:f1, msg1:msg1}};
   } catch (error) {
-    console.log(error);
+    try {
+      const f = window.checkQueryIsMon(action.query);
+      const f1 = f[0];
+      const msg1 = f[1]; 
 
-    // if (error[1][1] === "Failure") {
-    //   const f = window.checkQueryIsMon(action.query);
-    //   const f1 = f[0];
-    //   const msg1 = f[1]; 
+      return { ...evalState, 
+        query: {fv: [], err_msg: error[1], correct: false, f1:f1, msg1:msg1}};
 
-    //   return { ...evalState, 
-    //     query: {fv: [], err_msg: error[1], correct: false, f1:f1, msg1:msg1}};
-    // }
-
-    return { ...evalState, 
-      query: {fv: [], err_msg: error[1], correct: false}};
+    } catch (error) {
+      console.log(error);
+      return { ...evalState, 
+        query: {fv: [], err_msg: error[1], correct: false}};
+    }
   }
 }
 
@@ -57,8 +57,6 @@ function evalDb(evalState, action) {
   try {
     const dbResult = window.checkDb(action.db);
     const regEx = /[\/\w. '-]+/g
-    console.log(dbResult)
-    console.log(dbResult.match(regEx))
     return { ...evalState,
             db: {quickresult: dbResult, result: dbResult.match(regEx), correct: true}};
   } catch (error) {
@@ -142,6 +140,8 @@ export default function RcEval() {
     setEvalState(action);
 
   }, [formState.schema, formState.query, formState.db])
+
+  // console.log(evalState.query.f1, evalState.query.msg1);
 
   
   return (

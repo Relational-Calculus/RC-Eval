@@ -41,6 +41,10 @@ const buttonExamples = {
         operatorName: 'AVERAGE',
         example:  'avg_speed <- <b>AVG</b> speed PC(_, speed, _, _, _)'
     },
+    'MED': {
+        operatorName: 'MEDIAN',
+        example:  'median_speed <- <b>MED</b> speed PC(_, speed, _, _, _)'
+    },
     'MAX': {
         operatorName: 'MAXIUMUM',
         example:  'max_speed <- MAX speed PC(_, speed, _, _, price) AND price < 500'
@@ -59,12 +63,13 @@ const buttonExamples = {
     },
     'LET': {
         operatorName: 'LET',
-        example:  `DB, <span style="color:purple">v</span> ⊨ LET p(x_1, ...,  x_n) = alpha<hr width="100%" size="2">
-        LET DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") AND attends(student,"DIS")<br />&emsp;IN DIS(lecturer, student)`
+        example:  `DB, <span style="color:purple">v</span> ⊨ <b>LET</b> P(x<sub>1</sub>, ...,  x<sub>n</sub>) = &alpha; <b>IN</b> &beta; <i>iff</i><br />&emsp;DB(P => (<span style="color:purple">w</span>(x<sub>1</sub>), ..., <span style="color:purple">w</span>(x<sub>n</sub>) | DB, <span style="color:purple">w</span> |= &alpha;|<sub>v(&alpha;)</sub>), <span style="color:purple">v</span> |= &beta; and fv(&alpha;) = (x<sub>1</sub>, ...,  x<sub>n</sub>))<hr width="100%" size="2">
+        LET DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") ∧ attends(student,"DIS")<br />IN DIS(lecturer, student)`
     },
     'IN': {
         operatorName: 'IN',
-        example:  'LET DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") AND attends(student,"DIS")<br />&emsp;IN DIS(lecturer, student)'
+        example:  `DB, <span style="color:purple">v</span> ⊨ <b>LET</b> P(x<sub>1</sub>, ...,  x<sub>n</sub>) = &alpha; <b>IN</b> &beta; <i>iff</i><br />&emsp;DB(P => (<span style="color:purple">w</span>(x<sub>1</sub>), ..., <span style="color:purple">w</span>(x<sub>n</sub>) | DB, <span style="color:purple">w</span> |= &alpha;|<sub>v(&alpha;)</sub>), <span style="color:purple">v</span> |= &beta; and fv(&alpha;) = (x<sub>1</sub>, ...,  x<sub>n</sub>))<hr width="100%" size="2">
+        LET DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") ∧ attends(student,"DIS")<br />IN DIS(lecturer, student)`
     }
 }
 

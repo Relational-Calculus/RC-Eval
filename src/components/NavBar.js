@@ -17,7 +17,7 @@ export default function NavBar() {
             <Link to="/" style={{ textDecoration: 'none' }}>
               <Button sx={{ color: "text.secondary" }}>
                 <Typography variant="h4" component="div">
-                RC-eval <font size={3}> Evaluating Relational Calculus Queries</font>
+                RC-Evaluator <font size={3}> Evaluating Relational Calculus Queries</font>
                 </Typography>
               </Button>
             </Link>

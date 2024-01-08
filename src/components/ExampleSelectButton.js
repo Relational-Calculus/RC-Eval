@@ -12,6 +12,7 @@ import platonicDb from '../examples/platonic.db'
 import platonicFo from '../examples/platonic.fo'
 import platonicSig from '../examples/platonic.sig'
 import platonic1 from '../examples/platonic1.fo'
+import platonic2 from '../examples/platonic2.fo'
 import productDb from '../examples/product.db'
 import productFo from '../examples/product.fo'
 import productSig from '../examples/product.sig'
@@ -43,7 +44,7 @@ const exampleImports = [employeesDb, employeesSig,
 const exampleQueryImports = {
                         '': [],
                         Employees: [employeesFo, employees1, employees2, employees3],
-                        Platonic: [platonicFo, platonic1],
+                        Platonic: [platonicFo, platonic1, platonic2],
                         Product: [productFo],
                         Reviews: [reviewsFo, reviews1],
                         Ships: [shipsFo, ships1, ships2, ships3],
