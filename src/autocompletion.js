@@ -6,7 +6,7 @@ function getCompletionList(context) {
         .split(" ")
         .map((kw, idx) => ({ label: kw, type: "method", apply: operators[idx] }));
     
-    let aggMethod = "AVG MAX MIN CNT SUM LET IN"
+    let aggMethod = "AVG MED MAX MIN CNT SUM LET IN"
         .split(" ")
         .map((kw) => ({ label: kw, type: "method" }));
     

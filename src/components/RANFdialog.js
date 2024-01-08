@@ -115,7 +115,7 @@ export default function RANFDialog({ query, f1 , expertMode, msg1}) {
                     <DialogContentText id="draggable-dialog-title"></DialogContentText>
                     <Grid container direction={'column'} spacing={2}>
                     <Grid item sx={{margin: "5px", color: "text.primary"}}>
-                    {  isMon ? <Box component="div" > Your query is RANF </Box>
+                    {  isMon ? <Box component="div" ><CheckIcon color='success' /> Your query is RANF </Box>
                     : containsForAll ? <Box component="div" > Your query is <b>not</b> RANF as it contains "FORALL" try rewriting this to ¬∃ φ ¬ ψ</Box>
                     : containsImplies ? <Box component="div" > Your query is <b>not</b>  RANF as it contains "IMPLIES" try rewriting this to (¬φ) ∨ ψ</Box>
                     : <Box component="div" > 
