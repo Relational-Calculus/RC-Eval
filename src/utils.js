@@ -108,14 +108,6 @@ export function schema_to_completion_list(schema) {
             tableNames.push({ label: elem[0][0], type: "keyword", apply: schema_from_tablename(elem[0][0], table) })
         })
     }
-    // CODE FOR JUST AUTOCOMPLETING TABLENAME
-    // let tableNames = schema.match(/\w+(?=\()/g);
-    // if (tableNames === null) {
-    //     return []
-    // } else {
-        
-    //     tableNames = tableNames.map((kw) => ({ label: kw, type: "keyword" }));
-    // }
     return tableNames;
 }
 
