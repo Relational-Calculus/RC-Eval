@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/RC-Eval/static/css/main.59c1e07d.css",
-    "main.js": "/RC-Eval/static/js/main.3f208733.js",
+    "main.js": "/RC-Eval/static/js/main.29482402.js",
     "static/js/27.4de542f9.chunk.js": "/RC-Eval/static/js/27.4de542f9.chunk.js",
     "static/media/ships.db": "/RC-Eval/static/media/ships.550a1799130cfd7babd8.db",
     "static/media/product.db": "/RC-Eval/static/media/product.e5c2923b9f416c134a2e.db",
@@ -12,11 +12,12 @@
     "static/media/reviews.db": "/RC-Eval/static/media/reviews.e896660d74d9221eb6db.db",
     "static/media/ships.sig": "/RC-Eval/static/media/ships.dc277d63a0cd09cbc1ce.sig",
     "static/media/product.sig": "/RC-Eval/static/media/product.bd36175233f43fa0814f.sig",
-    "static/media/ships1.fo": "/RC-Eval/static/media/ships1.f9fa42f5e8cf3a3db5d7.fo",
+    "static/media/ships1.fo": "/RC-Eval/static/media/ships1.b36f4af95b988c74a5cd.fo",
     "static/media/reviews1.fo": "/RC-Eval/static/media/reviews1.bbde9148022a637be201.fo",
     "static/media/platonic.sig": "/RC-Eval/static/media/platonic.6d117e6009f1fd2fbe01.sig",
     "static/media/reviews.fo": "/RC-Eval/static/media/reviews.1290dbe8407aa46e001a.fo",
     "static/media/reviews.sig": "/RC-Eval/static/media/reviews.b585771d7b54b6cf6230.sig",
+    "static/media/platonic2.fo": "/RC-Eval/static/media/platonic2.1172cf71b1f2f72200ef.fo",
     "static/media/platonic1.fo": "/RC-Eval/static/media/platonic1.0085435fdffbf78b0076.fo",
     "static/media/ships.fo": "/RC-Eval/static/media/ships.e6f886ca2e7ae494ec09.fo",
     "static/media/employees.db": "/RC-Eval/static/media/employees.f46b1cd038a9f74f5f1c.db",
@@ -33,6 +34,6 @@
   },
   "entrypoints": [
     "static/css/main.59c1e07d.css",
-    "static/js/main.3f208733.js"
+    "static/js/main.29482402.js"
   ]
 }
