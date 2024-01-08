@@ -5,8 +5,7 @@ import ExampleSelectButton from './components/ExampleSelectButton';
 import CodeEditor from './components/CodeEditor';
 import Result from "./components/DisplayResults";
 import DialogBtn from "./components/DialogBtn";
-import SchemaTextField from "./components/SchemaTextField";
-import DbTextField from "./components/DbTextField";
+import GenericTextField from "./components/GenericTextField";
 import './RcEval.css';
 
 
@@ -141,24 +140,21 @@ export default function RcEval() {
 
   }, [formState.schema, formState.query, formState.db])
 
-  // console.log(evalState.query.f1, evalState.query.msg1);
-
   
   return (
-    // <Box sx={{bgcolor: 'background.default'}} style={{ height: '100vh', margin: 100, padding: 15 }}>
     <div style={{margin: "100px 0", padding: 0}}>
       <Grid className="outerContainer" container spacing={4}>
         <Grid item md={0} lg={1}></Grid>
         <Grid item md={3} lg={2}>
           <Grid className="databaseBtn" container direction={'row'}>
             <DialogBtn 
-              textField={<SchemaTextField schema={formState.schema} schemaLegit={evalState.schema.correct} setFormState={setFormState}/>} 
+              textField={<GenericTextField text={formState.schema} textLegit={evalState.schema.correct} setFormState={setFormState} type={1} />} 
               btnName={"Schema"} 
               setFormState={setFormState} 
               correct={evalState.schema.correct} 
             />
             <DialogBtn 
-              textField={<DbTextField db={formState.db} dbLegit={evalState.db.correct} setFormState={setFormState}/>} 
+              textField={<GenericTextField text={formState.db} textLegit={evalState.db.correct} setFormState={setFormState} type={0} />} 
               btnName={"Database"} 
               setFormState={setFormState} 
               correct={evalState.db.correct}

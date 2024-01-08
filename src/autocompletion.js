@@ -1,4 +1,4 @@
-import {syntaxTree } from "@codemirror/language"
+import { syntaxTree } from "@codemirror/language"
 
 function getCompletionList(context) {
     const operators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈']
