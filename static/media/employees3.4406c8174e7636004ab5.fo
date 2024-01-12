@@ -1,1 +1,0 @@
-∃ ssn. Employees(ssn, name, lot) ∧ lot > 10

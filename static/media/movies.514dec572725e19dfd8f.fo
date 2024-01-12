@@ -1,1 +1,0 @@
-Movies(title, year, length, genre, "Fox", producerC) ∧ length > 100
