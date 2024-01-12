@@ -1,3 +1,1 @@
-LET DIS(lecturer, student) = 
-  teaches(lecturer, "DIS") ∧ attends(student, "DIS")
-IN DIS(lecturer, student)
+teaches(lecturer, course) ∧ (∃ student. likes(student, lecturer) ∨ attends(student, course))

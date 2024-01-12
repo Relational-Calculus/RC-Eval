@@ -124,7 +124,9 @@ const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFoc
         if (view.hasFocus) clearTimeout(timer);
       }, 100);
       setFocusState(prevState => { return { state: '' }})
+
     } else if (focusState.state === 'schema') {
+
       const cursorPosFrom = view.state.selection.main.from;
       const cursorPosTo = view.state.selection.main.to;
       const timer = setTimeout(() => {
@@ -135,6 +137,7 @@ const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFoc
         if (view.hasFocus) clearTimeout(timer);
       }, 100);
       setFocusState(prevState => { return { state: '', schemaBtnText: '' }})
+
     } else {
       const timer = setTimeout(() => {
         view.focus();
@@ -142,7 +145,6 @@ const CodeEditor = forwardRef(({ query, schema, setFormState, focusState, setFoc
       }, 100);
     }
   }
-
 
   const popoverID = open ? "mouse-over-popover" : undefined;
   const popoverContent = open ? anchorEl.innerText : undefined;

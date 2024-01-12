@@ -1,1 +1,1 @@
-num_employees <- CNT ssn Employees(ssn, name, lot)
+∃ lot. Employees(ssn,"John",lot)

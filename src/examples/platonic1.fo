@@ -1,1 +1,3 @@
-teaches(lecturer, course) ∧ (∃ student. likes(student, lecturer) ∨ attends(student, course))
+teaches(lecturer,course) ∧
+attends(student,course) ∧
+likes(student,lecturer)
