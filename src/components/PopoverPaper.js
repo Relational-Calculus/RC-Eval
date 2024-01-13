@@ -19,7 +19,7 @@ const buttonExamples = {
     },
     '⇒': {
         operatorName: 'IMPLIES',
-        example:  '<span style="color:green">φ</span> <strong>⇒</strong> <span style="color:green">ψ</span> := (¬<span style="color:green">φ</span>) ∨ <span style="color:green">ψ</span><hr width="100%" size="2">EKS. på implies'
+        example:  '<span style="color:green">φ</span> <strong>⇒</strong> <span style="color:green">ψ</span> := (¬<span style="color:green">φ</span>) ∨ <span style="color:green">ψ</span><hr width="100%" size="2">(∃ lecturer, course . teaches(lecturer, course)) <b>⇒ </b> ∃ student. attends(student, course)'
     },
     '¬': {
         operatorName: 'NOT',
