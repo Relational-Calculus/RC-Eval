@@ -1,0 +1,5 @@
+(executable
+ (name rcEval)
+ (modes js)
+ (libraries libmonpoly librc2sql lwt js_of_ocaml js_of_ocaml-lwt zarith_stubs_js)
+ (preprocess (pps js_of_ocaml-ppx)))
