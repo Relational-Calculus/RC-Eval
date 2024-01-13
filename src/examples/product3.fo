@@ -1,0 +1,5 @@
+LET P(maker, num_pc, max-speed, min_speed) = 
+  (max-speed <- MAX speed; maker (Product(maker, model, _) ∧ PC(model, speed, _, _, _))) ∧
+  (min_speed <- MIN speed; maker (Product(maker, model, _) ∧ PC(model, speed, _, _, _))) ∧
+  (num_pc <- CNT model; maker Product(maker, model, "pc"))
+IN P(manufacturer, number-of-pc, max-speed, min-speed)

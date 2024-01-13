@@ -1,0 +1,2 @@
+∃ model_1, model_2, hd_2. 
+PC(model_1, _, _, hd_1, _) ∧ PC(model_2, _, _, hd_2, _) ∧ (¬ model_1 = model_2) ∧ (hd_1 = hd_2)

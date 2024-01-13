@@ -1,0 +1,2 @@
+minimum_price <- MIN p; maker, type Product(maker, model, type) ∧
+(PC(model, _, _, _, p) ∨ Laptop(model, _, _, _, _, p) ∨ Printer(model, _, _, p))

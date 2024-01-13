@@ -22,6 +22,9 @@ import platonic3 from '../examples/platonic3.fo'
 import productDb from '../examples/product.db'
 import productSig from '../examples/product.sig'
 import product1 from '../examples/product1.fo'
+import product2 from '../examples/product2.fo'
+import product3 from '../examples/product3.fo'
+import product4 from '../examples/product4.fo'
 
 import reviewsDb from '../examples/reviews.db'
 import reviewsSig from '../examples/reviews.sig'
@@ -78,7 +81,10 @@ const examples = [
     db: productDb, 
     queries: [
       { queryName: '', query: '' }, 
-      { queryName: 'Example 1', query: product1 }
+      { queryName: 'Example 1', query: product1 },
+      { queryName: 'Example 2', query: product2 },
+      { queryName: 'Example 3', query: product3 },
+      { queryName: 'Example 4', query: product4 }
     ]
   },
   {
