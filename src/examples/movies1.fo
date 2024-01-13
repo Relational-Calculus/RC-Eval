@@ -1,0 +1,4 @@
+LET A(dist, gender) =
+  dist <- MAX appears; gender (appears <- CNT movieTitle; gender 
+  StarsIn(movieTitle, _, starName) ∧ MovieStar(starName, _, gender, _))
+IN A(number_of_movies_appeared_in, gender)

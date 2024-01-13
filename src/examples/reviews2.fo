@@ -1,0 +1,2 @@
+Brands(brand) ∧ (∃ user, rating. ¬ ∃ product. ¬ (
+¬ Products(brand, product) ∨ Reviews(product, user, rating)))

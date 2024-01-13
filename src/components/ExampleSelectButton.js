@@ -1,96 +1,125 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+import { useState, forwardRef } from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import './ExampleSelectButton.css';
+
 import employeesDb from '../examples/employees.db'
-import employeesFo from '../examples/employees.fo'
 import employeesSig from '../examples/employees.sig'
+import employees1 from '../examples/employees1.fo'
+import employees2 from '../examples/employees2.fo';
+import employees3 from '../examples/employees3.fo';
+import employees4 from '../examples/employees4.fo';
+
 import platonicDb from '../examples/platonic.db'
-import platonicFo from '../examples/platonic.fo'
 import platonicSig from '../examples/platonic.sig'
 import platonic1 from '../examples/platonic1.fo'
 import platonic2 from '../examples/platonic2.fo'
+import platonic3 from '../examples/platonic3.fo'
+
 import productDb from '../examples/product.db'
-import productFo from '../examples/product.fo'
 import productSig from '../examples/product.sig'
+import product1 from '../examples/product1.fo'
+
 import reviewsDb from '../examples/reviews.db'
-import reviewsFo from '../examples/reviews.fo'
 import reviewsSig from '../examples/reviews.sig'
-import moviesDB from '../examples/movies.db'
+import reviews1 from '../examples/reviews1.fo'
+import reviews2 from '../examples/reviews2.fo';
+
+import moviesDb from '../examples/movies.db'
 import moviesSig from '../examples/movies.sig'
-import moviesFo from '../examples/movies.fo'
+import movies1 from '../examples/movies1.fo'
+import movies2 from '../examples/movies2.fo'
+
 import shipsDb from '../examples/ships.db'
-import shipsFo from '../examples/ships.fo'
 import shipsSig from '../examples/ships.sig'
 import ships1 from '../examples/ships1.fo';
 import ships2 from '../examples/ships2.fo';
 import ships3 from '../examples/ships3.fo';
-import employees1 from '../examples/employees1.fo';
-import employees2 from '../examples/employees2.fo';
-import employees3 from '../examples/employees3.fo';
-import reviews1 from '../examples/reviews1.fo';
+import ships4 from '../examples/ships4.fo'
 
-
-const exampleImports = [employeesDb, employeesSig, 
-                      platonicDb, platonicSig, 
-                      productDb, productSig,
-                      reviewsDb, reviewsSig,
-                      shipsDb, shipsSig,
-                      moviesDB, moviesSig];
-
-const exampleQueryImports = {
-                        '': [],
-                        Employees: [employeesFo, employees1, employees2, employees3],
-                        Platonic: [platonicFo, platonic1, platonic2],
-                        Product: [productFo],
-                        Reviews: [reviewsFo, reviews1],
-                        Ships: [shipsFo, ships1, ships2, ships3],
-                        Movies: [moviesFo]
-                    }
-
-const examples = [{ name: '', schema: '', db: '', ex: [{ exName: '', query: '' }] }];
-
-const exampleNames = ["Employees", "Platonic", "Product", "Reviews", "Ships", "Movies"];
-const exampleExt = ['db', 'schema']
-
-const readExampleFiles = (index, i) => {
-  return fetch(exampleImports[index*2 + i]).then(r => r.text())
-}
-
-const readExampleFilesQuery = (arr,i) => {
-  return fetch(arr[i]).then(r => r.text())
-}
+const examples = [ 
+  { 
+    name: '', 
+    schema: '', 
+    db: '', 
+    queries: [
+      { queryName: '', query: '' }
+    ]
+  },
+  { 
+    name: 'Employees', 
+    schema: employeesSig, 
+    db: employeesDb, 
+    queries: [
+      { queryName: '', query: '' }, 
+      { queryName: 'Example 1', query: employees1 },
+      { queryName: 'Example 2', query: employees2 },
+      { queryName: 'Example 3', query: employees3 },
+      { queryName: 'Example 4', query: employees4 }
+    ]
+  },
+  { 
+    name: 'Platonic', 
+    schema: platonicSig,  
+    db: platonicDb, 
+    queries: [
+      { queryName: '', query: '' }, 
+      { queryName: 'Example 1', query: platonic1 },
+      { queryName: 'Example 2', query: platonic2 },
+      { queryName: 'Example 3', query: platonic3 }
+    ]
+  },
+  {
+    name: 'Product', 
+    schema: productSig, 
+    db: productDb, 
+    queries: [
+      { queryName: '', query: '' }, 
+      { queryName: 'Example 1', query: product1 }
+    ]
+  },
+  {
+    name: 'Reviews', 
+    schema: reviewsSig, 
+    db: reviewsDb, 
+    queries: [
+      { queryName: '', query: '' }, 
+      { queryName: 'Example 1', query: reviews1 },
+      { queryName: 'Example 2', query: reviews2 }
+    ]
+  },
+  { 
+    name: 'Ships', 
+    schema: shipsSig, 
+    db: shipsDb, 
+    queries: [
+      { queryName: '', query: '' }, 
+      { queryName: 'Example 1', query: ships1 },
+      { queryName: 'Example 2', query: ships2 },
+      { queryName: 'Example 3', query: ships3 },
+      { queryName: 'Example 4', query: ships4 }
+    ]
+  },
+  {
+    name: 'Movies', 
+    schema: moviesSig, 
+    db: moviesDb, 
+    queries: [
+      { queryName: '', query: '' }, 
+      { queryName: 'Example 1', query: movies1 },
+      { queryName: 'Example 2', query: movies2 }
+    ]
+  },
+ ];
 
 
 const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) => {
   
   const [example, setExample] = useState('');
   const [queryExample, setQueryExample] = useState('')
-
-  useEffect(() => {
-    for (const [index, element] of exampleNames.entries()) {
-      examples.push({ name: element })
-      for (let i = 0; i < 2; i++) {
-        readExampleFiles(index, i)
-          .then(text => {
-            examples[index+1][exampleExt[i]] = text;
-          })
-      }
-
-      examples[index+1]['ex'] = [{ exName: '', query: '' }];
-
-      for (let j = 0; j < exampleQueryImports[element].length; j++) {
-        readExampleFilesQuery(exampleQueryImports[element], j)
-        .then(text => {
-          examples[index+1].ex.push({ exName: "Example "+(j+1), query: text });
-        })
-      }
-    }
-  }, [])
-
 
   const handleChange = (event) => {
     setExample(event.target.value);
@@ -116,14 +145,13 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
 
   const findAndSetExampleQuery = (val) => {
     const result = examples.find( element => element.name === example );
-    const currQueryExample = result.ex.find( element => element.exName === val);
+    const currQueryExample = result.queries.find( element => element.queryName === val);
     if (result !== undefined && currQueryExample !== undefined) {
       setFormState({ type: 'setQuery', query: currQueryExample.query });
     }
   }
 
-  const queriesFound = examples.find( element => element.name === example );
-  const queries = queriesFound !== undefined ? queriesFound : examples.find( element => element.name === '' );
+  const q = examples.find( element => element.name === example ).queries;
 
   return (
     <div className='wrapper'>
@@ -181,8 +209,8 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
                 color: 'text.primary',
               }}
             >
-             { queries.ex.map((elem, idx) => 
-              (idx <= exampleQueryImports[example].length) && <MenuItem sx={{color: 'text.primary'}} value={elem.exName}>{elem.exName === '' ? "None" : elem.exName}</MenuItem>
+             { q.map((elem) => 
+              <MenuItem sx={{color: 'text.primary'}} value={elem.queryName}>{elem.queryName === '' ? "None" : elem.queryName}</MenuItem>
             ) } 
             </Select>
           </FormControl>

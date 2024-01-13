@@ -27,8 +27,6 @@ export default function InputFileUpload({type, setFormState}) {
     const filenameLength = file.name.length;
     const fileExt = (filenameLength < typeExt.length) ? '' : file.name.substring(file.name.length - typeExt.length);
 
-    console.log(fileExt, typeExt, (filenameLength < typeExt.length))
-
     if(fileExt !== typeExt) {
         alert("The uploaded file has to be a database file\n\nRequired extention: .db");
         return;
