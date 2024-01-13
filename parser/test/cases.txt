@@ -1,0 +1,72 @@
+# EqualsExpression1
+
+10=9
+
+==>
+
+Program(EqualsExpression)
+
+# EqualsExpression2
+
+lot=10
+
+==>
+
+Program(EqualsExpression(Identifier))
+
+# EqualsExpression3
+
+lot=garage
+
+==>
+
+Program(EqualsExpression(Identifier, Identifier))
+
+# EqualsExpression4
+
+lot="HELLO THERE"
+
+==>
+
+Program(EqualsExpression(Identifier, String))
+
+
+# TableExpression-Identifiers
+
+Outcomes(n,q,r)
+
+==>
+
+Program(TableExpression(TableName, "(", varList(Identifier, Identifier, Identifier),")",))
+
+# TableExpression-Strings
+
+Maui("pig","Guadalcanal","rest")
+
+==>
+
+Program(TableExpression(TableName, "(", varList(String, String, String),")",))
+
+# TableExpression-Identifier-String
+
+movieStars("Tom Cruise", movies)
+
+==>
+
+Program(TableExpression(TableName, "(", varList(String, Identifier),")",))
+
+# Query1
+
+EXISTS mid1, mid2.
+Member(mid1, _, _, password, _) AND
+Member(mid2, _, _, password, _) AND
+NOT(mid1 = mid2)
+
+==> 
+
+Program(PrefixExpression(EXISTS, varList(Identifier, Identifier), "."),
+  TableExpression(TableName, "(", varList(Identifier, Identifier, Identifier, Identifier, Identifier), ")",),
+  InfixExpression(AND), TableExpression(TableName, "(", varList(Identifier, Identifier, Identifier, Identifier, Identifier), ")",),
+  InfixExpression(AND), PrefixExpression(NOT), "(", EqualsExpression(Identifier, Identifier), ")",
+)
+

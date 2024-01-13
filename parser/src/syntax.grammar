@@ -1,0 +1,94 @@
+@precedence {
+  infix @left
+}
+
+@detectDelim
+
+@top Program { statement? }
+
+@skip { space }
+
+statement { queryExpression }
+
+commaSep[@name=varList]<content> { content ("," content)* }
+
+TableExpression {
+  TableName "(" commaSep<Identifier | String | number> ")"
+}
+
+PrefixExpression {
+  (kw<'∃'> | kw<'EXISTS'>) commaSep<Identifier> "." |
+  (kw<'∀'> | kw<'FORALL'>) commaSep<Identifier> "." |
+  (kw<'¬'> | kw<'NOT'>)
+}
+
+InfixExpression {
+  kw<'∧'> | kw<'AND'> |
+  kw<'∨'> | kw<'OR'> |
+  kw<'⇒'> | kw<'IMPLIES'>
+}
+
+EqualsExpression {
+  (Identifier | String | number)infixOperator infixOperator?(Identifier | String | number) (mathOperator number)?
+}
+
+AggregateExpression {
+  Identifier arrow (kw<'CNT'> | kw<'AVG'> | kw<'MED'> | kw<'MAX'> | kw<'MIN'> | kw<'SUM'>) Identifier |
+  Identifier arrow (kw<'CNT'> | kw<'AVG'> | kw<'MED'> | kw<'MAX'> | kw<'MIN'> | kw<'SUM'>) Identifier ";" commaSep<Identifier>
+}
+
+SubstringExpression {
+  (Identifier | String) kw<'SUBSTRING'> (Identifier | String)
+}
+
+queryExpression {
+  EqualsExpression | TableExpression | AggregateExpression queryExpression |
+  queryExpression !infix InfixExpression SubstringExpression  |
+  queryExpression !infix InfixExpression queryExpression  |
+  PrefixExpression queryExpression |
+  "(" queryExpression ")" |
+  kw<"LET"> queryExpression "=" queryExpression kw<"IN"> queryExpression
+}
+
+Identifier { word ~name }
+
+TableName { word ~name }
+
+// Keywords
+
+kw<term1> { @specialize[@name={term1}]<word, term1> }
+
+
+@skip {} {
+  String {
+    '"' (stringContentDouble | Escape)* ('"' | "\n") |
+    "'" (stringContentSingle | Escape)* ("'" | "\n")
+  }
+}
+
+@tokens {
+  identifierChar { $[a-zA-Z∃∀∧∨⇒¬_] }
+
+  word { identifierChar (identifierChar | @digit | '-')* }
+
+  Escape { "\\" }
+
+  stringContentSingle { ![\\\n']+ }
+
+  stringContentDouble { ![\\\n"]+ }
+
+  arrow { "<-" }
+
+  space { $[ \t\n\r]+ }
+
+  number { $[0-9]+ "."? $[0-9]* }
+
+  infixOperator { '=' | '≈' | '<' | '>' }
+
+  mathOperator { '+' | '-' | '*' }
+
+  "(" ")"
+
+  "."
+
+}
