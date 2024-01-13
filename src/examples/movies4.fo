@@ -1,0 +1,3 @@
+EXISTS netWorth1, netWorth2.
+MovieExec("George Lucas", _, _, netWorth1) AND
+MovieExec(name, _, _, netWorth2) ∧ netWorth1 > netWorth2

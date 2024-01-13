@@ -1,0 +1,1 @@
+average_rating <- AVG rating; brand (Products(brand, product) ∧ Reviews(product, _, rating))

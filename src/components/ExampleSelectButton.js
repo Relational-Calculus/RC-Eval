@@ -31,12 +31,15 @@ import reviewsDb from '../examples/reviews.db'
 import reviewsSig from '../examples/reviews.sig'
 import reviews1 from '../examples/reviews1.fo'
 import reviews2 from '../examples/reviews2.fo';
+import reviews3 from '../examples/reviews3.fo';
+import reviews4 from '../examples/reviews4.fo';
 
 import moviesDb from '../examples/movies.db'
 import moviesSig from '../examples/movies.sig'
 import movies1 from '../examples/movies1.fo'
 import movies2 from '../examples/movies2.fo'
 import movies3 from '../examples/movies3.fo'
+import movies4 from '../examples/movies4.fo'
 
 import shipsDb from '../examples/ships.db'
 import shipsSig from '../examples/ships.sig'
@@ -97,7 +100,9 @@ const examples = [
     queries: [
       { queryName: '', query: '' }, 
       { queryName: 'Example 1', query: reviews1 },
-      { queryName: 'Example 2', query: reviews2 }
+      { queryName: 'Example 2', query: reviews2 },
+      { queryName: 'Example 3', query: reviews3 },
+      { queryName: 'Example 4', query: reviews4 }
     ]
   },
   { 
@@ -120,7 +125,8 @@ const examples = [
       { queryName: '', query: '' }, 
       { queryName: 'Example 1', query: movies1 },
       { queryName: 'Example 2', query: movies2 },
-      { queryName: 'Example 3', query: movies3 }
+      { queryName: 'Example 3', query: movies3 },
+      { queryName: 'Example 4', query: movies4 }
     ]
   },
  ];
