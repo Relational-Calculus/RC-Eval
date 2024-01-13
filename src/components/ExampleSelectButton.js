@@ -185,7 +185,7 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
             >
               <MenuItem sx={{color: 'text.primary'}} value={""}>None</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Employees"}>Employees</MenuItem>
-              <MenuItem sx={{color: 'text.primary'}} value={"Platonic"}>Courses</MenuItem>
+              <MenuItem sx={{color: 'text.primary'}} value={"Courses"}>Courses</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Product"}>Computer Shop</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Reviews"}>Reviews</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Ships"}>Battleships</MenuItem>
