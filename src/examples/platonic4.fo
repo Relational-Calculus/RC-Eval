@@ -1,0 +1,5 @@
+LET TL(lecturer, teacher_likes) =
+(teacher_likes <- CNT student; lecturer likes(student, lecturer))
+IN 
+TL(lecturer, most_likes) ∧ 
+most_likes <- MAX teacher_likes TL(lecturer, teacher_likes)

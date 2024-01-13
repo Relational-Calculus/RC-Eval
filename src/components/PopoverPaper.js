@@ -19,7 +19,7 @@ const buttonExamples = {
     },
     '⇒': {
         operatorName: 'IMPLIES',
-        example:  '<span style="color:green">φ</span> <strong>⇒</strong> <span style="color:green">ψ</span> := (¬<span style="color:green">φ</span>) ∨ <span style="color:green">ψ</span><hr width="100%" size="2">(∃ lecturer, course . teaches(lecturer, course)) <b>⇒ </b> ∃ student. attends(student, course)'
+        example:  '<span style="color:green">φ</span> <strong>⇒</strong> <span style="color:green">ψ</span> := (¬<span style="color:green">φ</span>) ∨ <span style="color:green">ψ</span><hr width="100%" size="2">(∃ <i>lecturer</i>, <i>course</i> . teaches(<i>lecturer</i>, <i>course</i>))<br /> <b>⇒</b> ∃ <i>student</i>. attends(<i>student</i>, <i>course</i>)'
     },
     '¬': {
         operatorName: 'NOT',
@@ -35,53 +35,53 @@ const buttonExamples = {
     },
     '>': {
         operatorName: 'GREATER THAN',
-        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t<sub>1</sub></span> > <span style="color:#00aadd">t<sub>2</sub></span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd"><sub>1</sub></span>) <b>></b> <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>2</sub></span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a <b>></b> 10'
+        example:  '<span style="color:purple">v</span> ⊨ <span style="color:#00aadd">t<sub>1</sub></span> > <span style="color:#00aadd">t<sub>2</sub></span> ⟺ <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>1</sub></span>) <b>></b> <span style="color:purple">v</span>(<span style="color:#00aadd">t<sub>2</sub></span>)<hr width="100%" size="2">∃ a, b. T(a, b, c) ∧ a <b>></b> 10'
     },
     'AVG': {
         operatorName: 'AVERAGE',
         example:  `<span style="color:purple">v</span> ⊨ y &larr; <b>AVG</b>(<span style="color:#00aadd">t</span>; <span style="text-decoration:underline; text-underline-offset: -11px;">&#103;</span>) <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(y) = <b>AVG</b>(<i>M</i>)<br />
                     &emsp;where <i>M</i> = <span style="font-size:30px">&uplus;</span><sub><span style="text-decoration:underline; text-underline-offset: -12px;">d</span> &isin; &#8517;<sup>|<span style="text-decoration:underline; text-underline-offset: -9px;">z</span>|</sup></sub>{|u(t)| u ⊨ <span style="color:green">φ</span>, where u = <span style="color:purple">v</span>[<span style="text-decoration:underline; text-underline-offset: -11px;">z</span> &rarr; <span style="text-decoration:underline; text-underline-offset: -13px;">d</span>]} and <span style="text-decoration:underline; text-underline-offset: -11px;">z</span> = <i>fv</i>(<span style="color:green">φ</span>)\\<span style="text-decoration:underline; text-underline-offset: -11px;">g</span>
-                    <hr width="100%" size="2">avg_speed &larr; <b>AVG</b> speed PC(_, speed, _, _, _)`
+                    <hr width="100%" size="2"><i>avg_speed</i> &larr; <b>AVG</b> <i>speed</i> PC(_, <i>speed</i>, _, _, _)`
     },
     'MED': {
         operatorName: 'MEDIAN',
         example:  `<span style="color:purple">v</span> ⊨ y &larr; <b>MED</b>(<span style="color:#00aadd">t</span>; <span style="text-decoration:underline; text-underline-offset: -11px;">&#103;</span>) <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(y) = <b>MED</b>(<i>M</i>)<br />
                     &emsp;where <i>M</i> = <span style="font-size:30px">&uplus;</span><sub><span style="text-decoration:underline; text-underline-offset: -12px;">d</span> &isin; &#8517;<sup>|<span style="text-decoration:underline; text-underline-offset: -9px;">z</span>|</sup></sub>{|u(t)| u ⊨ <span style="color:green">φ</span>, where u = <span style="color:purple">v</span>[<span style="text-decoration:underline; text-underline-offset: -11px;">z</span> &rarr; <span style="text-decoration:underline; text-underline-offset: -13px;">d</span>]} and <span style="text-decoration:underline; text-underline-offset: -11px;">z</span> = <i>fv</i>(<span style="color:green">φ</span>)\\<span style="text-decoration:underline; text-underline-offset: -11px;">g</span>
-                    <hr width="100%" size="2">median_speed &larr; <b>MED</b> speed PC(_, speed, _, _, _)`
+                    <hr width="100%" size="2"><i>median_speed</i> &larr; <b>MED</b> <i>speed</i> PC(_, <i>speed</i>, _, _, _)`
     },
     'MAX': {
         operatorName: 'MAXIUMUM',
         example:  `<span style="color:purple">v</span> ⊨ y &larr; <b>MAX</b>(<span style="color:#00aadd">t</span>; <span style="text-decoration:underline; text-underline-offset: -11px;">&#103;</span>) <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(y) = <b>MAX</b>(<i>M</i>)<br />
                     &emsp;where <i>M</i> = <span style="font-size:30px">&uplus;</span><sub><span style="text-decoration:underline; text-underline-offset: -12px;">d</span> &isin; &#8517;<sup>|<span style="text-decoration:underline; text-underline-offset: -9px;">z</span>|</sup></sub>{|u(t)| u ⊨ <span style="color:green">φ</span>, where u = <span style="color:purple">v</span>[<span style="text-decoration:underline; text-underline-offset: -11px;">z</span> &rarr; <span style="text-decoration:underline; text-underline-offset: -13px;">d</span>]} and <span style="text-decoration:underline; text-underline-offset: -11px;">z</span> = <i>fv</i>(<span style="color:green">φ</span>)\\<span style="text-decoration:underline; text-underline-offset: -11px;">g</span>
-                    <hr width="100%" size="2">max_speed &larr; MAX speed PC(_, speed, _, _, price) AND price < 500`
+                    <hr width="100%" size="2"><i>max_speed</i> &larr; <b>MAX</b> <i>speed</i> PC(_, <i>speed</i>, _, _, <i>price</i>) AND <i>price</i> < 500`
     },
     'MIN': {
         operatorName: 'MINIMUM',
         example:  `<span style="color:purple">v</span> ⊨ y &larr; <b>MIN</b>(<span style="color:#00aadd">t</span>; <span style="text-decoration:underline; text-underline-offset: -11px;">&#103;</span>) <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(y) = <b>MIN</b>(<i>M</i>)<br />
                     &emsp;where <i>M</i> = <span style="font-size:30px">&uplus;</span><sub><span style="text-decoration:underline; text-underline-offset: -12px;">d</span> &isin; &#8517;<sup>|<span style="text-decoration:underline; text-underline-offset: -9px;">z</span>|</sup></sub>{|u(t)| u ⊨ <span style="color:green">φ</span>, where u = <span style="color:purple">v</span>[<span style="text-decoration:underline; text-underline-offset: -11px;">z</span> &rarr; <span style="text-decoration:underline; text-underline-offset: -13px;">d</span>]} and <span style="text-decoration:underline; text-underline-offset: -11px;">z</span> = <i>fv</i>(<span style="color:green">φ</span>)\\<span style="text-decoration:underline; text-underline-offset: -11px;">g</span>
-                    <hr width="100%" size="2">min_speed &larr; <b>MIN</b> speed; ram PC(_, speed, ram, _, _)`
+                    <hr width="100%" size="2"><i>min_speed</i> &larr; <b>MIN</b> <i>speed</i>; <i>ram</i> PC(_, <i>speed</i>, <i>ram</i>, _, _)`
     },
     'CNT': {
         operatorName: 'COUNT',
         example:  `<span style="color:purple">v</span> ⊨ y &larr; <b>CNT</b>(<span style="color:#00aadd">t</span>; <span style="text-decoration:underline; text-underline-offset: -11px;">&#103;</span>) <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(y) = <b>CNT</b>(<i>M</i>)<br />
                     &emsp;where <i>M</i> = <span style="font-size:30px">&uplus;</span><sub><span style="text-decoration:underline; text-underline-offset: -12px;">d</span> &isin; &#8517;<sup>|<span style="text-decoration:underline; text-underline-offset: -9px;">z</span>|</sup></sub>{|u(t)| u ⊨ <span style="color:green">φ</span>, where u = <span style="color:purple">v</span>[<span style="text-decoration:underline; text-underline-offset: -11px;">z</span> &rarr; <span style="text-decoration:underline; text-underline-offset: -13px;">d</span>]} and <span style="text-decoration:underline; text-underline-offset: -11px;">z</span> = <i>fv</i>(<span style="color:green">φ</span>)\\<span style="text-decoration:underline; text-underline-offset: -11px;">g</span>
-                    <hr width="100%" size="2">num_employees &larr; <b>CNT</b> ssn Employees(ssn, name, lot)`
+                    <hr width="100%" size="2"><i>num_employees</i> &larr; <b>CNT</b> <i>ssn</i> Employees(<i>ssn</i>, <i>name</i>, <i>lot</i>)`
     },
     'SUM': {
         operatorName: 'SUM',
         example:  `<span style="color:purple">v</span> ⊨ y &larr; <b>SUM</b>(<span style="color:#00aadd">t</span>; <span style="text-decoration:underline; text-underline-offset: -11px;">&#103;</span>) <span style="color:green">φ</span> ⟺ <span style="color:purple">v</span>(y) = <b>SUM</b>(<i>M</i>)<br />
                     &emsp;where <i>M</i> = <span style="font-size:30px">&uplus;</span><sub><span style="text-decoration:underline; text-underline-offset: -12px;">d</span> &isin; &#8517;<sup>|<span style="text-decoration:underline; text-underline-offset: -9px;">z</span>|</sup></sub>{|u(t)| u ⊨ <span style="color:green">φ</span>, where u = <span style="color:purple">v</span>[<span style="text-decoration:underline; text-underline-offset: -11px;">z</span> &rarr; <span style="text-decoration:underline; text-underline-offset: -13px;">d</span>]} and <span style="text-decoration:underline; text-underline-offset: -11px;">z</span> = <i>fv</i>(<span style="color:green">φ</span>)\\<span style="text-decoration:underline; text-underline-offset: -11px;">g</span>
-                    <hr width="100%" size="2">total_price &larr; <b>SUM</b> price Laptop(2003, _, _, _, _, price) ∨ Printer(3004, _, _, price)`
+                    <hr width="100%" size="2"><i>total_price</i> &larr; <b>SUM</b> <i>price</i> Laptop(<i>2003</i>, _, _, _, _, <i>price</i>) ∨ Printer(<i>3004</i>, _, _, <i>price</i>)`
     },
     'LET': {
         operatorName: 'LET',
         example:  `DB, <span style="color:purple">v</span> ⊨ <b>LET</b> P(<span style="text-decoration:underline; text-underline-offset: -11px;">x</span>) = <span style="color:green">φ</span> <b>IN</b> <span style="color:green">ψ</span> ⟺ <br />&emsp;DB(P ⇒ [<span style="color:purple">w</span>(<span style="text-decoration:underline; text-underline-offset: -11px;">x</span>) | DB, <span style="color:purple">w</span> ⊨ <span style="color:green">φ</span>], <span style="color:purple">v</span> ⊨ <span style="color:green">ψ</span>)<hr width="100%" size="2">
-        <b>LET</b> DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") ∧ attends(student,"DIS")<br />IN DIS(lecturer, student)`
+        <b>LET</b> DIS(<i>lecturer</i>, <i>student</i>) =<br />&emsp;teaches(<i>lecturer</i>,<i>"DIS"</i>) ∧ attends(<i>student</i>,<i>"DIS"</i>)<br /><b>IN</b> DIS(<i>lecturer</i>, <i>student</i>)`
     },
     'IN': {
         operatorName: 'IN',
         example:  `DB, <span style="color:purple">v</span> ⊨ <b>LET</b> P(<span style="text-decoration:underline; text-underline-offset: -11px;">x</span>) = <span style="color:green">φ</span> <b>IN</b> <span style="color:green">ψ</span> ⟺ <br />&emsp;DB(P ⇒ [<span style="color:purple">w</span>(<span style="text-decoration:underline; text-underline-offset: -11px;">x</span>) | DB, <span style="color:purple">w</span> ⊨ <span style="color:green">φ</span>], <span style="color:purple">v</span> ⊨ <span style="color:green">ψ</span>)<hr width="100%" size="2">
-        LET DIS(lecturer, student) =<br />&emsp;teaches(lecturer,"DIS") ∧ attends(student,"DIS")<br /><b>IN</b> DIS(lecturer, student)`
+        <b>LET</b> DIS(<i>lecturer</i>, <i>student</i>) =<br />&emsp;teaches(<i>lecturer</i>,<i>"DIS"</i>) ∧ attends(<i>student</i>,<i>"DIS"</i>)<br /><b>IN</b> DIS(<i>lecturer</i>, <i>student</i>)`
     }
 }
 
