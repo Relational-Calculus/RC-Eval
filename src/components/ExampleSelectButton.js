@@ -35,6 +35,7 @@ import moviesDb from '../examples/movies.db'
 import moviesSig from '../examples/movies.sig'
 import movies1 from '../examples/movies1.fo'
 import movies2 from '../examples/movies2.fo'
+import movies3 from '../examples/movies3.fo'
 
 import shipsDb from '../examples/ships.db'
 import shipsSig from '../examples/ships.sig'
@@ -65,7 +66,7 @@ const examples = [
     ]
   },
   { 
-    name: 'Platonic', 
+    name: 'Courses', 
     schema: platonicSig,  
     db: platonicDb, 
     queries: [
@@ -116,7 +117,8 @@ const examples = [
     queries: [
       { queryName: '', query: '' }, 
       { queryName: 'Example 1', query: movies1 },
-      { queryName: 'Example 2', query: movies2 }
+      { queryName: 'Example 2', query: movies2 },
+      { queryName: 'Example 3', query: movies3 }
     ]
   },
  ];
@@ -183,9 +185,9 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
             >
               <MenuItem sx={{color: 'text.primary'}} value={""}>None</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Employees"}>Employees</MenuItem>
-              <MenuItem sx={{color: 'text.primary'}} value={"Platonic"}>Platonic Triangles</MenuItem>
+              <MenuItem sx={{color: 'text.primary'}} value={"Platonic"}>Courses</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Product"}>Computer Shop</MenuItem>
-              <MenuItem sx={{color: 'text.primary'}} value={"Reviews"}>Suspicious Reviews</MenuItem>
+              <MenuItem sx={{color: 'text.primary'}} value={"Reviews"}>Reviews</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Ships"}>Battleships</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Movies"}>Movies</MenuItem>
             </Select>
