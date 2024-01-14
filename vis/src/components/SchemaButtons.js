@@ -17,8 +17,7 @@ const Schemabuttons = forwardRef(({ schema, setFocusState }, ref) => {
 
     const handleClick = (event) => {
         setFocusState(prevState => {
-            return { state: 'schema', 
-                     schemaBtnText: schema_from_tablename(event.target.innerText, localSchema) }});
+            return { state: 'schema', schemaBtnText: schema_from_tablename(event.target.innerText, localSchema) }});
         ref.current.focus();
     }
     

@@ -1,4 +1,4 @@
-import { useState, forwardRef } from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -132,7 +132,7 @@ const examples = [
  ];
 
 
-const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) => {
+ export default function ExampleSelectButton({ setFormState }) {
   
   const [example, setExample] = useState('');
   const [queryExample, setQueryExample] = useState('')
@@ -140,16 +140,12 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
   const handleChange = (event) => {
     setExample(event.target.value);
     setQueryExample('');
-    setFocusState(prevState => { return {...prevState, state: 'example'}});
     findAndSetExample(event.target.value);
-    ref.current.focus();
   };
 
   const handleChangeQuery = (event) => {
     setQueryExample(event.target.value);
-    setFocusState(prevState => { return {...prevState, state: 'example'}});
     findAndSetExampleQuery(event.target.value);
-    ref.current.focus();
   };
 
   const findAndSetExample = (val) => {
@@ -234,6 +230,4 @@ const ExampleSelectButton = forwardRef(({ setFormState, setFocusState }, ref) =>
       </Box>}
     </div>
   );
-});
-
-export default ExampleSelectButton;
+};

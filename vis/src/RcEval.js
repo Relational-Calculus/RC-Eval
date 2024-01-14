@@ -30,20 +30,20 @@ function evalQuery(evalState, action) {
     const pinf = queryResults[2];
 
     const f = window.checkQueryIsMon(action.query);
-    const f1 = f[0];
-    const msg1 = change_terminology_error(f[1]); 
+    const not_ranf_fun = f[0];
+    const not_ranf_msg = change_terminology_error(f[1]); 
     
     const regEx = /[\w.-]+/g
     return { ...evalState,
-            query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, f1:f1, msg1:msg1}};
+            query: {fv: freeVariables.match(regEx), correct: true, pfin:pfin, pinf:pinf, not_ranf_fun:not_ranf_fun, not_ranf_msg:not_ranf_msg}};
   } catch (error) {
     try {
       const f = window.checkQueryIsMon(action.query);
-      const f1 = f[0];
-      const msg1 = change_terminology_error(f[1]);
+      const not_ranf_fun = f[0];
+      const not_ranf_msg = change_terminology_error(f[1]);
 
       return { ...evalState, 
-        query: {fv: [], err_msg: error[1], correct: false, f1:f1, msg1:msg1}};
+        query: {fv: [], err_msg: error[1], correct: false, not_ranf_fun:not_ranf_fun, not_ranf_msg:not_ranf_msg}};
 
     } catch (error) {
       console.log(error);
@@ -125,7 +125,7 @@ export default function RcEval() {
   const [evalState, setEvalState] = useReducer(evalStateReducer, 
                                                                 {
                                                                   schema: {result: "", err_msg: "", correct: false},
-                                                                  query: {fv: [], err_msg: "", correct: false, pfin: "", pinf: "", f1: "", msg1:""},
+                                                                  query: {fv: [], err_msg: "", correct: false, pfin: "", pinf: "", not_ranf_fun: "", not_ranf_msg:""},
                                                                   db: {quickresult: "", result: "", err_msg: "", correct: true}
                                                                 })
   const [focusState, setFocusState] = useState({ state: '', schemaBtnText: '' });
@@ -163,8 +163,6 @@ export default function RcEval() {
           </Grid>
           <ExampleSelectButton 
             setFormState={setFormState} 
-            setFocusState={setFocusState} 
-            ref={textEditorRef} 
           />
           <Schemabuttons 
             ref={textEditorRef} 
@@ -177,13 +175,13 @@ export default function RcEval() {
             ref={textEditorRef} 
             query={formState.query}
             schema={formState.schema} 
-            setFormState={setFormState} 
-            focusState={focusState} 
-            setFocusState={setFocusState} 
-            pfin={evalState.query.pfin} 
+            onChange={(e) => setFormState({ type: 'setQuery', query: e.target.value })}
+            not_ranf_fun={evalState.query.not_ranf_fun}
+            not_ranf_msg={evalState.query.not_ranf_msg}
             pinf={evalState.query.pinf}
-            f1 = {evalState.query.f1}
-            msg1 = {evalState.query.msg1}
+            pfin={evalState.query.pfin}
+            focusState={focusState}
+            setFocusState={setFocusState}
           />
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <div>
