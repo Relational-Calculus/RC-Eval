@@ -174,14 +174,14 @@ export default function RcEval() {
           <CodeEditor 
             ref={textEditorRef} 
             query={formState.query}
+            focusState={focusState}
             schema={formState.schema} 
-            onChange={(e) => setFormState({ type: 'setQuery', query: e.target.value })}
-            not_ranf_fun={evalState.query.not_ranf_fun}
-            not_ranf_msg={evalState.query.not_ranf_msg}
             pinf={evalState.query.pinf}
             pfin={evalState.query.pfin}
-            focusState={focusState}
             setFocusState={setFocusState}
+            not_ranf_fun={evalState.query.not_ranf_fun}
+            not_ranf_msg={evalState.query.not_ranf_msg}
+            onChange={(e) => setFormState({ type: 'setQuery', query: e.target.value })}
           />
           { evalState.schema.correct && evalState.query.correct && evalState.db.correct &&
             <div>

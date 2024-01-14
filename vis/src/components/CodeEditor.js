@@ -180,12 +180,16 @@ const CodeEditor = forwardRef(({ query, schema, onChange, not_ranf_fun, not_ranf
           changes: {from: cursorPosFrom, to: cursorPosTo, insert: focusState.schemaBtnText},
           selection: {anchor: cursorPosFrom+focusState.schemaBtnText.length}
         })
-        setFocusState(prevState => { return { state: '', schemaBtnText: '' }})
+        if(view.current.hasFocus) clearInterval(timer);
+      }, 100);
+      setFocusState(prevState => { return { state: '', schemaBtnText: '' }})
+    } else {
+      const timer = setInterval(() => {
         view.current.focus();
         if(view.current.hasFocus) clearInterval(timer);
-      }, 10);
+      }, 100)
+    }
   }
-}
 
   const popoverID = open ? "mouse-over-popover" : undefined;
   const popoverContent = open ? anchorEl.innerText : undefined;
