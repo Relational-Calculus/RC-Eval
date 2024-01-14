@@ -1,4 +1,4 @@
-Welcome to RC-Evaluator: A tool for evaluation RC queries.  
+Welcome to RC-Evaluator: A User-Friendly Tool for Evaluating Relational Calculus Queries. 
 
 RC-Evaluator depends on MonPoly which can be found here: https://bitbucket.org/monpoly/monpoly/src/master/ and on React found here: https://react.dev/
 
