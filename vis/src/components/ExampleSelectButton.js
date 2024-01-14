@@ -48,6 +48,10 @@ import ships2 from '../examples/ships2.fo';
 import ships3 from '../examples/ships3.fo';
 import ships4 from '../examples/ships4.fo'
 
+import familySig from '../examples/family.sig'
+import familyDb from '../examples/family.db'
+import family1 from '../examples/family1.fo'
+
 const examples = [ 
   { 
     name: '', 
@@ -129,6 +133,15 @@ const examples = [
       { queryName: 'Example 4', query: movies4 }
     ]
   },
+  {
+    name: 'Families', 
+    schema: familySig, 
+    db: familyDb, 
+    queries: [
+      { queryName: '', query: '' }, 
+      { queryName: 'Example 1', query: family1 }
+    ]
+  },
  ];
 
 
@@ -194,6 +207,7 @@ const examples = [
               <MenuItem sx={{color: 'text.primary'}} value={"Reviews"}>Reviews</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Ships"}>Battleships</MenuItem>
               <MenuItem sx={{color: 'text.primary'}} value={"Movies"}>Movies</MenuItem>
+              <MenuItem sx={{color: 'text.primary'}} value={"Families"}>Families</MenuItem>
             </Select>
           </FormControl>
         </div>

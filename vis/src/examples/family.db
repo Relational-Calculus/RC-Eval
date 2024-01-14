@@ -1,0 +1,22 @@
+Couple
+("Anna", "Claus")
+("Hanne", "Ole")
+("Jette", "Jens")
+("Tine", "Troels")
+("Valerie", "John")
+
+Mother
+("Anna", "Nikolai")
+("Anna", "Jakob")
+("Anna", "Elisabet")
+("Tine", "Fie")
+("Tine", "Line")
+("Jette", "Henrik")
+
+Father
+("Claus", "Nikolai")
+("Claus", "Jakob")
+("Claus", "Elisabet")
+("Troels", "Fie")
+("Troels", "Line")
+("Jens", "Henrik")

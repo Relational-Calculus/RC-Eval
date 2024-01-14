@@ -1,6 +1,6 @@
 import { useState, useEffect, forwardRef, useRef } from "react";
 import { RC } from '../lang-rc/index.js';
-import { EditorState } from "@codemirror/state";
+import { EditorState, Compartment } from "@codemirror/state";
 import { basicSetup, EditorView } from "codemirror"
 import { keymap, placeholder } from "@codemirror/view";
 import { tags as t } from '@lezer/highlight';
@@ -11,23 +11,19 @@ import { RCLinter } from "../error_handling.js";
 import { autocompletion, completeFromList, ifNotIn } from "@codemirror/autocomplete";
 import myCompletions from "../autocompletion.js";
 import { schema_to_completion_list } from '../utils.js'
-
-// import { createTheme } from '@uiw/codemirror-themes';
-// import { useCodeMirror } from '@uiw/react-codemirror';
-import "./CodeEditor.css";
 import Popover from '@mui/material/Popover';
 import PopoverPaper from "./PopoverPaper.js";
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import ExamineDialog from "./ExamineDialog.js";
 import RANFDialog from "./RANFdialog.js";
+import "./CodeEditor.css";
 
 
 // Define the extensions outside the component for the best performance.
-// If you need dynamic extensions, use React.useMemo to minimize reference changes
-// which cause costly re-renders.
 
 // Constants
+const customExtensions = [RC(), lintGutter(), RCLinter];
 const operators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈'];
 const expertOperators = ['∃', '∀', '∧', '∨', '⇒', '¬', '≈', '<', '>', 'AVG', 'MED', 'MAX', 'MIN', 'CNT', 'SUM', 'LET', 'IN'];
 const placeholderStr = "Write Your Query Here\n\nTry using one of the examples to get started.\n"
@@ -47,39 +43,20 @@ let myTheme = EditorView.theme({
     minHeight: "200px"
   },
   "&.cm-focused .cm-cursor": {
-    borderLeftColor: "#0e9"
+    borderLeftColor: "#5d00ff"
   },
   "&.cm-focused .cm-selectionBackground, ::selection": {
     backgroundColor: "#036dd626"
   },
+  ".cm-selectionMatch": {
+    backgroundColor: "#036dd616",
+  },
   ".cm-gutters": {
     backgroundColor: "#fff",
     color: "#8a919966",
-    border: "none"
   }
 }, {dark: false})
 
-// const myTheme = createTheme({
-//   theme: 'light',
-//   settings: {
-//     background: '#ffffff',
-//     foreground: '#292a2b',
-//     caret: '#5d00ff',
-//     selection: '#036dd626',
-//     selectionMatch: '#036dd616',
-//     lineHighlight: '#8a91991a',
-//     gutterBackground: '#fff',
-//     gutterForeground: '#8a919966',
-//     fontFamily: 'OCR A Std, monospace'
-//   },
-//   styles: [
-//     { tag: t.definitionKeyword, color: '#aa5bc2' },
-//     { tag: t.modifier, color: '#f2912d' },
-//     { tag: t.string, color: '#0971d9' },
-//     { tag: t.operatorKeyword, color: '#de3c10' },
-//     { tag: t.paren, color: '#10c210' },
-//   ],
-// });
 
 const myHighlightstyle = HighlightStyle.define([
   { tag: t.definitionKeyword, color: '#aa5bc2' },
@@ -94,18 +71,15 @@ const CodeEditor = forwardRef(({ query, schema, onChange, not_ranf_fun, not_ranf
   const [expertMode, setExpertMode] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  
-  // Get dynamic completion list for current tablenames
-  const tableNames = schema_to_completion_list(schema);
-  const tablenameCompletion = tableNames.length === 0 ? "" : ifNotIn(["TableExpression", "PrefixExpression"], completeFromList([...tableNames]))
-  // Setting the extensions for the text editor
-  const customExtensions = tableNames.length === 0 ? [RC(), lintGutter(), RCLinter, autocompletion({ override: [myCompletions]})]
-                                             : [RC(), lintGutter(), RCLinter, autocompletion({ override: [myCompletions, tablenameCompletion]})]
-
 
   const view = useRef();
 
+  // Get dynamic completion list for current tablenames
+  const tableNames = schema_to_completion_list(schema);
+  const tablenameCompletion = tableNames.length === 0 ? [myCompletions] 
+                                                      : [myCompletions, ifNotIn(["TableExpression", "PrefixExpression"], completeFromList([...tableNames]))];
   useEffect(() => {
+    console.log("HELLO!")
     view.current = new EditorView({
       state: EditorState.create({
         doc: query,
@@ -115,6 +89,7 @@ const CodeEditor = forwardRef(({ query, schema, onChange, not_ranf_fun, not_ranf
           EditorView.updateListener.of(({ state }) => {
             onChange({ target: { value: state.doc.toString() } });
           }),
+          autocompletion({ override: tablenameCompletion}),
           keymap.of([ indentWithTab ]),
           syntaxHighlighting(myHighlightstyle),
           myTheme,
@@ -124,11 +99,13 @@ const CodeEditor = forwardRef(({ query, schema, onChange, not_ranf_fun, not_ranf
       parent: ref.current
     });
 
+    ref.current.focus()
     return () => {
       view.current.destroy();
       view.current = null;
     };
   }, [schema]);
+  
 
   useEffect(() => {
     if (view.current && view.current.state.doc.toString() !== query) {

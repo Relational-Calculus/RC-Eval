@@ -1,1 +1,1 @@
-num_employees <- CNT ssn Employees(ssn, name, lot)
+∃ ssn. Employees(ssn, name, lot) ∧ lot > 10
