@@ -1,6 +1,6 @@
 import { useState, useEffect, forwardRef, useRef } from "react";
 import { RC } from '../lang-rc/index.js';
-import { EditorState, Compartment } from "@codemirror/state";
+import { EditorState } from "@codemirror/state";
 import { basicSetup, EditorView } from "codemirror"
 import { keymap, placeholder } from "@codemirror/view";
 import { tags as t } from '@lezer/highlight';
@@ -79,7 +79,6 @@ const CodeEditor = forwardRef(({ query, schema, onChange, not_ranf_fun, not_ranf
   const tablenameCompletion = tableNames.length === 0 ? [myCompletions] 
                                                       : [myCompletions, ifNotIn(["TableExpression", "PrefixExpression"], completeFromList([...tableNames]))];
   useEffect(() => {
-    console.log("HELLO!")
     view.current = new EditorView({
       state: EditorState.create({
         doc: query,
