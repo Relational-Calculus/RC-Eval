@@ -4,11 +4,12 @@ RC-Evaluator comes with a list of example queries with corresponding relational 
 RC-Evaluator follows the grammar defined below, useful for writing your own queries: 
 
 Q = p(t, . . . , t) \
-| t ≈ t | t < t \
-| ¬Q | Q ∧ Q | Q ∨ Q \
-| ∀x. Q | ∃x. Q \
-| x ← Ω(t;  ̄g) Q \
-| LET p( ̄x) = Q IN Q 
+&nbsp;&emsp;| t ≈ t | t < t \
+&nbsp;&emsp;| ¬Q | Q ∧ Q | Q ∨ Q \
+&nbsp;&emsp;| ∀x. Q | ∃x. Q \
+&nbsp;&emsp;| x ← Ω(t;  ̄g) Q \
+&nbsp;&emsp;| LET p( ̄x) = Q IN Q 
+\
 \
 t = c | x
 
