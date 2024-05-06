@@ -120,7 +120,7 @@ function replacer(match, p1, p2, p3, offset, string) {
         '∧': '$\\wedge$',
         '∨': '$\\vee$',
         '⇒': '$\\implies$',
-        '¬': '$\\not$',
+        '¬': '$\\neg$',
         '≈': '$\\approx$',
         '_': '\\_',
         '>': '$>$',
